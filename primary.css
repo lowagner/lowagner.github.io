@@ -1,6 +1,6 @@
 
 div{
-/*margin:5px 5px;*/
+margin:5px 5px;
 /*width:100%;*/
 /*float:left;*/
 padding:3px 20px 20px 20px;
@@ -9,74 +9,103 @@ z-index: 10;
 overflow-y: auto;
 }
 div:after {
-background-color: grey;
+/* background color of all dividers */
+background-color:#181615;
 content: '';
 display: block;
 position: absolute;
-top: 1px;
-left: 3px;
-right: 1px;
+top: 2px;
+left: 7px;
+right: 2px;
 bottom: 25px;
 z-index: -1;
 }
 
-
-.index_body{ 
-background-color:Black; color:White;      
+body{ 
+/* background color of the actual background */
+background-color:#000A0F; 
+/* text color for most things */
+color:#CCCCCD;      
 /*margins*/
 margin-top:20px;
 margin-bottom:20px;
 margin-right:20px;
 margin-left:20px;
 }
-.index_header{ 
-/*width:900px; */
-/*height:100px;*/
-background-color:#333333; 
-color:#003300;
-}      
-.index_header_content{ 
-/*background-color:#333333; 
-color:#000000;*/
-/*text-align: left;*/
-/*internal padding*/
-/*padding:20px;*/
-/*padding-top:10px;
-padding-bottom:10px;
-padding-right:10px;
-padding-left:10px;
-*/
-}      
-.index_main{ 
-width:451px; 
-height:723px; 
-float:left;
-background-color:Red;  
-}      
-.index_col1{ width:140px; background-color:Blue; float:left; height:400px; }     
-.index_col2{ width:140px; background-color:Green; float:left; height:300px; }    
 
-.index_row1{ float:left; height:10%; }     
-.index_row2{ float:left; height:50%; }    
-.index_row3{ float:left; height:30%; }    
+/* unvisited link */
+a:link{
+color:#1188FF;
+text-decoration:none;
+}
+/* visited link */
+a:visited{
+color:#0844EE;
+text-decoration:none;
+}
+/* hovering over a link */
+a:hover{
+color:#FFAA00;
+text-decoration:none;
+}
+/* selecting a link */
+a:active{
+color:#FF0000;
+text-decoration:none;
+}
+
+
+/* style for running header */
+.header{ 
+background-color:#232323; 
+color:#AAAAAA;
+}      
+
+.main{ 
+width:451px; 
+height:734px; 
+float:left;
+background-color:#220000;  
+}      
+.col1{ width:140px; background-color:#002200; float:left; height:400px; }     
+.col2{ width:140px; background-color:#000022; float:left; height:300px; }    
+
+
+.col2menu{
+margin:0; padding:0; list-style:none;
+}
+.col2menu li{
+padding:0; 
+background-color:#111111;
+padding:8px;
+width:130px;
+margin:10px 0px;
+}
+.col2menu li a{
+width:150px;
+height:33px;
+display:block; 
+}
+.col2menu li a span{
+line-height:30px;
+}
 
 
 
 /*
-html:
-<html>
-<head>
-<meta charset=utf-8 />
-<title>JS Bin</title>
-</head>
-<body>
-  <nav>Some text or anything</nav>
-</body>
-</html>
-
-
-
-css:
-
-
+.col2menu li a{text-align:left;height:40px; padding:0px 25px; font:16px Verdana, Arial, Helvetica, sans-serif; color:rgb(255,255,255); display:block; background:url('verMenuImages.png') 0px 0px no-repeat; text-decoration:none;}
+.col2menu li a:hover{background:url('verMenuImages.png') 0px -40px no-repeat; color:rgb(255,255,255);}
+.col2menu li a.active, .menu li a.active:hover{background:url('verMenuImages.png') 0px -80px no-repeat; color:rgb(255,255,255);}
+.col2menu li a span{line-height:40px;}
 */
+
+
+
+h4{
+width:100%
+display: block;
+text-align:center;
+/*background-color:#111112;*/
+color:#DDDDDD;
+padding:10px 10px 0px 10px;
+}
