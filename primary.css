@@ -6,6 +6,7 @@ div{
 padding:3px 20px 20px 20px;
 position: relative;
 z-index: 10;
+overflow-y: auto;
 }
 div:after {
 background-color: grey;
@@ -48,12 +49,12 @@ padding-left:10px;
 }      
 .index_main{ 
 width:451px; 
-height:700px; 
+height:723px; 
 float:left;
 background-color:Red;  
 }      
-.index_col1{ width:187px; background-color:Blue; float:left; height:400px; }     
-.index_col2{ width:160px; background-color:Green; float:left; height:300px; }    
+.index_col1{ width:140px; background-color:Blue; float:left; height:400px; }     
+.index_col2{ width:140px; background-color:Green; float:left; height:300px; }    
 
 .index_row1{ float:left; height:10%; }     
 .index_row2{ float:left; height:50%; }    
