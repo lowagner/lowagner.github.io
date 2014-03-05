@@ -1,5 +1,81 @@
-.mainbody{  margin-left: auto;margin-right: auto; width:960px}
-.index_main{ width:60%; background-color:Red;  height:400px; float:left;}      
-.index_col1{ width:20%; background-color:Blue; float:left; height:400px; }     
-.index_col2{ width:20%; background-color:Green; float:left; height:400px; }    
-.index_header{ background-color:#994400; width:100%; height:100px;}      
+
+div{
+/*margin:5px 5px;*/
+/*width:100%;*/
+/*float:left;*/
+padding:3px 20px 20px 20px;
+position: relative;
+z-index: 10;
+}
+div:after {
+background-color: grey;
+content: '';
+display: block;
+position: absolute;
+top: 1px;
+left: 3px;
+right: 1px;
+bottom: 25px;
+z-index: -1;
+}
+
+
+.index_body{ 
+background-color:Black; color:White;      
+/*margins*/
+margin-top:20px;
+margin-bottom:20px;
+margin-right:20px;
+margin-left:20px;
+}
+.index_header{ 
+/*width:900px; */
+/*height:100px;*/
+background-color:#333333; 
+color:#003300;
+}      
+.index_header_content{ 
+/*background-color:#333333; 
+color:#000000;*/
+/*text-align: left;*/
+/*internal padding*/
+/*padding:20px;*/
+/*padding-top:10px;
+padding-bottom:10px;
+padding-right:10px;
+padding-left:10px;
+*/
+}      
+.index_main{ 
+width:451px; 
+height:700px; 
+float:left;
+background-color:Red;  
+}      
+.index_col1{ width:187px; background-color:Blue; float:left; height:400px; }     
+.index_col2{ width:160px; background-color:Green; float:left; height:300px; }    
+
+.index_row1{ float:left; height:10%; }     
+.index_row2{ float:left; height:50%; }    
+.index_row3{ float:left; height:30%; }    
+
+
+
+/*
+html:
+<html>
+<head>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+  <nav>Some text or anything</nav>
+</body>
+</html>
+
+
+
+css:
+
+
+*/
