@@ -1,4 +1,19 @@
 
+/* style for running header */
+.header{ 
+background-color:#232323; 
+color:#CCCCCE;
+}      
+
+.main{ 
+width:451px; 
+height:734px; 
+float:left;
+background-color:#220000;  
+}      
+.col1{ width:140px; background-color:#002200; float:left; height:400px; }     
+.col2{ width:140px; background-color:#000022; float:left; height:300px; }    
+
 div{
 margin:5px 5px;
 /*width:100%;*/
@@ -10,7 +25,7 @@ overflow-y: auto;
 }
 div:after {
 /* background color of all dividers */
-background-color:#181615;
+background-color:#181818;
 content: '';
 display: block;
 position: absolute;
@@ -20,6 +35,29 @@ right: 2px;
 bottom: 25px;
 z-index: -1;
 }
+
+
+li{
+margin:5px 5px;
+/*width:100%;*/
+/*float:left;*/
+position: relative;
+z-index: 10;
+}
+li:after {
+/* background color of all dividers */
+background-color:#201F1D;
+content: '';
+display: block;
+position: absolute;
+top: 1px;
+left: 2px;
+right: 5px;
+bottom: 8px;
+z-index: -1;
+}
+
+
 
 body{ 
 /* background color of the actual background */
@@ -34,62 +72,114 @@ margin-left:20px;
 }
 
 /* unvisited link */
-a:link{
-color:#1188FF;
+.main a:link{
+color:#FF9990;
 text-decoration:none;
 }
 /* visited link */
-a:visited{
-color:#0844EE;
+.main a:visited{
+color:#A05960;
 text-decoration:none;
 }
 /* hovering over a link */
-a:hover{
+.main a:hover{
 color:#FFAA00;
 text-decoration:none;
 }
 /* selecting a link */
-a:active{
+.main a:active{
+color:#FF0000;
+text-decoration:none;
+}
+
+/* unvisited link */
+.col1 a:link{
+color:#88CC77;
+text-decoration:none;
+}
+/* visited link */
+.col1 a:visited{
+color:#659050;
+text-decoration:none;
+}
+/* hovering over a link */
+.col1 a:hover{
+color:#FFAA00;
+text-decoration:none;
+}
+/* selecting a link */
+.col1 a:active{
+color:#FF0000;
+text-decoration:none;
+}
+
+/* unvisited link */
+.col2 a:link{
+color:#99AAFF;
+text-decoration:none;
+}
+/* visited link */
+.col2 a:visited{
+color:#6569A0;
+text-decoration:none;
+}
+/* hovering over a link */
+.col2 a:hover{
+color:#FFAA00;
+text-decoration:none;
+}
+/* selecting a link */
+.col2 a:active{
 color:#FF0000;
 text-decoration:none;
 }
 
 
-/* style for running header */
-.header{ 
-background-color:#232323; 
-color:#AAAAAA;
-}      
 
-.main{ 
-width:451px; 
-height:734px; 
-float:left;
-background-color:#220000;  
-}      
-.col1{ width:140px; background-color:#002200; float:left; height:400px; }     
-.col2{ width:140px; background-color:#000022; float:left; height:300px; }    
-
-
-.col2menu{
+.colmenu{
 margin:0; padding:0; list-style:none;
+color:#888888;
 }
-.col2menu li{
+.colmenu li{
 padding:0; 
 background-color:#111111;
-padding:8px;
-width:130px;
+padding:8px 12px;
+width:120px;
 margin:10px 0px;
 }
-.col2menu li a{
-width:150px;
+.colmenu li a{
+width:140px;
 height:33px;
 display:block; 
 }
-.col2menu li a span{
+.colmenu li span{
+width:140px;
+height:33px;
+line-height:30px;
+display:block; 
+}
+.colmenu li a span{
 line-height:30px;
 }
 
+.mainupdate{
+margin:0; padding:0; list-style:none;
+}
+.mainupdate li{
+padding:0; 
+background-color:#0C0910;
+padding:8px 12px;
+width:400px;
+margin:10px 0px 30px 00px;
+}
+.mainupdate li a{
+width:140px;
+height:33px;
+display:inline; 
+}
+.mainupdate li a span{
+line-height:30px;
+}
 
 
 /*
@@ -104,8 +194,85 @@ line-height:30px;
 h4{
 width:100%
 display: block;
-text-align:center;
+/*text-align:center;*/
 /*background-color:#111112;*/
 color:#DDDDDD;
-padding:10px 10px 0px 10px;
+padding:7px 5px 0px 5px;
+}
+h3{
+width:100%
+display: block;
+/*text-align:center;*/
+/*background-color:#111112;*/
+color:#DDDDDD;
+padding:7px 5px 0px 5px;
+}
+
+
+table{
+font-size:100%;
+margin:0px 35px -5px 0px;
+display: block;
+position: relative;
+z-index: 10;
+color:#DDDDDD;
+background-color:#0B090F;
+padding:5px 10px 8px 0px;
+}
+table:after {
+/*background-color:#151618;*/
+background-color:#201F1D;
+content: '';
+display: block;
+position: absolute;
+top: 0px;
+left: 0px;
+right: 3px;
+bottom: 6px;
+z-index: -1;
+}
+
+/*
+table{
+font-size:100%;
+margin:0px 35px -10px -4px;
+display: block;
+position: relative;
+z-index: 10;
+color:#DDDDDD;
+background-color:#0B090F;
+padding:5px 10px 8px 5px;
+}
+table:after {
+background-color:#151618;
+content: '';
+display: block;
+position: absolute;
+top: 1px;
+left: 1px;
+right: 4px;
+bottom: 8px;
+z-index: -1;
+}
+*/
+
+
+.mainentry{
+width:351px;
+}
+
+.mainentrytitle{
+width:230px;
+font-weight:bold;
+}
+
+.mainentrydate{
+width:121px;
+text-align:right;
+display:inline; 
+}
+
+.right{
+margin:-10px 5px 10px 5px;
+text-align:right;
 }
