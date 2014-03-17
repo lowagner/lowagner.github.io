@@ -303,6 +303,31 @@ border-width:0px 3px 6px 0px;
 border-color:#0A100A;
 }
 
+.nostyle{
+font-size:100%;
+/*    TOP RIGHT BOTTOM LEFT padding */
+margin:0;
+display: block;
+position: relative;
+border-width:0;
+padding:0;
+}
+
+.withstyle{
+font-size:100%;
+/*    TOP RIGHT BOTTOM LEFT padding */
+margin:0px 10px 8px -3px;
+display: block;
+position: relative;
+color:#EEEEEE;
+background-color:#33201E;
+padding:5px 2px 15px 3px;
+border-style:solid;
+border-width:0px 0px 2px 0px;
+border-color:#0A100A;
+}
+
+
 /*
 table{
 font-size:100%;
