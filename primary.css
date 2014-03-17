@@ -59,7 +59,7 @@ border-width:2px 2px 25px 7px;
 .col2{ 
 width:110px; 
 float:left;
-border-color:#111122;
+border-color:#121222;
 background-color:#313133; 
 height:300px; 
 margin:5px;
@@ -366,4 +366,11 @@ font-weight:bold;
 margin:-10px 5px 10px 5px;
 text-align:right;
 color:#CCAAD1;
+}
+
+.tab{
+font-style:italic;
+/*    TOP RIGHT BOTTOM LEFT padding */
+margin:-10px 0px 15px 0px;
+text-align:right;
 }
