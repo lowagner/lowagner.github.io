@@ -5,6 +5,7 @@ background-color:#131315;
 color:#FDFDFD;      
 /*margins*/
 margin:10px;
+font-family:"Times New Roman", Times, serif;
 }
 
 .main{ 
@@ -46,7 +47,7 @@ border-style:solid;
 box-shadow:1px 1px 0 2px #080808;
 }      
 .col1{ 
-width:120px; 
+width:110px; 
 float:left;
 background-color:#313331; 
 border-color:#112211; 
@@ -65,7 +66,7 @@ width:110px;
 float:left;
 border-color:#121222;
 background-color:#313133; 
-height:300px; 
+height:350px; 
 margin:5px;
 padding:3px 20px 0px 20px;
 position: relative;
@@ -188,7 +189,7 @@ border-color:#131315;
 .col1 li 
 {
 display:block;
-width:131px;
+width:120px;
 border-style:solid;
 /*    TOP RIGHT BOTTOM LEFT padding */
 border-width:1px 3px 5px 2px;
@@ -235,7 +236,7 @@ border-color:#131315;
 .col2 li 
 {
 display:block;
-width:121px;
+width:120px;
 border-style:solid;
 /*    TOP RIGHT BOTTOM LEFT padding */
 border-width:1px 3px 5px 2px;
