@@ -1,0 +1,86 @@
+<html>
+<head>
+
+
+<script src="taffydb/taffy.js"></script> 
+<script src="urlparams.js"></script> 
+
+<script>
+
+var cities = TAFFY([
+        {name:"Buffalo",state:"NY"},
+        {name:"New York",state:"NY"},
+        {name:"Las Vegas",state:"NV"},
+        {name:"Boston",state:"MA"}
+    ]);
+</script>
+
+</head>
+
+<body>
+
+<!--<p id="demo">blah</p>-->
+
+
+<script>
+
+document.write('<h3>Playing around with TaffyDB</h3>');
+
+cities.insert({name:"Portland",state:"OR"});
+
+document.write('<p> one way to get items from database:</p>');
+var boston = cities({name:"Boston"}).first();
+var bostonstate = boston.state;
+document.write('<p>' + boston.name + ', ' + boston.state + '</p>');
+
+document.write('<p> checking if a record has an entry. </p>');
+
+document.write('<p>' + boston["name"] + 'has founding year? ' + boston["year"] + '</p>');
+
+function writecity( record, recordnumber ) {
+document.write('<p> city:'+record["name"]+", state: "+record["state"]+"</p>");
+};
+document.write('<p> looping over all entries matching a query (here all entries in database):</p>');
+cities().each(writecity);
+document.write('<p> looping over all entries matching a query (state = NY):</p>');
+cities({state:"NY"}).each(writecity);
+
+
+
+
+document.write('<h3>Playing around with URL parameters.  i.e. java.html?j=5&c=2</h3>');
+
+document.write('<p>Available variables:  ' + Object.keys(QueryString) + '</p>');
+
+
+if ('c' in QueryString)
+{
+    document.write('<p>' + QueryString['c'] + '</p>');
+}
+else
+{
+    document.write('<p> parameter c was not given </p>');
+}
+
+document.write('<p>');
+var keys = Object.keys(QueryString);
+for ( var i = 0; i < keys.length; i++ ) 
+{
+    document.write('KEY '+keys[i]+':  '+QueryString[keys[i]]+'<br>');
+}
+document.write('</p>');
+
+
+document.write('<p>');
+for ( var key in QueryString ) 
+{
+    document.write('KEY '+key+':  '+QueryString[key]+'<br>');
+}
+document.write('</p>');
+
+
+</script>
+
+</body>
+
+</html>

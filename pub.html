@@ -1,4 +1,271 @@
 <html>
+
+<head>
+<script src="taffydb/taffy.js"></script> 
+<script src="urlparams.js"></script> 
+
+<script>
+var publications = TAFFY([
+    {
+        style:"article",
+        title:"Exchange-correlation functionals from the strong interaction limit of DFT: applications to model chemical systems",
+        author:"F. Malet, and A. Mirtschink, and K.J.H. Giesbertz, and L.O. Wagner, and P. Gori-Giorgi",
+        journal:"Phys. Chem. Chem. Phys.",
+        pages:"-",
+        volume:"advance",
+        year:2014,
+        url:"http://dx.doi.org/10.1039/C4CP00407H",
+//        eprint:"lowagner.github.io/pubs/MMGW14.pdf",
+        lowid:7,
+        description:"Developing the strictly correlated electron approach for chemical systems.",
+        tags:"DFT, 1d"
+    },
+    {
+        style:"article",
+        title:"Guaranteed convergence of the Kohn-Sham equations",
+        author:"L.O. Wagner, and E.M. Stoudenmire, and K. Burke, and S.R. White",
+        journal:"Phys. Rev. Lett.",
+        volume:"111",
+        pages:"093003",
+        year:2013,
+        url:"http://dx.doi.org/10.1103/PhysRevLett.111.093003",
+        eprint:"lowagner.github.io/pubs/WSBW13.pdf",
+        note:"<b>editors' suggestion</b>; <i>ibid</i>. <b>112</b>, 019901(E) (2014)",
+        lowid:6,
+        description:"Proving convergence of the Kohn-Sham algorithm using the "+
+                    "exact functional. ",
+        tags:"DFT, 1d"
+    },
+    {
+        style:"article",
+        title:"DFT in a nutshell",
+        author:"K. Burke and L.O. Wagner",
+        journal:"Int. J. Quant. Chem.",
+        volume:"113",
+        pages:"96-101",
+        year:2013,
+        url:"http://dx.doi.org/10.1002/qua.24259",
+        eprint:"lowagner.github.io/pubs/BW13.pdf",
+        lowid:5,
+        description:"The basics of Kohn-Sham density functional theory.",
+        tags:"DFT"
+    },
+    {
+        style:"article",
+        title:"One-dimensional continuum electronic structure with the density-matrix renormalization group and its implications for density-functional theory",
+        author:"E.M. Stoudenmire, and L.O. Wagner, and S.R. White, and K. Burke",
+        journal:"Phys. Rev. Lett.",
+        volume:"109",
+        pages:"056402",
+        year:2012,
+        url:"http://dx.doi.org/10.1103/PhysRevLett.109.056402",
+        eprint:"lowagner.github.io/pubs/SWWB12.pdf",
+        lowid:4,
+        description:"Solving the many-electron Schr&ouml;dinger equation in the continuum "+
+                    "via the density matrix renormalization group, "+
+                    "and exploring the relationship between continuum and lattice models.",
+        tags:"DFT, DMRG, 1d"
+    },
+    {
+        style:"article",
+        title:"Reference electronic structure calculations in one dimension",
+        author:"L.O. Wagner, and E.M. Stoudenmire, and K. Burke, and S.R. White",
+        journal:"Phys. Chem. Chem. Phys.",
+        volume:"14",
+        pages:"8581-8590",
+        year:2012,
+        url:"http://dx.doi.org/10.1039/C2CP24118H",
+        eprint:"lowagner.github.io/pubs/WSBW12.pdf",
+        lowid:3,
+        description:"Exact Kohn-Sham density functional theory in 1d, compared "+
+                    "with the standard local density and Hartree-Fock approximations, "+
+                    "for analogs of simple atoms and molecules.",
+        tags:"DFT, DMRG, 1d"
+    },
+    {
+        style:"inbook",
+        title:"Reference electronic structure calculations in one dimension",
+        booktitle:"Fundamentals of Time-Dependent Density Functional Theory",
+        author:"L.O. Wagner, and Z.-hui Yang, and K. Burke",
+        number:"837",
+        pages:"101-122",
+        series:"Lecture Notes in Physics",
+        publisher:"Springer",
+        year:2012,
+        chapter:"5",
+        url:"http://www.springer.com/978-3-642-23517-7",
+        editor:"M.A.L. Marques, and N.T. Maitra, and F.M.S. Nogueira, and E.K.U. Gross, and A. Rubio",
+        eprint:"lowagner.github.io/pubs/WYB12.pdf",
+        lowid:2,
+        description:"Simple conditions on the exchange-correlation "+
+                    "kernel <i>f<sub>xc</sub></i> within time-dependent density functional theory, "+
+                    "and analogies to ground-state conditions.",
+        tags:"DFT, TDDFT"
+    },
+    {
+        style:"article",
+        title:"Beyond Burnside's Lemma",
+        author:"L.O. Wagner",
+        journal:"Rose-Hulman Undergraduate Mathematics Journal",
+        volume:"9",
+        number:"2",
+        year:2008,
+        url:"https://www.rose-hulman.edu/mathjournal/v9n2.php",
+        eprint:"lowagner.github.io/pubs/BLAB.pdf",
+        lowid:1.5,
+        description:"How to count the number of unique objects, painted various colors at "+
+                    "different vertices, when group operations can rotate the object <i>and</i> "+
+                    "permute the colors.",
+        tags:"group theory"
+    },
+    {
+        style:"article",
+        title:"Production of nuclei in neutron unbound states via primary fragmentation of <sup>48</sup>Ca",
+        author:"G. Christian, and W.A. Peters, and D. Absalon, and D. Albertson, and T. Baumann, and D. Bazin, and E. Breitbach, and J. Brown, and P.L. Cole, and D. Denby, and P.A. DeYoung, and J.E. Finck, and N. Frank, and A. Fritsch, and C. Hall, and A.M. Hayes, and J. Hinnefeld, and C.R. Hoffman, and R. Howes, and B. Luther, and E. Mosby, and S. Mosby, and D. Padilla, and P.V. Pancella, and G. Peaslee, and W.F. Rogers, and A. Schiller, and M.J. Strongman, and M. Thoennessen, and L.O. Wagner",
+        journal:"Nuclear Physics A",
+        volume:"801",
+        pages:"101-113",
+        year:2008,
+        url:"http://dx.doi.org/10.1016/j.nuclphysa.2008.01.004",
+        eprint:"lowagner.github.io/pubs/NSCL.pdf",
+        description:"Work from a nuclear fragmentation experiment at the National Superconducting "+
+                    "Cyclotron Laboratory at Michigan State University.",
+        lowid:1,
+        tags:"nuclear physics"
+    }
+    ]);
+
+function getpeople( authors ) {
+    // grab all but last "and" in the author list.
+    authors=authors.split('and');
+    if ( authors.length > 1 )
+    {
+        if ( authors.length > 8 )
+        {
+            // long author lists suck!
+            authors=authors[0]+"<i>et al</i>";
+        }
+        else
+        {
+            authors=authors.slice(0,-1).join('') + "and"+authors.slice(-1);
+        }
+    }
+    else
+    {
+        authors.join('');
+    }
+    return authors;
+};
+
+function writepub( record, recordnumber ) {
+    // get the number id.  "lowid".
+    var nutxt = "";
+    var bibtex = "BIBTEX entry\\n\\n";
+    // check if the id is an integer.  if so, then we can print it.
+    if ( (record["lowid"] | 0) === record["lowid"] )
+        nutxt = record["lowid"];
+    else
+        nutxt = "*";
+    // if the id wasn't integer, just make it an asterisk.
+    bibtex += "@"+record["style"]+"{lowagner"+record["lowid"]+",\\n";
+    var authors = getpeople( record['author'] );
+    bibtex += "    author = {"+record["author"]+"},\\n";
+    document.write('<li><table><tr><td class=number>'+nutxt+'.</td><td class=wideentry>'+authors+", ");
+
+    // now get the title of the work, and add a link if we can.
+    if ( record["eprint"] !== undefined )
+    {
+        // if we have the eprint available (pdf on site), then use that.
+        nutxt="<a href=\""+record["eprint"]+"\" target=low"+record["lowid"]+">"+record["title"]+"</a>, ";
+    }
+    else
+    { 
+        if ( record["url"] !== undefined )
+        {
+            // if we have a url to the legit site, then use that.
+            nutxt="<a href=\""+record["url"]+"\" target=low"+record["lowid"]+">"+record["title"]+"</a>, ";
+        }
+        else
+        {
+            // no pdf or url, don't link anything.
+            nutxt=record["title"]+", ";
+        }
+    }
+    bibtex += "    title = {"+record["title"]+"},\\n";
+    bibtex += "    url = {"+record["url"]+"},\\n";
+    document.write(nutxt);
+
+    nutxt = "";
+    if ( record["style"] == "article" )
+    {
+        nutxt = "<i>"+record["journal"]+"</i> <b>"+record["volume"]+"</b>, "+record["pages"]+" ("+record["year"].toString()+")";
+        bibtex += "    journal = {"+record["journal"]+"},\\n";
+        bibtex += "    volume = {"+record["volume"]+"},\\n";
+    }
+    else if ( record["style"] == "inbook" )
+    {
+        nutxt = "in <i>"+record["booktitle"]+"</i>, ";
+        bibtex += "    booktitle = {"+record["booktitle"]+"},\\n";
+        
+        if ( record["series"] !== undefined )
+        {
+            nutxt += record["series"];
+            bibtex += "    series = {"+record["series"]+"},\\n";
+            if ( record["number"] !== undefined )
+            {
+                nutxt += " No. " + record["number"];
+                bibtex += "    number = {"+record["number"]+"},\\n";
+            }
+            nutxt += ", ";
+        }
+        nutxt += " edited by " + getpeople( record["editor"] );
+        bibtex += "    editor = {"+record["editor"]+"},\\n";
+        nutxt += " ("+record["publisher"]+", "+record["year"]+") Chap. "+record["chapter"];
+        bibtex += "    publisher = {"+record["publisher"]+"},\\n";
+        bibtex += "    chapter = {"+record["chapter"]+"},\\n";
+        nutxt += ", pp. "+record["pages"];
+    }
+    bibtex += "    year = {"+record["year"]+"},\\n";
+    bibtex += "    pages = {"+record["pages"]+"},\\n";
+    document.write(nutxt);
+    
+    // check for notes.
+    if ( record["note"] !== undefined )
+    {
+        document.write(": "+record["note"]+".");
+        var note = record["note"];
+        note = note.replace(/<b>/g, "{\\\\bf ");
+        note = note.replace(/<\/b>/g, "}");
+        note = note.replace(/<i>/g, "{\\\\em ");
+        note = note.replace(/<\/i>/g, "}");
+        bibtex += "    note = {"+note+"},\\n";
+    }
+    else
+    {
+        document.write(".");
+    }
+    
+    // escape all apostrophes
+    bibtex = bibtex.replace(/'/g, "\\'");
+    bibtex += "}";
+    document.write(" <button onclick=\"alert(\'"+bibtex+"\');\">bibtex</a>");
+
+    document.write("</td></tr></table><p>"+record["description"]+"</p>");
+    if ( record["tags"] !== undefined )
+    {
+        document.write("<p class=tags>tags: "+record["tags"]+"</p>");
+    }
+    document.write("</li>");
+
+
+};
+
+
+</script>
+
+</head>
+
+
 <title>Publications</title>
 <link href='primary.css' rel='stylesheet' type='text/css' />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
@@ -32,195 +299,13 @@
 <ul>
 
 
-    <a id="2014"></a>
-<li>
-<table>
-<tr>
-<td class=number>
-7.
-</td>
-<td class=wideentry>
-F. Malet, A. Mirtschink, K.J.H. Giesbertz, L.O. Wagner, P. Gori-Giorgi,
-<!-- <a href="pubs/MMGW14.pdf" target="mmgw14"> -->
-<a href="http://pubs.rsc.org/en/Content/ArticleLanding/2014/CP/C4CP00407H" target="mmgw14">
-Exchange-correlation functionals from the strong interaction limit of DFT: applications to model chemical systems
-</a>,
-<i>Phys. Chem. Chem. Phys.</i> <b>advance</b>, np (2014).
-</td>
-</tr>
-</table>
-<p>
-Developing the strictly correlated electron approach for chemical systems.
-</p>
-<p class=tags>tags: DFT, 1d </p>
-</li>
+<script>
+
+publications().each( writepub );
 
 
+</script>
 
-
-<a id="2013"></a>
-<li>
-<table>
-<tr>
-<td class=number>
-6.
-</td>
-<td class=wideentry>
-L.O. Wagner, E.M. Stoudenmire, K. Burke, S.R. White,
-<a href="pubs/WSBW13.pdf" target="wsbw13">
-Guaranteed convergence of the Kohn-Sham equations</a>,
-<i>Phys. Rev. Lett.</i> <b>111</b>, 093003 (2013):  <b>Editors' suggestion</b>;
-<i>ibid</i>. <b>112</b>, 019901(E) (2014).
-</td>
-</tr>
-</table>
-<p>
-Proving convergence of the Kohn-Sham algorithm using the 
-exact functional. 
-<a href="pubs/WSBW13err.pdf" target="wsbw13e">
-Erratum</a>.
-</p>
-<p class=tags>tags: DFT </p>
-</li>
-
-<li>
-<table>
-<tr>
-<td class=number>
-5.  
-</td><td class=wideentry>
-K. Burke and L.O. Wagner,
-<a href="pubs/BW13.pdf" target="bw13">
-DFT in a nutshell</a>,
-<i>Int. J. Quant. Chem.</i> <b>113</b>, 96-101 (2013).
-</td>
-</tr>
-</table>
-<p>
-The basics of Kohn-Sham density functional theory.
-</p>
-<p class=tags>tags: DFT </p>
-</li>
-
-
-
-
-<a id="2012"></a>
-<li>
-<table>
-<tr>
-<td class=number>
-4.
-</td><td class=wideentry>
-E.M. Stoudenmire, L.O. Wagner, S.R. White, and K. Burke, 
-<a href="pubs/SWWB12.pdf" target="swwb12">
-One-dimensional
-continuum electronic structure with the density-matrix renormalization group and its
-implications for density-functional theory</a>,
-<i>Phys. Rev. Lett.</i> <b>109</b>, 056402 (2012).
-</td>
-</tr>
-</table>
-<p>
-Solving the many-electron Schr&ouml;dinger equation in the continuum 
-via the density matrix renormalization group, 
-and exploring the relationship between continuum and lattice models.
-</p>
-<p class=tags>tags: DFT, DMRG, 1d</p>
-</li>
-
-
-<li>
-<table>
-<tr>
-<td class=number>
-3.  
-</td><td class=wideentry>
-L.O. Wagner, E.M. Stoudenmire, K. Burke, S.R. White, 
-<a href="pubs/WSBW12.pdf" target="wsbw12">
-Reference electronic structure calculations in one dimension</a>,
-<i>Phys. Chem. Chem. Phys.</i> <b>14</b>, 8581-8590, (2012).
-</td>
-</tr>
-</table>
-<p>
-Exact Kohn-Sham density functional theory in 1d, compared
-with the standard local density and Hartree-Fock approximations,
-for analogs of simple atoms and molecules.
-</p>
-<p class=tags>tags: DFT, DMRG, 1d</p>
-</li>
-
-
-
-<li>
-<table>
-<tr>
-<td class=number>
-2. 
-</td><td class=wideentry>
-L.O. Wagner, Z.-hui Yang, and K. Burke,  
-<a href="pubs/WYB12.pdf" target="wyb12">
-Exact conditions and their relevance in TDDFT</a>,
-in <i>Fundamentals of Time-Dependent Density Functional Theory</i>, Lecture
-Notes in Physics No. 837, edited by M.A.L. Marques, N.T. Maitra, F.M.S. Nogueira,
-E.K.U. Gross, and A. Rubio (Springer, 2012) Chap. 5, pp. 101-122.
-</td>
-
-</tr>
-</table>
-
-<p>
-Simple conditions on the exchange-correlation
-kernel <i>f<sub>xc</sub></i> within time-dependent density functional theory,
-and analogies to ground-state conditions.
-</p>
-<p class=tags>tags: DFT, TDDFT</p>
-</li>
-
-<a id="2008"></a>
-<li>
-<table>
-<tr>
-<td class=number>
-*. 
-</td><td class=wideentry>
-L.O. Wagner,
-<a href="pubs/BLAB.pdf" target="blab">
-Beyond Burnside's Lemma</a>,
-<i>Rose-Hulman Undergraduate Mathematics Journal</i> <b>9</b>, 2 (2008).
-</td>
-</tr>
-</table>
-<p>
-How to count the number of unique objects, painted various colors at
-different vertices, when group operations can rotate the object <i>and</i>
-permute the colors.
-</p>
-<p class=tags>tags: group theory</p>
-</li>
-
-
-<li>
-<table>
-<tr>
-<td class=number>
-1.  
-</td><td class=wideentry>
-G. Christian, <i>et al</i>.
-<a href="pubs/NSCL.pdf" target="nscl">
-Production of nuclei in neutron unbound states
-via primary fragmentation of <sup>48</sup>Ca</a>,
-<i>Nuclear Physics A</i> <b>801</b>, 101-113 (2008).
-</td>
-</tr>
-</table>
-<p>
-Work from a nuclear fragmentation experiment at the National Superconducting
-Cyclotron Laboratory at Michigan State University.
-</p>
-<p class=tags>tags: nuclear physics</p>
-</li>
 
 <center>
 <a href="#top">Back to top</a>
