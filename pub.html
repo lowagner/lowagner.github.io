@@ -202,13 +202,13 @@ function writebyfilter( func ) {
         publications( func ).each( writeornotpub );
         document.write("<li><table class=navigation><tr>");
         if (pubsBEFORE)
-            document.write("<td width=\"100px\"><a href=\"pub.html"+everythingButS+"s="+(s-1)+"\">previous</a></td>");
+            document.write("<td width=\"100px\"><a href=\"pub.html"+everythingButS+"s="+(s-1)+"\">Previous</a></td>");
         else
             document.write("<td width=\"100px\"></td>"); 
         document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
 
         if (pubsAFTER)
-            document.write("<td width=\"100px\" align=\"right\"><a href=\"pub.html"+everythingButS+"s="+(s+1)+"\">next</a></td>");
+            document.write("<td width=\"100px\" align=\"right\"><a href=\"pub.html"+everythingButS+"s="+(s+1)+"\">Next</a></td>");
         else
             document.write("<td width=\"100px\"></td>");
         document.write("</tr></table></li>");
