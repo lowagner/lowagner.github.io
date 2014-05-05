@@ -103,10 +103,6 @@ function writepub( record, recordnumber ) {
     {
         document.write(": "+record["note"]+".");
         var note = record["note"];
-        note = note.replace(/<b>/g, "{\\\\bf ");
-        note = note.replace(/<\/b>/g, "}");
-        note = note.replace(/<i>/g, "{\\\\em ");
-        note = note.replace(/<\/i>/g, "}");
         bibtex += "    note = {"+note+"},\\n";
     }
     else
@@ -116,6 +112,20 @@ function writepub( record, recordnumber ) {
     
     // escape all apostrophes
     bibtex = bibtex.replace(/'/g, "\\'");
+    // change some html to bibtex
+    // bold
+    bibtex = bibtex.replace(/<b>/g, "{\\\\bf ");
+    bibtex = bibtex.replace(/<\/b>/g, "}");
+    // italic
+    bibtex = bibtex.replace(/<i>/g, "{\\\\em ");
+    bibtex = bibtex.replace(/<\/i>/g, "}");
+    // superscript
+    bibtex = bibtex.replace(/<sup>/g, "$^{");
+    bibtex = bibtex.replace(/<\/sup>/g, "}$");
+    // subscript
+    bibtex = bibtex.replace(/<sub>/g, "$_{");
+    bibtex = bibtex.replace(/<\/sub>/g, "}$");
+
     bibtex += "}";
     document.write(" <button onclick=\"alert(\'"+bibtex+"\');\">bibtex</a>");
 
