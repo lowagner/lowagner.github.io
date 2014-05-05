@@ -24,3 +24,19 @@ var QueryString = function () {
     } 
     return query_string;
 } ();
+
+
+var everythingButS = function () {
+    var string = "?";
+
+    for ( var key in QueryString ) 
+    {
+        if ( key !== "s" && QueryString[key] !== undefined )
+        {
+            string += key+"="+QueryString[key]+"&";
+        }
+    } 
+
+    return string.trim();
+} ();
+

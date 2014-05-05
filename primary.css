@@ -324,6 +324,17 @@ border-width:0px 3px 6px 0px;
 border-color:#0A100A;
 }
 
+.navigation{
+font-size:100%;
+margin:2pt 0pt 5pt 5pt;
+/*    TOP RIGHT BOTTOM LEFT padding */
+display: block;
+position: relative;
+border-width:0;
+padding:0;
+}
+
+
 .nostyle{
 font-size:100%;
 /*    TOP RIGHT BOTTOM LEFT padding */
