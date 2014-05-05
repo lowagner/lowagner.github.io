@@ -189,6 +189,11 @@ function writebyfilter( func ) {
     if ( s == "all" )
     {   
         publications( func ).each( writepub );
+        document.write("<li><table class=navigation><tr>");
+        document.write("<td width=\"100px\"></td>"); 
+        document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
+        document.write("<td width=\"100px\"></td>"); 
+        document.write("</tr></table></li>");
     }
     else
     {

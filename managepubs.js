@@ -2,7 +2,7 @@ var pubsBEFORE = false;
 var pubsMIN = 0;
 var pubsMAX = 0;
 var pubsAFTER = false;
-var maxPP = 2; // max number of publications to display per page
+var maxPP = 5; // max number of publications to display per page
 
 function getpeople( authors ) {
     // grab all but last "and" in the author list.
