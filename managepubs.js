@@ -1,8 +1,16 @@
-var pubsBEFORE = false;
-var pubsMIN = 0;
-var pubsMAX = 0;
-var pubsAFTER = false;
-var maxPP = 5; // max number of publications to display per page
+// GLOBAL parameters YOU CAN SET
+var pubsMAXpp = 5; // max number of publications to display per page
+var pubsSHOWbackTOtopAFTER = 3;  // after X publications, show the back to top link.  this should NOT be greater than or equal to pubsMAXpp.
+
+// SET INTERNALLY IN THE CODE
+var pubsDISPLAYED = 0; // number of pubs displayed
+var pubsMIN = 0; // index of which record (of the records filtered) to start displaying
+var pubsMAX = 0; // index of which record is last to display.
+var pubsBEFORE = false; // if there were any publications before pubsMIN
+var pubsAFTER = false; // if there were any publications after pubsMAX
+
+if ( pubsSHOWbackTOtopAFTER >= pubsMAXpp )
+    pubsSHOWbackTOtopAFTER = pubsMAXpp-1;
 
 function getpeople( authors ) {
     // grab all but last "and" in the author list.
@@ -110,6 +118,8 @@ function writepub( record, recordnumber ) {
         document.write(".");
     }
     
+    // get rid of editor's suggestion for bibtex
+    bibtex = bibtex.replace(/<b>editors' suggestion<\/b>; /g, "");
     // escape all apostrophes
     bibtex = bibtex.replace(/'/g, "\\'");
     // change some html to bibtex
@@ -147,7 +157,10 @@ function writeornotpub( record, recordnumber ) {
     else if ( recordnumber > pubsMAX )
         pubsAFTER = true;
     else
+    {
         writepub( record, recordnumber );
+        pubsDISPLAYED += 1;
+    }
 };
 
 
