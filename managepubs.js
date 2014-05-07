@@ -102,8 +102,8 @@ function writepub( record, recordnumber ) {
         bibtex += "    chapter = {"+record["chapter"]+"},\\n";
         nutxt += ", pp. "+record["pages"];
     }
-    bibtex += "    year = {"+record["year"]+"},\\n";
     bibtex += "    pages = {"+record["pages"]+"},\\n";
+    bibtex += "    year = {"+record["year"]+"},\\n";
     document.write(nutxt);
     
     // check for notes.
