@@ -166,9 +166,7 @@ var publications = TAFFY([
 <div class=header>
   <h2> lucas o. wagner @ work </h2>
     <ul>
-    <li>
-        <a href="pub.html?s=all">all</a>
-    </li>
+    <li><a href="pub.html?s=all">all</a></li>
     <li><a href="pub.html?y=2008">2008</a></li>
     <li><a href="pub.html?y=2012">2012</a></li>
     <li><a href="pub.html?y=2013">2013</a></li>
@@ -233,6 +231,7 @@ function writebyfilter( func ) {
 
 if ( everythingButS == "?" )
 {
+    // if there're no other URL parameters besides s, then don't filter for anything
     writebyfilter( true );
 }
 else
@@ -248,10 +247,6 @@ if ( QueryString['y'] !== undefined )
 
 
 </script>
-
-
-<center>
-</center>
 
 </ul>
 
