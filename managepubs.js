@@ -14,18 +14,20 @@ if ( pubsSHOWbackTOtopAFTER >= pubsMAXpp )
 
 function getpeople( authors ) {
     // grab all but last "and" in the author list.
-    authors=authors.split('and');
-    if ( authors.length > 1 )
+    authors=authors.split(' and');
+    if ( authors.length > 8 )
     {
-        if ( authors.length > 8 )
-        {
-            // long author lists suck!
-            authors=authors[0]+"<i>et al</i>";
-        }
-        else
-        {
-            authors=authors.slice(0,-1).join('') + "and"+authors.slice(-1);
-        }
+        // long author lists suck!
+        authors=authors[0]+", <i>et al</i>";
+    }
+    else if ( authors.length > 2 )
+    {
+        authors=authors.slice(0,-1).join(',') + ", and"+authors.slice(-1);
+        //authors.join(', aasdfnd');
+    }
+    else if ( authors.length == 2 )
+    {
+        authors=authors.slice(0,-1).join('') + " and"+authors.slice(-1);         
     }
     else
     {
