@@ -21,7 +21,7 @@ var publications = TAFFY([
         description:"Illustrating convergence of the Kohn-Sham algorithm using the "+
                     "exact functional and studying issues of <i>v</i>-representability.",
         note:"<b>editors' suggestion</b>",
-        tags:"DFT, 1d"
+        tags:"DFT, exact, 1d"
     },
     {
         style:"article",
@@ -35,7 +35,7 @@ var publications = TAFFY([
         eprint:"pubs/MMGW14.pdf",
         lowid:7,
         description:"Developing the strictly correlated electron approach for chemical systems.",
-        tags:"DFT, 1d"
+        tags:"DFT, SCE, 1d"
     },
     {
         style:"article",
@@ -51,7 +51,7 @@ var publications = TAFFY([
         lowid:6,
         description:"Proving convergence of the Kohn-Sham algorithm using the "+
                     "exact functional. ",
-        tags:"DFT, 1d"
+        tags:"DFT, exact, 1d"
     },
     {
         style:"article",
@@ -65,7 +65,7 @@ var publications = TAFFY([
         eprint:"pubs/BW13.pdf",
         lowid:5,
         description:"The basics of Kohn-Sham density functional theory.",
-        tags:"DFT"
+        tags:"DFT, tutorial"
     },
     {
         style:"article",
@@ -81,7 +81,7 @@ var publications = TAFFY([
         description:"Solving the many-electron Schr&ouml;dinger equation in the continuum "+
                     "via the density matrix renormalization group, "+
                     "and exploring the relationship between continuum and lattice models.",
-        tags:"DFT, DMRG, 1d"
+        tags:"DFT, DMRG, exact, 1d"
     },
     {
         style:"article",
@@ -97,7 +97,7 @@ var publications = TAFFY([
         description:"Exact Kohn-Sham density functional theory in 1d, compared "+
                     "with the standard local density and Hartree-Fock approximations, "+
                     "for analogs of simple atoms and molecules.",
-        tags:"DFT, DMRG, 1d"
+        tags:"DFT, DMRG, exact, 1d"
     },
     {
         style:"inbook",
@@ -117,7 +117,7 @@ var publications = TAFFY([
         description:"Simple conditions on the exchange-correlation "+
                     "kernel <i>f<sub>xc</sub></i> within time-dependent density functional theory, "+
                     "and analogies to ground-state conditions.",
-        tags:"DFT, TDDFT"
+        tags:"DFT, TDDFT, exact"
     },
     {
         style:"article",
@@ -149,7 +149,7 @@ var publications = TAFFY([
         description:"Work from a nuclear fragmentation experiment at the National Superconducting "+
                     "Cyclotron Laboratory at Michigan State University.",
         lowid:1,
-        tags:"nuclear physics"
+        tags:"nuclear"
     }
     ]);
 </script>
@@ -179,6 +179,19 @@ var publications = TAFFY([
 
 <div class=main>
 <h3>Publications</h3>
+    <div id=taglinks>
+    <ul>
+    <li><a href="pub.html?g=DFT">DFT</a></li>
+    <li><a href="pub.html?g=exact">exact</a></li>
+    <li><a href="pub.html?g=1d">1d</a></li>
+    <li><a href="pub.html?g=DMRG">DMRG</a></li>
+    <li><a href="pub.html?g=SCE">SCE</a></li>
+    <li><a href="pub.html?g=tutorial">tutorial</a></li>
+    <li><a href="pub.html?g=TDDFT">TDDFT</a></li>
+    <li><a href="pub.html?g=group">group theory</a></li>
+    <li><a href="pub.html?g=nuclear">nuclear</a></li>
+    </ul> 
+    </div>
 
 <ul>
 
@@ -241,11 +254,27 @@ if ( everythingButS == "?" )
     writebyfilter( true );
 }
 else
-if ( QueryString['y'] !== undefined )
 {
-    // there are special URL parameters.  here it's the year.
-    //document.write("<p> sorting by "+QueryString['y']+"</p>");
-    writebyfilter( {'year':parseInt(QueryString['y'])} );
+    var filter={};
+    if ( QueryString['y'] !== undefined )
+    {   
+        var yy = QueryString['y'];
+        var year = parseInt(yy.substr(0,4)); 
+        var modifier = yy.substr(4);
+        if ( modifier  == "+" )
+            filter['year'] = {gte:year}; // get all years after this year, too
+        else if ( modifier == "-" )
+            filter['year'] = {lte:year}; // get all years before this year, too
+        else
+            filter['year'] = {is:year};
+    }
+    if ( QueryString['t'] !== undefined )
+        filter['title'] = {likenocase:QueryString['t']};
+    if ( QueryString['g'] !== undefined )
+        filter['tags'] = {likenocase:QueryString['g']};
+    if ( QueryString['d'] !== undefined )
+        filter['description'] = {likenocase:QueryString['d']};
+    writebyfilter( filter );
 }
 
 
