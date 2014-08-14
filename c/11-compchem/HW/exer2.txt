@@ -1,0 +1,23 @@
+Lecture Exercises
+
+Questions (* counts triple):
+
+1. What are the 6 generic types of contributions to the energy in a FF model, and which are bonding, which are non-bonding, and which are cross terms? (2.2)
+
+2*. For which bending energy, CH4 or H2O, is the harmonic approximation moreaccurate (Figs 2.4 and 2.5)?  Make a plot of the harmonic approximation and the exact data for H2.  Is the harmonic approximation good (errors below 10%) for energies up to 40 kJ/mol above the minimum?
+
+3*. Find parameters for a torsional energy (eq. 2.10) to model the rotational barrier of ethane (set the lowest energy to zero).
+
+4*. The value of C6 for H2 is 6.499 in atomic units.  Plot both the exact and Lennard-Jones potentials for H2, and plot the % error for LJ for R > 3A.
+
+5. Why are electrostatic interactions so much more important for polar molecules (Sec 2.2.6)?
+
+6. In table 2.3, explain (a) why there are so many more parameters needed for bending than for stretching and (b) why such a small fraction are actually in MM2.  Repeat for torsional parameters relative to stretches.
+
+7. What is the danger in using estimated 'generic' parameters? (2.3.1)
+
+8. Explain the difference between Class I and Class II/III FFs (2.4).  Give one example of each.
+
+9. Why must you use a cut-off distance for non-bonded interactions?  Since these are usually short-ranged, why can't it be, say, 5A? (2.5)
+
+10. Using Table 2.4, compare the three popular force fields, AMBER, CHARM, and MM2 in terms of (a) speed, (b) accuracy, and (c) types of systems applied to.

@@ -1,0 +1,70 @@
+Lab 4:
+
+Key:  * - need to do in lab.  
+
+
+Please read each question completely before following any instructions.
+
+
+1.*  Basis set convergence.  Open up Tmolex 3.0 by typing in "tmolex3" into the terminal.
+You may need to create a new project directory for this updated program besides the older 
+one.  Start with two Hydrogen atoms, 1.4 bohr radii apart.  Let's try and find the
+converged answer to the energy and equilibrium bond length, independent of the basis set.
+To do this, we'll run calculations with increasingly better basis sets.
+	a*) Run HF geometry optimization in the ground state for five basis sets:  def2-SVP, 
+	  def2-TZVP, def2-TZVPP, def2-QZVP, and def2-QZVPP.  Make sure to name your jobs very
+	  descriptively, e.g. H2_GEO_def2-TZVP, since we're doing GEOmetry optimization for
+	  specific basis sets.  For each calculation, record the number of basis functions in 
+	  each set (found in the Atomic Attributes tab), the equilibrium bond length (found 
+	  in the Geometry tab), and the energy (in Results).
+	b) Has the energy converged to the "basis set limit"?  What's your best guess
+	  for the basis set limit for the minimum energy and the equilibrium bond length?
+
+2.*  Binding energy curve.  Find a few points on the HF binding energy curve for H2.  We'll
+try and calculate the vibrational energy for H2 in HF theory, using the def2-TZVP basis set.
+So, create some new jobs with Hydrogens at varying bond lengths.  Choose a few around the 
+equilibrium position:  1.35, 1.38, 1.4, 1.42, and 1.45.  (It's helpful to choose units of au, 
+atomic units, on the Geometry tab, so that what numbers you end up seeing and what you entered in are 
+the same.)  The easiest thing to do to create a new job is to change the basis set, and it will 
+create a new project in the TmoleXProject window.  But always change the basis back to def2-TZVP.  
+Then when you hit "Run (local)", it will ask you to save it as something, and save it as 
+something descriptive.  Record the energies for each of these lengths.
+
+3.*  Let's calculate the vibrational energy of the H2 molecule, again using HF theory, using
+TmoleX.  Start with the optimized Geometry found in problem 1 for the def2-TZVP basis set.
+Then go through all the usual tabs (Atomic Attributes = def2-TZVP, Molecular Attributes, 
+and Method = Hartree Fock).  Then on "Start Job", use "Spectra & Excited States --> IR & 
+vibrational frequencies."  Then hit "Run (local)."  Save the job as "H2_vibration."
+	a*) Record the zero point vibrational energy of the molecule, the SCF-energy, and
+	  the SCF + E(vib0) energy.  
+	b) On the total molecular energy curve, the SCF-energy corresponds to the deepest 
+	  part of the well, which is related to the well-depth.  By analogy, what does the 
+	  SCF + E(vib0) energy correspond to?  Compare the well-depth and dissociation energy
+	  of the HF solution to the exact answer.
+	c*) What is the content of the "vibrational modes" section?  What is the value (in 
+	  wavenumbers) of the nonzero mode?
+	d) Explain why there are 6 modes, but only one nonzero.  Think about degrees of freedom.
+	  This site should be useful:  
+	  http://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)#Example:_diatomic_gas
+	e) Compare the value of the nonzero vibrational mode (from part c) and the zero point 
+	  vibrational energy of the molecule (from part a).
+
+4.  This problem can be done at home.  Let's calculate the zero point vibrational energy
+for the nuclei, given the energies we found in problem 2.  Make an Excel spreadsheet with 
+the bond length (1.35, 1.38, etc.) in one column, and the corresponding energies in another.
+	a) Turn in a graph of Energy vs. bond length.  Remember to label axes and title descriptively.
+	b) Fit a second-order polynomial to the data.  Show this on the same plot as in part (a).  
+	  The fit line should look like
+		E(R) = a R^2 + b R + c.
+	  (Probably where E = y and x = R.)  Record your values for a, b, and c.
+	c) Find the corresponding values for k, R0, and E0 if we convert the expression in (b) to:
+		E(R) = 0.5 k ( R - R0 )^2 + E0,
+	  where k is an effective spring constant holding the nuclei together.
+	d) The mass of a proton (a hydrogen atom) is M = 1836 times more massive than the 
+	  electron.  Use the reduced mass of diatomic Hydrogen, mu = M / 2, to calculate 
+	  the harmonic oscillator energy:
+	 	omega = sqrt(  k / mu  ).
+	  Convert from a.u. to wavenumber (cm^{-1}).
+	e) Compare omega with the values found by the computer in problem 3.  How does the
+	  computer calculate the vibrational energy?
+	f) How does the HF vibrational energy compare to the exact vibrational energy?

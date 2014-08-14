@@ -1,0 +1,67 @@
+HW3:  LCAO Basis functions and how they work
+** means double points
+All formulas are in atomic units.
+
+1. Consider a simple Gaussian basis function, chi(r)=C exp(-r^2/2).  
+Normalize it, i.e., choose C so that int d^3r |chi^2| = 1.
+
+Hint: alpha=1/2 in the notation of the lecture, so use the formula
+there to deduce C.
+
+2. Use chi as a trial wavefunction for the hydrogen atom to estimate
+its energy.  What is the percentage error?  Plot phi and the exact wavefunction.
+Calculate the overlap between your approximate wavefunction and the exact one.
+
+Hint:  In atomic units, the exact wavefunction is exp(-r)/pi^1/2.
+
+3. Repeat #1 for Gaussian A with exp(-r^2/4) and Gaussian B for exp(-2r^2), i.e.,
+Calculate C_A and C_B by requiring normalization.  Find the value of the overlap integral.
+
+Hint:  Again, the normalization constants can be found from the lecture, noticing alpha=1/4
+for A and 2 for B.  All the matrix elements for this problem can be found with the formulas
+at the bottom of this page.   Here a=1/4, b=2, so c = (9/8)^2, so S=(32/81)^3/4.
+
+4.** Find the matrix elements of the Hamiltonian for the hydrogen atom in your basis set
+of two Gaussians.
+
+Hint:  Again, use formulas at bottom of page, rather than calculating the integrals
+yourselves.
+
+5.** Solve the 2x2 eigenvalue problem to get the ground-state wavefunction and energy
+in this basis.  Plot with the exact wavefunction and your previous estimate.
+What is the new percentage error and overlap with the exact wavefunction?
+
+Hint: This means find both the eigenvalues and eigenvectors.  This is a generalized eigenvalue problem, because
+of the overlap.  You must solve det(H-SE) = 0, where H is the Hamiltonian matrix and S is the overlap
+matrix.  The roots are the eigenvalues and the vectors that satisfy (H-SE).c=0 are the eigenfunctions.
+
+6. What does the other eigenstate and energy correspond to?  Plot the
+wavefunction and comment on the accuracy of its energy.
+
+Hint: Compare with another exact wavefunction of the H-atom.
+
+7.**  In the minimal basis set of a single 1s orbital for each H atom,
+the matrix elements of the Hamiltonian and overlap are, in atomic units:
+s=(1+R+R^2/3)*exp(-R), HAA=-1/2 -1/R + (1+1/R)*xp(-2R), and 
+HAB=-s/2-(1+R)*exp(-R)
+Plot each of these as a function of R and explain their behavior as R gets
+very small and very large.
+
+8. For the previous question, diagonalize the Hamiltonian and plot the eigenvalues as function of R.
+Also plot the binding energy curve as a function of R, giving the well-depth bond
+length and vibrational frequency, and compare with
+reference data.  How could you improve the calculation?
+
+Hint; Repeat the procedure you used for the two Gaussians.  Its exactly the same math.
+
+9. From reading 3.2-3.9, give a definition for each of the following terms:
+self-consistency (86), Fock operator(91), Roothaan-Hall equations (94), ROHF (99), SCF convergence (101),
+direct minimization (103), spin contamination(106), direct SCF(108), divide
+and conquer(111).
+
+
+Helpful formulas for a single atom
+For two Gaussians of decay constants a and b, eg phi(r)=(2a/pi)^(3/4)*exp(-a*r^2)
+S = (ab/c)^(3/4), where c=((a+b)/2)^2
+V = -4*(ab)^(3/4)/(sqrt(pi))*(a+b)), where v=-1/r
+T = (3/4)*(ab)^(7/4)/c^(5/4)

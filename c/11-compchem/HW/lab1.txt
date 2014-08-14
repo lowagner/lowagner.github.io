@@ -1,0 +1,24 @@
+1.  Explain the units that NAMD works with.  Consider:
+	a) distances
+	b) energies
+	c) pressures
+	d) temperatures
+
+2.  E-mail the two renders of ubiquitin in the water box and water sphere to Lucas (lwagner@uci.edu).
+	(This is Step 10 of "Solvation" in Lab Lesson 1).
+
+3.  In step 4 of "Basic Analysis", we make a plot of the temperature.  After completing the "Basics of Grace",
+do steps 1 through 4 of Basic Analysis again.  In the plot window, hit "File -> Export to Xmgrace".  In xmgrace,
+fix up the plot (title, axis labels), give it the proper units and print it out to turn it in.  (Recall the steps
+used in "Basics of Grace".)  Then answer these questions:
+
+	a) Why isn't the temperature at the value 310K that was specified in the configuration file?
+            (Hint:  see p. 21 of the NAMD walkthrough.)
+	b) What is going on for the first 100 time steps?  (Hint: see p. 15 of the NAMD walkthrough.)
+
+4.  After plotting the RMSD values (in "Basics of Grace"), print out the plot and turn it in.  Also answer 
+the following questions.
+
+	a) Why does one of the data sets have a higher RMSD than the other?
+	b) Has the system equilibrated?  What indicates (or what would indicate) that the system has equilibrated?
+	c) How would you test if you have enough water to simulate the system properly?

@@ -1,0 +1,23 @@
+1. Read the following sections of Jensen chap 5: 5.1-2, 5.4,5.4.1, 5.4.4, 5.4.6.For each of the following, give a definition (in your own words) and
+an example:  the number of zeta's of a basis function, polarization
+functions, diffuse functions, contraction, Pople-type basis set,
+Ahlrichs type basis set.
+
+Read DFT in a nutshell to answer next questions.
+
+2. Answer the following:
+ a. What was wrong with the TF approach to DFT?
+ b. In a KS calculation, which is the only unknown part of the energy
+ that must be approximated?
+ c. Name three approximate XC functionals.
+ d. What are hybrid functionals?
+ e. Does regular KS-DFT give electronic excitations?
+
+3. Do the review questions (first 6).
+
+4. Use formula (11) and apply it to a harmonic oscillator with
+1 particle and k=1 (atomic units) and to a particle in a box.
+To do this, calculate the ground-state probability density and
+kinetic energy exactly, and then get the approximate kinetic
+energy from Eq (11).  Report the percentage errors, including their
+sign.

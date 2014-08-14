@@ -1,0 +1,59 @@
+Lab HW 2
+Key:  
+W = need NAMD walkthrough, 
+C = need a copy of the config file, 
+L = need to do in lab.
+
+1.(W)  NAMD allows us to do both minimization and equilibration on the protein.
+In the config files used for the ubiquitin from last time, we did minimization
+for the first 100 steps (which is why energies and temperatures were funny then)
+and then equilibration for the rest of the time.  Briefly explain what minimization 
+and equilibration are. (see p15)
+
+2.(CW)  Time steps.
+	a)  How big is the time step between each recalculation of forces, positions, 
+	   and velocities?
+	b)  What is the time scale between trajectory snapshots in the dcd file?  
+
+(Hint:  Recall how large a time step is by looking at "timestep" in the config file.
+Then you can find out how many time steps are between each dcd snapshot by looking at 
+"dcdfreq".)
+
+3.(CW)  Make a copy of the water box config file (in 1-3-box).  Make changes to it such that:
+	a) the time step is 4 fs,
+	b) minimization is done for 125 steps,
+	c) the dcd file is updated with the atomic trajectories every 3.2 ps, and
+	d) the equilibration time is 64 ps.
+
+Make sure to change the comments (the words after ;#) so that your config file
+accurately tells you what's going on.  Turn in a copy of your new config file 
+to Lucas and answer the following:
+	e) explain what type of calculation it describes, e.g., what kind of accuracy
+	  will we be getting compared to the original file, and will the system
+	  equilibrate?
+	f) If it takes 5 minutes to run 2500 time steps, how long (roughly) 
+	  would it take to run this calculation?
+(Note:  You don't actually need to run this calculation.)
+
+4.(LW)  Make a nice render of the protein in the water box, color-coded by RMSD residue 
+values (do after step 10 on page 37), and turn in.  What colors indicate that the protein
+is moving faster or slower?
+
+5.(LW)  Make the "RMSD vs. residue" plot from step 13 of page 38 look nice in Grace,
+and turn it in.  Identify the slowest moving residue and the fastest by name (not 
+just number!).  You can do this by looking up the # in the ubq_wb.pdb file (1-1-build),
+grabbing the three-letter abbreviation for the residue, and looking up the three
+letter abbreviation on http://www.biologydaily.com/biology/Amino_acid 
+
+6.(CLW)  Turn in a plot of the Maxwell-Boltzmann Energy Distribution that should look
+like something on page 41.  Do step 23 on that page and give the temperature that
+the distribution predicts, and compare to the target value in the config file.
+
+7.(LW)  After completing step 5 on page 43, turn in the output and answer these questions:
+	a) Compare the magnitude of the bond (BOND) and total (TOTAL) energy.  Why
+	  do we care more about the bond than the total energy?
+	b) Do you think there would be a significant difference between properties
+	  of the the water box versus the water sphere?  Test it out!  
+	  Redo step 4 for "../1-2-sphere/ubq_ws_eq.log" instead.
+        c) How could you tell if the differences between the water box and the water
+          sphere are significant or not?

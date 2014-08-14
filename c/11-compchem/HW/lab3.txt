@@ -1,0 +1,26 @@
+1.  Create H2 in TmoleX.  Run TmoleX by typing in "TmoleX &" to the terminal.  Using " &" automatically runs a program in the background, so you can use the terminal for other things.  Then create two "new atom"s and change the element to H, and change the x, y, z values so that they are 1.4 bohr radii apart.  (Type in bohr radii, and it will convert to whatever units are in the little drop down menu; the default is A for Angstroms.)  Save your "job" as H2.
+	a) Record your x,y,z coordinates for your two Hydrogen atoms in atomic units.
+	b) Click "continue >>" or "Atomic Attributes," and use the default basis set.
+	c) How many basis functions are in the default set?
+
+2.  Perform an Extended Hueckel theory (EHT) calculation.  In "Molecular Attributes", click "generate MOs", and press "OK" on the dialog box.  Then look at the "List" tab in the big box on the right.  This gives the orbitals for EHT, and it should tell you that two electrons occupy (occ = 2) the 1st orbital (Nr = 1), one electron with a (alpha, up) spin and the other with b (beta, down) spin, with a given energy.  What is the EHT energy of the orbital?  And what is the EHT energy of the molecule?
+
+3.  Perform a Hartree-Fock (HF) calculation.  Press "continue >>" or "Method".  Then change "Level" => Hartree-Fock.  Then click "continue >>" or "Start Job".  Click on "Run (local)" to run a "Single-point calculation" on your computer.  Not more than a few seconds later, you should arrive at your "Results"!  
+	a) Record the total energy, the kinetic, and the potential energy.  
+	b) Does the total energy include the nuclear-nuclear repulsion?
+	c) For what atomic spacing is this energy valid?
+
+4. Perform a Geometry optimization HF calculation, in order to find the bond length at which the energy is a minimum.  Go back to "Start Job".  Click on the "Geometry Optimization" tab, and hit "Run (local)".  This will prompt the creation of a new "job" (and a new job directory) because Turbomole likes to keep jobs separate.  Rename it H2_GEO for geometry optimizing H2, and hit Save.  
+	a) After the calculation, notice in the Project list, our job H2_GEO is a BOMBSHELL!  Everything ended normally, but what does the "Status Geometry:" in our Results say?
+	b) Click on "Open Files -- energy".  The total energy is in the SCF (self-consistent field) column, and is decreasing as the bond length changes.  Even though the energy hasn't settled down yet, the first six digits are good.  Record the last SCF energy.
+	c) Click back on "Geometry".  What is the new bond length?  This is the equilibrium bond length as calculated by HF in this basis.  (Well, roughly, since it hasn't quite found the optimal geometry.)  Compare the HF equilibrium bond length to the exact bond length.
+	d) If the answer you found in (b) is the total molecular energy, what is the HF well-depth for H2 in this basis?  Compare this HF well-depth to the exact well-depth.
+
+5.  We can check the quality of the basis set for many atoms and molecules by looking in the "/modfac/apps/TURBOMOLE/basen" directory.  Let's look specifically at atomic Hydrogen.  Type into the Terminal:
+	gedit /modfac/apps/TURBOMOLE/basen/h
+Here we can see the resulting energies of all the basis sets applied to the Hydrogen atom (not the molecule).  
+	a) What is the exact energy of the Hydrogen atom?  What is the HF limit?  
+	c) Is the HF limit usually equal to the exact energy?  In what cases is this true?
+	d) In general, when we calculate the error made by a basis set, should we compare to the HF limit or to the exact answer?  Why?
+	e) What is the error made in the energy by the default basis set used in problems 1 through 4?  What is the best basis set for atomic Hydrogen?
+	f) Record how many basis set functions there are in the best basis set.  Recall how you learned this for the default basis set in problem 1.c.

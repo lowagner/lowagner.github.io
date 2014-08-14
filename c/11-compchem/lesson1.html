@@ -1,0 +1,688 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<title>Chem 137 - Lesson 1</title>
+</head>
+
+<body>
+<a name="top"></a>
+<div id="container">
+	<div id="header">
+	<centering>
+		<ul>
+			<li><a href="lecture.html">Chem 137</a></li>
+			<li><a href="index.html">Chem 137 Lab</a></li>
+			<li><a href="http://dft.uci.edu" target="dftsite">DFT</a></li>
+			<li class="last"><a href="mailto:lwagner@uci.edu">contact</a></li>
+		</ul>
+	</centering>
+	</div>
+	<div id="content">
+		<div id="left">
+			<div class="menu">
+				<div class="menuheader"><h3>Menu</h3></div>
+				<div class="menucontent">
+					<ul>
+						<li><a href="#intro">Introduction</a></li>
+						<li><a href="#basicstuff">Basic Stuff</a></li>
+						<li><a href="#setup">Setting up</a></li>
+						<li><a href="#vmdintro">Intro to VMD</a></li>
+						<li><a href="#psfgen">Making psf files</a></li>
+						<li><a href="#solvation">Solvation</a></li>
+						<li><a href="#equilibration">Equilibration</a></li>
+						<li><a href="#analysis">Basic Analysis</a></li>
+						<li><a href="#grace">Basics of Grace</a></li>
+					</ul>
+				</div>
+				<div class="menufooter"></div>
+			</div>
+		</div>
+		
+		
+		<div id="middle">
+
+<!-- put posts here-->
+
+<!-- a post -->
+			<div class="post">
+			<div class="postheader"><h1><a name="intro"></a>Intro</h1></div>
+			<div class="postcontent">
+<p>In this lab, we'll learn a little bit about <a href="http://www.ks.uiuc.edu/Research/vmd/" target="vmd">VMD</a>
+and <a href="http://www.ks.uiuc.edu/Research/namd/" target="namd">NAMD</a>, some useful programs for molecular dynamics.
+The example we will use is the ubiquitin protein, which we will put in water and equilibrate.
+</p>
+<p>
+You will be required to turn in the <a href="HW/lab1.txt">Lab 1 assignment</a> next Monday (April 4).  The assignment parallels
+what is going on in the lab below.  (Whenever it says "think about
+this" or "show your TA that", it will probably also appear in the HW.)
+</p>
+
+
+			</div>
+			<div class="postfooter"></div>
+			</div>
+<!-- end of a post-->
+
+
+
+<!-- a post -->
+			<div class="post">
+			<div class="postheader"><h1><a name="basicstuff"></a>Basic stuff</h1></div>
+			<div class="postcontent">
+
+<h3>Programs utilized</h3>
+<ul>
+<li><b>Visual Molecular Dynamics (<a href="http://www.ks.uiuc.edu/Research/vmd/" target="vmd">VMD</a>):</b>
+<p>	Allows us to look at molecules in 3d, do operations on them; 
+	also does basic plotting.</p>
+</li>
+<li><b>Non-Adiabatic Molecular Dynamics (<a href="http://www.ks.uiuc.edu/Research/namd/" target="namd">NAMD</a>):</b>
+<p>	Runs dynamics for a given psf, pdb, parameter file, and config file.</p>
+</li>
+<li><b>Grace (<a href="http://plasma-gate.weizmann.ac.il/Grace/" target="Grace">xmgrace</a>):</b><p>	Wonderful plotting program.</p>
+
+</ul>
+
+<h3>File types</h3>
+<ul>
+<li><b>Protein structure file (psf):</b><p>  Lists atoms, bonds, and angles for a protein. (???)</p></li>
+<li><b>Protein data bank file (pdb):</b><p>  Gives locations of all atoms in the protein.</p></li>
+<li><b>Topology file (inp):</b> <p> Indicates what atoms are bonded and the types of bonds involved.</p></li>
+<li><b>Parameter file (inp, para, prm):</b><p>  Parametrizes the forces for each type of bond.  
+Can be created by the "CHARMM" program.</p></li>
+</ul>
+
+<h3>Linux Terminal commands</h3>
+<p>Look them up on <a href="http://www.google.com" target="internet">the internet</a>.  But here's
+some of the basics that we'll use:</p>
+<ul>
+<li><b>pwd</b><p>gives present working directory</p></li>
+<li><b>ls</b><p>lists contents of present working directory</p></li>
+<li><b>cd <i>dir</i></b><p>changes directory to <i>dir</i></p></li>
+<li><b>cp <i>file1</i> <i>file2</i></b><p>copies <i>file1</i> to <i>file2</i> (can be in a different directory)</p></li>
+<!--<li><b>vmd</b><p>launches VMD</p></li>
+<li><b>namd2 <i>file.conf</i> > <i>file.log</i></b><p>runs NAMD with the configuration file <i>file.conf</i>
+and outputs to the logfile <i>file.log</i></p></li>-->
+</ul>
+
+<p align="center"><a href="#top">Top</a></p>
+			</div>
+			<div class="postfooter"></div>
+			</div>
+<!-- end of a post-->
+
+
+
+<!-- a post -->
+			<div class="post">
+			<div class="postheader"><h1><a name="setup"></a>Setting up</h1></div>
+			<div class="postcontent">
+
+<p>We need to grab all the relevant tutorial files from Lucas' folder.  </p>
+
+<ol>
+<li><b>Open up a terminal</b>
+	(Applications -> Accessories -> Terminal).
+Since we'll be using the Terminal a lot, you may want to drag the application icon from 
+the menu bar to the "dock".
+<p class="notestyle">Whenever a command is used on the Terminal command line,
+I will preface it with <b>T:</b>.  Remember to press "enter" after typing in each command
+into the terminal.</p>
+</li>
+<li>Use the copy command to grab the namd-tutorial directory from Lucas' home folder.
+<b>T:</b>
+<p>
+cp -r ../lwagner/share/cchem/namd-tutorial Desktop</p>
+
+After typing the above in to the Terminal, press enter.  <p class="notestyle">To copy-paste in the Terminal,
+you also need to hold down shift; i.e. Ctrl+Shift+c copies from the terminal, and
+Ctrl+Shift+v pastes.</p>  It may take a moment before the "prompt" comes back up again.  
+(There's a lot of files to copy.)
+</li>
+
+<li>You should notice on your Desktop a new folder!  As the name of the directory suggests, 
+we'll be going through the NAMD tutorial, found <a href="http://www.ks.uiuc.edu/Training/Tutorials/" target="namdtut">online</a>.
+But I'll be adapting it for use here.  
+
+Now open up the walkthrough.pdf in the namd-tutorial directory.  We'll roughly go along
+with what the NAMD tutorial says, and I'll refer to it from time to time.</li>
+
+<p align="center"><a href="#top">Top</a></p>
+			</div>
+			<div class="postfooter"></div>
+			</div>
+<!-- end of a post-->
+
+
+
+<!-- a post -->
+			<div class="post">
+			<div class="postheader"><h1><a name="vmdintro"></a>Intro to VMD</h1></div>
+			<div class="postcontent">
+
+<p>In this section, we'll learn a little bit about the graphical capabilities of VMD.
+See also <a href="http://www.ks.uiuc.edu/Training/Tutorials/vmd/tutorial-html/index.html" target="vmdtut">the VMD tutorial</a>
+for extra help.  </p>
+
+<ol>
+<li><a name="vmdopen"></a>There is a ubiquitin protein data bank file (1UBQ.pdb) in Desktop/namd-tutorial/1-1-build,
+which needs a little cleaning up.  First let's navigate to that directory and then open up VMD.
+<b>T:</b>
+<p>
+cd ~/Desktop/namd-tutorial/1-1-build <br/>
+vmd</p>
+</li>
+<li><a name="vmdload"></a>In the VMD Main window that pops up, click "File -> New Molecule."
+Then use "Browse..." to find 1UBQ.pdb.  Load it by pressing "Load."
+Now the molecule is loaded, and you can X out of the Molecule File Browser window.
+</li>
+<li>
+Whenever you load a pdb file, you can look at it in the OpenGL Display window.
+With the default "rotation" selected, left click and drag rotates around the molecule.
+On the VMD Main window, if you choose "Mouse -> Translate", left click and drag
+allows you to translate the molecule around; "Mouse -> Scale" allows you to zoom in
+and out (left click, drag left and right), but you can also use the middle-mouse
+scroller to scale.  Each of these are mapped to keyboard shortcuts "r", "t", and "s" 
+to quickly move between rotation, translation, and scaling for the left-mouse button.
+</li>
+<li>Our molecule doesn't look very nice just yet, so let's change that.  
+Click "Graphics -> Representations" in the VMD Main window.
+In the Graphical Representations window that pops up, there's a lot of things
+to consider.  Notice that the "Selected Molecule" is our 1UBQ.pdb, since we didn't load 
+any other molecules in <a href="#vmdload">step 2</a>.  Now click once on "Create Rep."
+</li>
+<li>In the turquoise box just below, you should see another copy of "Lines    Name   all" appear.
+Everything within this turquoise box is called a "Rep" (short for Representation), and we can change
+how the Molecule is represented (i.e., what it looks like) through these.
+</li>
+<li>Go down to Selected Atoms and type in "protein" instead of "all" (without quotes).  Press enter.
+You should now notice up in that turquoise box that one of the Reps changed its "Selection" to "protein."
+<li>Down in the "Draw Style" tab, you can choose the color and style of the selected Representation.
+For now, change the Drawing Method to "Cartoon".  You should notice some crazy stuff appear in the OpenGL 
+Display window.  Also try out the "NewCartoon" drawing method.  Try changing the Coloring Method to
+"Structure".
+</li>
+<li>In the turquoise box, click on the "all" Rep.  Actually, double-click it.  You should notice
+the lines will disappear in the OpenGL Display.  Double-clicking again will make them reappear.  Try
+this also with the "protein" Rep.
+</li><li>
+Click back on the "all" Rep and make sure it's visible.  Change the Drawing Method to "VDW" (van
+der Waals.  Change the Coloring Method to "Structure" and the Material to "Transparent".  That looks pretty cool.
+</li><li>
+Now type in "not protein" instead of "all" for the Selected Atoms.  Press enter.  
+Many of the blobs will disappear.  For this Rep, we've selected all the atoms that are not labeled
+as part of the protein.  You should notice a bunch of blobs still in the OpenGL Display.
+Those are some Hydrogens, and they do belong on the protein, but their positions aren't exactly known 
+through X-ray crystallography, which is how the 1UBQ.pdb file was obtained.  (See inset on page 9
+of the NAMD walkthrough.)
+<p class="notestyle">
+Note:  You can close out of the Graphical Representation window at any time without closing VMD.  This 
+is true for all the windows that you can open from the VMD Main window.  But if you close the VMD Main
+window, VMD will exit (it will ask "Really Quit?").  It's impossible to close the OpenGL display per se.</p>
+</li>
+
+
+
+</ol>
+<p align="center"><a href="#top">Top</a></p>
+			</div>
+			<div class="postfooter"></div>
+			</div>
+<!-- end of a post-->
+
+
+
+<!-- a post -->
+			<div class="post">
+			<div class="postheader"><h1><a name="psfgen"></a>Making psf files</h1></div>
+			<div class="postcontent">
+
+<p>In this section, we'll generate psf and pbd files for ubiquitin, with the Hydrogen positions guessed based 
+on chemistry.  In doing so, we'll familiarize ourself with the VMD Tk Console.</p>
+
+<ol start='0'>
+<li>If you accidentally close out of VMD, make sure to do <a href="#vmdopen">steps 1</a> and <a href="#vmdload">2</a> of the previous section over again.
+Otherwise we can start from where we left off.</li>
+
+<li>On the VMD Main window, open "Extensions -> Tk Console".  This will open a window that functions like
+the Terminal, but uses a slightly different language.  You can still use familiar commands like "cd", "pwd",
+and "ls".  For example, "set asdf 1" sets the variable "asdf" to 1.  To recall what the variable "asdf" is,
+use "echo $asdf". <p class="notestyle">When using the VMD Tk Console, I will preface the command line arguments with <b>VMD Tk:</b>.</p>
+
+After testing out the Tk Console a bit, make sure you're back in the 1-1-build directory, by entering "pwd"
+(Present Working Directory).  If not, change directories "cd ~/Desktop/namd-tutorial/1-1-build".  
+
+<li>Now let's grab just the "protein" part of the 1UBQ.pdb file.<b>
+VMD Tk:</b>
+<p>
+set ubq [atomselect top protein]<br>
+$ubq writepdb ubqp.pdb
+</p>
+We just created a new pdb file called ubqp.pdb in the 1-1-build directory, corresponding to step 4 of section
+1.2 in the NAMD walkthrough.
+</li><li>
+We're going to guess the location of the Hydrogens.  Well, we'll tell the Tk Console to do it.
+Copy the following into gedit (or your favorite text editor):
+<p>
+package require psfgen  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ;# i <br>
+topology top_all27_prot_lipid.inp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ;# ii <br>
+pdbalias residue HIS HSE  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ;# iii <br>
+pdbalias atom ILE CD1 CD  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ;# iv <br>
+segment U {pdb ubqp.pdb}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ;# v <br>
+coordpdb ubqp.pdb U   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ;# vi <br>
+guesscoord &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ;# vii <br>
+writepdb ubq.pdb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ;# viii <br>
+writepsf ubq.psf  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ;# ix <br>
+</p>
+Save the file as ubq_psfgen.tcl in the 1-1-build directory.  The ;# indicates
+the beginning of a comment midline.<br><br>
+
+I briefly describe each line below, but the commands are more thoroughly explained on page 10 of the walkthrough.
+<ol type="i">
+<li>we're going to generate a psf, need the psfgen package</li>
+<li>use the topology of this inp file</li>
+<li>change the name of the HIS (histidine) residue to HSE (as it's called in the inp file)</li>
+<li>change the name of the delta Carbon in the isoleucine (ILE) residue from CD1 to CD.  </li>
+<li>create the "U"biquitin segment, adds in Hydrogens, from ubqp.pdb file.</li>
+<li>read in the coordinates, relabel protein to U</li>
+<li>guess locations of extra Hydrogens</li>
+<li>write the new ubiquitin pdb file (with hydrogens included)</li>
+<li>write the new psf file, too.</li>
+</ol>
+
+</li><li>In VMD, get to the Tk Console ("Extensions -> Tk Console").
+<b>
+VMD Tk:</b><p>
+source ubq_psfgen.tcl
+</p>
+This is equivalent to sitting there and typing in each of the above commands.  We'll make use 
+of the "source" command in more complicated scripts, where it'd be a real pain to type it all.
+
+</li><li>Let's delete the old 1UBQ.pdb molecule and load up our new one.  Click on the 1UBQ.pdb
+in the VMD Main window and choose "Molecule -> Delete Molecule".
+
+</li><li>Now choose "File -> New Molecule".  Browse for the ubq.psf and "Load" it.  Notice that we
+don't see anything in the OpenGL Display!  So back in the Molecule File Browser, note that it 
+says "Load files for:  1:ubq.psf".  If you wanted to load in another molecule, you'd have to 
+change that to "New Molecule" rather than "1:ubq.psf".  But keeping "1:ubq.psf" in the "Load files for:",
+browse for ubq.pdb and make sure to "Load" that.
+
+</li><li>In the OpenGL Display, note that we have no stray Hydrogens.  (In the default Coloring Method
+"Name" in Graphics->Representations, Hydrogens are colored red.)  They are all bound somewhere.
+We have now succeeded in cleaning up our ubiquitin protein.
+</li>
+
+
+</ol>
+
+<p align="center"><a href="#top">Top</a></p>
+			</div>
+			<div class="postfooter"></div>
+			</div>
+<!-- end of a post-->
+
+
+<!-- a post -->
+			<div class="post">
+			<div class="postheader"><h1><a name="solvation"></a>Solvation</h1></div>
+			<div class="postcontent">
+
+<p>In this section, we'll use VMD to solvate ubiquitin.  </p>
+
+<ol>
+<li>In VMD, go to the Tk Console (Extensions -> Tk Console).
+<b>
+VMD Tk:</b>
+<p>
+package require solvate<br>
+solvate ubq.psf ubq.pdb -t 5 -o ubq_wb
+</p>
+The first command loads the solvate package, which can solvate the ubiquitin protein.  The command
+solvate then takes in the psf and pdb files, and encloses the protein up to a thickness of 5 Angstroms
+(indicated by "-t 5") of water, and then outputs to ubq_wb.psf/pdb (-o ubq_wb), where wb stands for Water Box.
+</li><li>
+In the OpenGL Display, we'll see a bunch of water now surrounding our protein.  If applicable, in the VMD Main
+window, delete any previous ubq.psf or pdb files, by clicking on them and using "Molecule -> Delete Molecule",
+so that only the ubq_wb.psf remains.
+
+</li><li>Back to the Tk Console.  Let's measure some properties of the whole system.
+<b>
+VMD Tk:</b><p>
+set everyone [atomselect top all] <br>
+measure minmax $everyone<br>
+measure center $everyone<br>
+</p>
+The first command sets the variable everyone.  The second gives us the minimum and maximum x,y,z values
+that the solvation extends over.  The third command gives us the center of the system, which is just the 
+average of the min and max values.  Record these values (and what they signify) in some descriptive file name, 
+e.g. sysprop.txt, within the 1-1-build directory.
+
+</li><li>In the OpenGL Display, we can still see ubiquitin in the center, so "ubq_wb.psf" includes both
+information about the water and the ubiquitin.  Open up "Graphics -> Representations" and try to 
+display the protein with the Cartoon (or NewCartoon) drawing style, and the water by some other method (e.g. Lines),
+by creating Reps that select atoms from the "protein" and from the "not protein" (or "water").  
+If this sounds unfamiliar, refer back to the "Getting started with VMD" section.
+
+</li><li>When you've finished making it look nice, "Choose File -> Render" on the VMD Main window to save a 
+snapshot of the system.  Name it something descriptive, such as "ubq_wb.tga".  You can choose a different
+Render mode ("Render using"), but the defaults are fine for us.  Hit "Start Rendering".  For this small
+system, it will take very little time.  It will save to the 1-1-build directory probably.
+
+
+</li><li>Exit VMD.  We're also going to make a water sphere (ws) in addition to a water box (wb).
+Go to the Terminal, and get to the 1-1-build directory (cd ~/Desktop/namd-tutorial/1-1-build).
+Then run this command:
+<b>T:</b><p>
+vmd -dispdev text -e wat_sphere.tcl
+</p>
+<p class="notestyle">
+This wat_sphere.tcl script places ubiquitin in a sphere of water.  It uses the vmd package "solvate",
+which puts the ubiquitin in a water box.  But then the script removes water molecules that are further 
+away from the protein's center of mass than the furthest protein's atom, which gives the spherical shape.
+</p>
+
+</li><li>Notice that the output on the Terminal screen ends with the CENTER OF MASS and RADIUS OF SPHERE.
+Copy these into the sysprop.txt file (remember, use Ctrl+Shift+c to copy from the Terminal), labeling 
+the previously saved information as the water box information, and adding this in for the water sphere.  
+On the Terminal screen, you should notice that instead of your usual prompt, you have "vmd > ".  Type
+"exit" and press enter to get out of the vmd prompt.
+
+
+</li><li>Open VMD, by entering the command "vmd" on the Terminal command line.  Let's load up the water 
+sphere to see what it looks like.  In the VMD Main window, choose "File -> New Molecule".
+Browse for ubq_ws.psf, and "Load" it.  Then load "ubq_ws.pdb" on top of the psf.  
+
+
+</li><li>Repeat steps 4 and 5 for the water sphere.  Don't save your new render over your old one!
+
+
+</li><li> Show the TA your two renders (water box and water sphere).</li>
+
+
+
+</ol>
+<p align="center"><a href="#top">Top</a></p>
+			</div>
+			<div class="postfooter"></div>
+			</div>
+<!-- end of a post-->
+
+
+
+<!-- a post -->
+			<div class="post">
+			<div class="postheader"><h1><a name="equilibration"></a>Equilibration</h1></div>
+			<div class="postcontent">
+
+<p>In this section, we will equilibrate our ubiquitin in both the water box and sphere.  </p>
+
+<ol>
+<li>First, we need to copy some of our previous pdb and psf files into the namd-tutorial/common directory.
+On the Terminal, navigate to the 1-1-build directory (cd ~/Desktop/namd-tutorial/1-1-build) if you're not
+there already.  Then:
+<b>T:</b>
+<p>
+cp ubq.pdb ubq.psf ubq_w* ../common<br>
+ls ../common<br>
+</p>
+The first command copies ubq.pdb, ubq.psf, and any file that starts with ubq_w into the namd-tutorial/common
+directory.  The second command lists what's in the common directory.
+</li>
+<li> We'll start with the equilibration of the water sphere, since that's what they do first in the 
+NAMD walkthrough (section 1.4).  In the Terminal, change directories to 1-2-sphere:
+
+<b>T:</b><p>
+cd ~/Desktop/namd-tutorial/1-2-sphere
+</p>
+</li>
+<li>Check out the configuration file (ubq_ws_eq.conf),
+
+<b>T:</b><p>
+gedit ubq_ws_eq.conf
+</p>
+or using your own choice of text editor.  Take a quick look at how the NAMD walkthrough describes each
+part of the configuration file.  Take especial note about the temperature, timestep, and rigidBonds.
+Also, check out the spherical boundary conditions.  
+
+</li>
+<li>In the ubq_ws_eq.conf file, where it talks about the spherical boundary conditions, 
+paste in the information about the center of the sphere that we recorded in 1-1-build/sysprop.txt
+where it says "sphericalBCcenter" (and get rid of the old center).  You can make sure that 
+sphericalBCr1 is greater than the SPHERE RADIUS from sysprop.txt.  <br><br>
+
+Make sure to save ubq_ws_eq.conf.
+
+</li>
+<li>Run the simulation!
+
+<b>T:</b><p>
+namd2 ubq_ws_eq.conf > ubq_ws_eq.log
+</p>
+This command tells NAMD (namd2) to run the config file (ubq_ws_eq.conf) and put the output
+into (>) the logfile ubq_ws_eq.log.  If stuff starts being written on the screen, you might
+have missed putting in the directional >.  Press Ctrl+C to interrupt (stop) a command from
+being executed, if that's the case.  Once it's running, The Terminal prompt won't come up right away, 
+because the simulation will take about 2 to 5 minutes to run.
+<br><br>
+While waiting for it to finish, you can take a closer look at pp. 16--22 of the NAMD walkthrough,
+which describes the variables/parameters going into the NAMD run.  Look at it side by side with
+the ubq_ws_eq.conf file.
+
+</li>
+<li>For the water box, change directory to 1-3-box:
+
+<b>T:</b><p>
+cd ../1-3-box<br>
+gedit ubq_wb_eq.conf
+</p>
+The second command will open up the config file for the water box.  Take a brief look at
+Section 1.5.1 of the NAMD walkthrough to understand what's going on in this config file.
+
+</li>
+<li>Inside the ubq_wb_eq.conf file, change the value of cellOrigin to the center of the 
+box calculated in 1-1-build/sysprop.txt.  Save the config file.
+
+</li>
+<li>Run the simulation.
+
+<b>T:</b><p>
+namd2 ubq_wb_eq.conf > ubq_wb_eq.log
+</p>
+While you're waiting for it to finish, read the helpful information on pp. 23--26 of the NAMD 
+walkthrough and compare to the ubq_wb_eq.conf file.
+</li>
+</ol>
+<p align="center"><a href="#top">Top</a></p>
+			</div>
+			<div class="postfooter"></div>
+			</div>
+<!-- end of a post-->
+
+
+
+<!-- a post -->
+			<div class="post">
+			<div class="postheader"><h1><a name="analysis"></a>Basic Analysis</h1></div>
+			<div class="postcontent">
+
+<p>In this section, we'll do only the basic plots and calculate the RMSD of the protein over time.</p>
+
+<ol>
+<li>Go to the 1-2-sphere directory and open up VMD.
+
+<b>T:</b><p>
+cd ~/Desktop/namd-tutorial/1-2-sphere<br>
+vmd
+</p>
+</li>
+<li>
+In the VMD Main window, choose "Extensions -> Analysis -> NAMD Plot".
+</li>
+<li>
+In the NAMD Plot window, select "File -> Select NAMD Log File", and choose ubq_ws_eq.log.
+</li>
+<li>
+You can choose many things to plot on the Y axis (e.g., "BOND" energy, "TOTAL" energy, 
+and "TEMP"erature).  On the X axis, you can only plot "TS" (time step).  Try plotting a few
+things on the Y axis, by clicking on something, and then pressing "File -> Plot Selected Data".
+<br><br>
+Plot the temperature.  Explain to the TA why the Temperature isn't at the value 310K that was
+specified in the configuration file.  What is going on for the first 100 time steps?
+</li><li>
+Close the NAMD Plot stuff.  Let's open up our ubiquitin covered in the water sphere.
+But let's also check out the trajectory information that we've recorded about 10 times,
+which is encoded in the "ubq_ws_eq.dcd" file in the 1-2-sphere directory.
+<br><br>
+To do so, from the VMD Main window, choose "File -> New Molecule".  Browse for the "ubq_ws.psf" in
+the common or 1-1-build directory.  Load that in.  Then Browse for "ubq_ws.pdb" and load it, too.
+Finally, Browse for "ubq_ws_eq.dcd" in 1-2-sphere, and load that.
+</li>
+
+<li>From the VMD Main window, open "Extensions -> Analysis -> Timeline".  Across the bottom we
+see the labels for 10 or 11 columns representing the time steps for which all the atoms' positions 
+were recorded.  The rows are labeled by the different residues (try pressing "every residue" to 
+show them all).  For example, the histidine residue should be 68.
+<br><br>
+Try clicking somewhere in the big gray box, and watch the OpenGL Display as you click in different
+columns (representing different snap-shots).  Clicking in different rows will highlight the residue
+that that row corresponds to.
+
+</li><li>So we have an qualitative feel for how much the protein wiggled around, but to quantify it
+we want to find the RMSD for the protein.  See Section 1.7.1 (p 31) in the NAMD walkthrough for
+an explanation of what the RMSD is, and for what's in the following script "rmsd.tcl", which
+we will execute in the Tk Console (Extensions->Tk Console).
+<b>
+VMD Tk:</b>
+<p>source rmsd.tcl</p>
+
+The output of this command is rmsd.dat in the 1-2-sphere directory.
+
+</li><li> Plot rmsd.dat using xmgrace.
+
+<b>T:</b><p>
+xmgrace rmsd.dat</p>
+
+The RMSD hasn't really settled down in this short period of equilibration, so it will probably 
+be still going up.
+
+</li><li>Let's plot the RMSD value of the protein without the last 5 residues (which happen to be unstable).
+We will have to create a new .tcl file that will do what we want.  Start by making a copy of the old 
+rmsd.tcl, but calling it "rmsd_5.tcl", and then opening it:
+<b>T:</b><p>
+cp rmsd.tcl rmsd_5.tcl<br>
+gedit rmsd_5.tcl
+</p>
+
+</li><li>  Modify rmsd_5.tcl by changing:
+<p class="notestyle">
+<b>line 1:</b>  open rmsd.dat w &nbsp;&nbsp;-->&nbsp;&nbsp; open rmsd_5.dat w <br>
+<b>line 3:</b>  ...and noh"	&nbsp;&nbsp;--><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	...and noh and not (resid 72 to 76)" <br>
+<b>line 4:</b>  ...and noh"	&nbsp;&nbsp;--><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	...and noh and not (resid 72 to 76)"
+</p>
+This removes residues 72 to 76 from the calculation.  Remember to save rmsd_5.tcl.
+
+</li><li> In the Tk Console (VMD Main:  Extensions -> Tk Console)
+<b>
+VMD Tk:</b><p>
+source rmsd_5.tcl
+</p>
+This will calculate the RMSD with the last five residues removed.
+</li>
+</ol>
+<p align="center"><a href="#top">Top</a></p>
+			</div>
+			<div class="postfooter"></div>
+			</div>
+<!-- end of a post-->
+
+
+
+
+<!-- a post -->
+			<div class="post">
+			<div class="postheader"><h1><a name="grace"></a>Basics of Grace</h1></div>
+			<div class="postcontent">
+
+<p>In this section, we'll make our RMSD plot look nice in xmgrace.</p>
+
+<ol>
+<li>Plot both rmsd.dat and rmsd_5.dat with xmgrace.  If your xmgrace is still running with the
+rmsd.dat data, click on "Data -> Import -> ASCII", and click on the rmsd_5.dat in the File browser,
+and hit "Ok" once, then you can X out of the "Grace: Read sets" window (or hit Cancel).
+<br><br>
+If you closed out of the xmgrace earlier, simply use
+<b>T:</b><p>
+xmgrace rmsd.dat rmsd_5.dat
+</p>
+</li><li>Save your work!  Choose "File -> Save as" and rmsd.agr is a nice file name (Put that in the Selection,
+and put it in a directory you'll remember).  
+<p class="notestyle">
+Save frequently (Ctrl+S), but only when you like how it looks,
+because xmgrace has no "Undo" feature.  You can revert to where you last saved it, though.
+</p>
+
+</li><li>Click "Plot -> Set appearance".  The first set should be the RMSD
+for the full protein, so down in the "Main" tab, choose the Legend String to be "entire protein"
+and hit "Apply".  The second set should be for the protein without the last five residues, so click 
+on that and choose the Legend String to be "without last 5 residues".  Hit Apply and close the "Grace: Set 
+Appearance" window.
+<br><br>
+Before you move on, make sure that it makes sense, which line is which.  Which RMSD should be higher?
+
+
+</li><li>Click "Plot -> Graph appearance" and select a title on the "Main" tab, e.g. "RMSD for ubiquitin", 
+a subtitle e.g. "Equilibrated in a sphere of water".  Hit "Apply" to see changes.
+
+
+</li><li>Within the "Grace: Graph Appearance" window, click on the "Leg. box" tab.  Change the location
+by modifying the X and Y values until the legend is in a nice place.  (Hit Apply to test changes.)
+Close the "Grace: Graph Appearance" window.
+
+
+</li><li> Choose "Plot -> Axis properties".  For the X axis, choose the Axis label (in the Main tab) to be
+"time" as well as the units.  Remember to hit "Apply."  To modify the Y axis, click on the "X axis" 
+box at the top and choose "Y axis".  Choose the Axis label to be "RMSD" and report the units.  Hit
+Apply.
+
+
+</li><li>"Print" your graph in a nice format.  Choose "File -> Print Setup".  Choose a file format (Device) 
+such as EPS.  Then hit Apply.  Then click "File -> Print" (or press Ctrl+P).  This doesn't actually
+print the file to the printer, but it will print it to the file type you specified.  It will probably
+be located in your "home" directory, based on your UCI net ID.</li>
+</ol>
+
+<br>
+<p>
+That's it, we're done!  Congratulations.
+</p>
+<p align="center"><a href="#top">Top</a></p>
+			</div>
+			<div class="postfooter"></div>
+			</div>
+<!-- end of a post-->
+
+
+
+
+
+
+
+
+
+
+<!-- end of posts-->
+		</div>
+	</div>
+	<div id="footer">
+		<ul>
+			<li><a href="http://dft.uci.edu" target="dftsite2">DFT</a></li>
+			<li class="last"><a href="mailto:lwagner@uci.edu">contact</a></li>
+		</ul>
+	<span>No rights reserved.</span>	</div>	
+</div>
+</body>
+</html>

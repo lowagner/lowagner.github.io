@@ -1,0 +1,108 @@
+
+* Write down the Schrodinger equation for a single particle in 
+a one-dimensional potential v(x).
+
+* Write the formula for the force between two covalently bonded atoms
+in the harmonic approximation.
+
+* Draw a typical binding energy curve for a diatomic, labelling 
+the well-depth and equilibrium bond length.
+
+* Given the electronic energy from a quantum calculation for a diatomic
+as a function of separation R, called E_0(R), give a formula for the
+total energy curve and the binding energy curve, if the nuclei have 
+charges Z_A and Z_B.
+
+* State the variational principle in quantum mechanics.
+
+* If a trial wavefunction has a parameter alpha, sketch how 
+its approximate energy varies with alpha, and write an equation
+to determine the 'best' value for alpha.
+
+* Sketch the rotational barrier for ethane, marking the angles, and
+estimating its heigth.
+
+* Sketch a bond indicating how a torsional angle is measured.
+
+* Sketch the RMSD curve of a protein for the first few time slices
+when doing a simulation as in Lab 1.  Give the units on each axis.
+How would you decide if the protein had equilibrated?
+
+* Sketch the Maxwell-Boltzmann distribution you found in Lab 2, at
+300K.  Describe how it changes if the temperature is increased to 400K.
+
+* When would a HF calculation give the exact electronic energy of
+a system?  In all other cases, what is the sign of its error?
+
+* If I increase the size of a basis set for some calculation, what
+can you say for sure about the calculated energy?
+
+* What error does HF typically make for ionization energies, and explain
+why.
+
+* For the Li atom, the electronic energy in HF is -7.3815 Hartree in the
+3-21G basis set, and -7.4320 in the 6-311G** basis set.  Which calculation
+took longer to run?
+
+* For the Carbon atom, the HF and exact energies are  -37.8450 and -37.6886,
+but we're not sure which is which.  Say which is which and what the correlation
+energy is.
+
+* For the N atom, the HF and exact energies are -54.4009, and -54.5892, 
+respectively, while the N ion has -53.8880, and -54.0546.  Calculate the
+percentage error in the HF ionization energy, and explain its sign.
+
+* Define what a polarization function is.
+
+* Name three approximate XC functionals.
+
+* The overlap of the two 1s orbitals in a minimal basis calculation of
+H2+ behaves as (1+R+(R^2)/3)*exp(-R).  Sketch it, and explain the value
+as R->0 and to infinity.
+
+* What is a Lennard-Jones potential?  Give the formula.
+
+* How does the interaction between two neutral objects without permanent
+dipole moments decay with separation R?  What is the sign of the energy?
+
+* Why does the number of parameters in a force field describing bending
+so much bigger than that for stretching?
+
+* The exact binding energy curve for H2 has the following data points
+in atomic units (1 bohr = 0.529 AA and 1 Hartree = 27.2 eV):
+R        E
+1.35    -1.1739627
+1.39    -1.1744517
+1.40    -1.1744746
+1.41    -1.1744599
+Give the equilibrium bond length in Angstroms and well-depth in eV.
+
+* The exact binding energy curve for H2 has the following data points
+in atomic units (1 bohr = 0.529 AA and 1 Hartree = 27.2 eV):
+R        E
+1.35    -1.1739627
+1.39    -1.1744517
+1.40    -1.1744746
+1.41    -1.1744599
+Estimate the vibrational force constant in atomic units.
+
+* Give the normalization condition for a single-particle wavefunction.
+
+* What is the energy of the first excited state of a harmonic oscillator
+with frequency omega?
+
+* What is the energy of the first excited state of a hydrogen atom 
+in atomic units?
+
+* The ground-state energy of He is -2.903 Hartree.  What is the ionization
+potential?
+
+* Give a formula for the kinetic energy of a wavefunction in 1d in atomic
+units.
+
+* Give a formula for the overlap of two wavefunctions.
+What is its value if the wavefunctions are the same and normalized?
+
+* Why does the total energy of non-bonding interactions not decay as
+rapidly as 1/R^6 in a typical calculation of, say, a protein solvated
+in water?
