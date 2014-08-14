@@ -122,6 +122,9 @@ function writepub( record, recordnumber ) {
     
     // get rid of editor's suggestion for bibtex
     bibtex = bibtex.replace(/<b>editors' suggestion<\/b>; /g, "");
+    bibtex = bibtex.replace(/<b>editors' suggestion<\/b>/g, "");
+    // get rid of empty notes...
+    bibtex = bibtex.replace(/note = {},/g, "");
     // escape all apostrophes
     bibtex = bibtex.replace(/'/g, "\\'");
     // change some html to bibtex
