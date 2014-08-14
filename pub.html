@@ -16,7 +16,7 @@ var publications = TAFFY([
         pages:"045109",
         year:2014,
         url:"http://link.aps.org/doi/10.1103/PhysRevB.90.045109",
-        eprint:"pubs/WBSB14.pdf",
+        eprint:"p/WBSB14.pdf",
         lowid:8,
         description:"Illustrating convergence of the Kohn-Sham algorithm using the "+
                     "exact functional and studying issues of <i>v</i>-representability.",
@@ -32,7 +32,7 @@ var publications = TAFFY([
         volume:"16",
         year:2014,
         url:"http://dx.doi.org/10.1039/C4CP00407H",
-        eprint:"pubs/MMGW14.pdf",
+        eprint:"p/MMGW14.pdf",
         lowid:7,
         description:"Developing the strictly correlated electron approach for chemical systems.",
         tags:"DFT, SCE, 1d"
@@ -46,7 +46,7 @@ var publications = TAFFY([
         pages:"093003",
         year:2013,
         url:"http://dx.doi.org/10.1103/PhysRevLett.111.093003",
-        eprint:"pubs/WSBW13.pdf",
+        eprint:"p/WSBW13.pdf",
         note:"<b>editors' suggestion</b>; <i>ibid</i>. <b>112</b>, 019901(E) (2014)",
         lowid:6,
         description:"Proving convergence of the Kohn-Sham algorithm using the "+
@@ -62,7 +62,7 @@ var publications = TAFFY([
         pages:"96-101",
         year:2013,
         url:"http://dx.doi.org/10.1002/qua.24259",
-        eprint:"pubs/BW13.pdf",
+        eprint:"p/BW13.pdf",
         lowid:5,
         description:"The basics of Kohn-Sham density functional theory.",
         tags:"DFT, tutorial"
@@ -76,7 +76,7 @@ var publications = TAFFY([
         pages:"056402",
         year:2012,
         url:"http://dx.doi.org/10.1103/PhysRevLett.109.056402",
-        eprint:"pubs/SWWB12.pdf",
+        eprint:"p/SWWB12.pdf",
         lowid:4,
         description:"Solving the many-electron Schr&ouml;dinger equation in the continuum "+
                     "via the density matrix renormalization group, "+
@@ -92,7 +92,7 @@ var publications = TAFFY([
         pages:"8581-8590",
         year:2012,
         url:"http://dx.doi.org/10.1039/C2CP24118H",
-        eprint:"pubs/WSBW12.pdf",
+        eprint:"p/WSBW12.pdf",
         lowid:3,
         description:"Exact Kohn-Sham density functional theory in 1d, compared "+
                     "with the standard local density and Hartree-Fock approximations, "+
@@ -112,7 +112,7 @@ var publications = TAFFY([
         chapter:"5",
         url:"http://www.springer.com/978-3-642-23517-7",
         editor:"M.A.L. Marques and N.T. Maitra and F.M.S. Nogueira and E.K.U. Gross and A. Rubio",
-        eprint:"pubs/WYB12.pdf",
+        eprint:"p/WYB12.pdf",
         lowid:2,
         description:"Simple conditions on the exchange-correlation "+
                     "kernel <i>f<sub>xc</sub></i> within time-dependent density functional theory, "+
@@ -129,7 +129,7 @@ var publications = TAFFY([
         pages:"1-8",
         year:2008,
         url:"https://www.rose-hulman.edu/mathjournal/v9n2.php",
-        eprint:"pubs/BLAB.pdf",
+        eprint:"p/BLAB.pdf",
         lowid:1.41421,
         description:"How to count the number of unique objects, painted various colors at "+
                     "different vertices, when group operations can rotate the object <i>and</i> "+
@@ -145,7 +145,7 @@ var publications = TAFFY([
         pages:"101-113",
         year:2008,
         url:"http://dx.doi.org/10.1016/j.nuclphysa.2008.01.004",
-        eprint:"pubs/NSCL.pdf",
+        eprint:"p/NSCL.pdf",
         description:"Work from a nuclear fragmentation experiment at the National Superconducting "+
                     "Cyclotron Laboratory at Michigan State University.",
         lowid:1,
@@ -163,9 +163,16 @@ var publications = TAFFY([
 <link rel="icon" type="image/x-icon" href="favicon.ico" />
 <body>
 <a id="top"> </a>
+<div id=container>
 
 <div class=header>
-  <h2> lucas o. wagner @ work </h2>
+  <h2> lucas o. wagner + publications </h2>
+</div>
+
+<!-- Main stuff to read and what not. -->
+
+<div class=main>
+<div id=biglinks>
     <ul>
     <li><a href="pub.html?s=all">all</a></li>
     <li><a href="pub.html?y=2008">2008</a></li>
@@ -175,10 +182,7 @@ var publications = TAFFY([
     </ul> 
 </div>
 
-<!-- Main stuff to read and what not. -->
 
-<div class=main>
-<h3>Publications</h3>
     <div id=taglinks>
     <ul>
     <li><a href="pub.html?g=DFT">DFT</a></li>
@@ -307,6 +311,11 @@ Home
 <span>Publications</span>
 </li>
 
+<li><a href="teach.html" title="my courses">
+Teaching
+</a></li>
+
+
 <li><a href="code.html" title="my programming">
 Coding
 </a></li>
@@ -355,7 +364,7 @@ A blog
 </div>
 <!-- END not main links and menu what not. -->
 
-
+</div>
 </body>
 
 </html>
