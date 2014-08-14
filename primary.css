@@ -450,7 +450,7 @@ text-align:right;
 {
 margin-left:10px;
 width:100%; 
-height:73px; 
+height:70px; 
 display:block;
 border-width:0;
 }
@@ -460,12 +460,13 @@ border-width:0;
 float:left;
 width:100%;
 /*    TOP RIGHT BOTTOM LEFT padding */
-margin:2px 5px 3px -13px;
+margin:2px 3px 3px -13px;
 list-style-type:none;
 border-style:solid;
 /*    TOP RIGHT BOTTOM LEFT padding */
 border-width:0; /*2px 0px 0px 0px;*/
 padding:0px 1px 0 0;
+font-size:11pt;
 border-color:#131315;
 }
 #taglinks li 
@@ -474,7 +475,7 @@ display:inline;
 float:left;
 border-style:solid;
 /*    TOP RIGHT BOTTOM LEFT padding */
-border-width:0px 2px 4px 0px;
+border-width:0px 2px 3px 0px;
 margin:0px 2px 3px 5px;
 padding:0px;
 width:auto;
