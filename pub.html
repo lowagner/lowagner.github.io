@@ -1,12 +1,29 @@
 <html>
 
 <head>
-<script src="taffydb/taffy.js"></script> 
-<script src="urlparams.js"></script> 
-<script src="managepubs.js"></script> 
+<script src="js/taffy-min.js"></script> 
+<script src="js/urlparams.js"></script> 
+<script src="js/managepubs.js"></script> 
 
 <script>
 var publications = TAFFY([
+    {
+        style:"article",
+        title:"How to make electrons avoid each other: a nonlocal radius for strong correlation",
+        author:"L.O. Wagner and Paola Gori-Giorgi",
+        journal:"arxiv",
+        volume:"1408",
+        pages:"5426",
+        year:2014,
+        url:"http://arxiv.org/abs/1408.5426",
+        eprint:"p/WG14.pdf",
+        lowid:9,
+        description:"Generalizing the Wigner--Seitz radius in a nonlocal way "+
+                    "to define a physical model of the electron hole.  See also "+
+                    "the <a href='https://github.com/lowagner/NLRatoms' target='NLRatoms'>NLRatoms</a> code.",
+        note:"",
+        tags:"DFT, nonlocal, SCE, 1d"
+    },
     {
         style:"article",
         title:"Kohn-Sham calculations with the exact functional",
@@ -158,7 +175,7 @@ var publications = TAFFY([
 
 
 <title>Publications</title>
-<link href='primary.css' rel='stylesheet' type='text/css' />
+<link href='css/primary.css' rel='stylesheet' type='text/css' />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link rel="icon" type="image/x-icon" href="favicon.ico" />
 <body>
