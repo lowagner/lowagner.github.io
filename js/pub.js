@@ -1,5 +1,5 @@
 // GLOBAL parameters YOU CAN SET
-var pubsMAXpp = 5; // max number of publications to display per page
+var pubsMAXpp = 4; // max number of publications to display per page
 var pubsSHOWbackTOtopAFTER = 3;  // after X publications, show the back to top link.  this should NOT be greater than or equal to pubsMAXpp.
 
 // SET INTERNALLY IN THE CODE
@@ -39,7 +39,7 @@ function getpeople( authors ) {
 function writepub( record, recordnumber ) {
     // get the number id.  "lowid".
     var nutxt = "";
-    var bibtex = "BIBTEX entry\\n\\n";
+    var bibtex = "";
     // check if the id is an integer.  if so, then we can print it.
     if ( (record["lowid"] | 0) === record["lowid"] )
         nutxt = record["lowid"];
