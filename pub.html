@@ -34,7 +34,6 @@ var publications = TAFFY([
         description:"Generalizing the Wigner--Seitz radius in a nonlocal way "+
                     "to define a physical model of the electron hole.  See also "+
                     "the <a href='https://github.com/lowagner/NLRatoms' target='NLRatoms'>NLRatoms</a> code.",
-        note:"",
         tags:"DFT, nonlocal, SCE, 1d"
     },
     {
@@ -250,7 +249,7 @@ function writebyfilter( func ) {
         pubsMAX = (s+1)*pubsMAXpp-1; 
         publications( func ).each( writeornotpub );
 
-        if ( pubsDISPLAYED >= pubsSHOWbackTOtopAFTER )
+        if ( pubsDISPLAYED >= pubsSHOWbackTOtopAFTER || pubsBEFORE || pubsAFTER )
         {
             document.write("<li><table class=navigation><tr>");
             if (pubsBEFORE)
@@ -258,7 +257,8 @@ function writebyfilter( func ) {
             else
                 document.write("<td width=\"100px\"></td>"); 
 
-            document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
+            if ( pubsDISPLAYED >= pubsSHOWbackTOtopAFTER )
+                document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
 
             if (pubsAFTER)
                 document.write("<td width=\"100px\" align=\"right\"><a href=\"pub.html"+everythingButS+"s="+(s+1)+"\">Next</a></td>");

@@ -147,7 +147,7 @@ function writebyfilter( func ) {
         codesMAX = (s+1)*codesMAXpp-1; 
         projects( func ).each( writeornotcode );
 
-        if ( codesDISPLAYED >= codesSHOWbackTOtopAFTER )
+        if ( codesDISPLAYED >= codesSHOWbackTOtopAFTER || codesBEFORE || codesAFTER )
         {
             document.write("<li><table class=navigation><tr>");
             if (codesBEFORE)
@@ -155,7 +155,8 @@ function writebyfilter( func ) {
             else
                 document.write("<td width=\"100px\"></td>"); 
 
-            document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
+            if ( codesDISPLAYED >= codesSHOWbackTOtopAFTER )
+                document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
 
             if (codesAFTER)
                 document.write("<td width=\"100px\" align=\"right\"><a href=\"code.html"+everythingButS+"s="+(s+1)+"\">Next</a></td>");

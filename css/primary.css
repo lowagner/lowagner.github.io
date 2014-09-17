@@ -187,12 +187,12 @@ box-shadow: 0px 0px 1px #777;*/
 
 /* unvisited link */
 .main a:link{
-color:#FF9095;
+color:#FFB0B0;
 text-decoration:none;
 }
 /* visited link */
 .main a:visited{
-color:#EE7980;
+color:#FFB0B0;
 text-decoration:none;
 }
 /* hovering over a link */
