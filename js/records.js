@@ -84,20 +84,24 @@ function writebyfilter( basehtml, data, func ) {
 function showfilters( basehtml, filters ) {
     document.write("<ul>");
     for ( var i=0; i<filters.length; i++ ) {
-        var writeout = "<li><a href=\""+basehtml+"?";
-        var label = "";
-        for ( var j=0; j<filters[i].length; j+=2 ) {
-            var filter = filters[i][j];
-            var value= filters[i][j+1];
-            writeout += filter+"="+value;
-            label += value;
-            if ( j < filters[i].length - 2 ) {
-                writeout += "&";
-                label += ", ";
+        if ( (filters[i].length == 2) && filters[i][1] == "all" ) {
+            document.write("<li><a href=\""+basehtml+everythingButS+"s=all\">all</a></li>");
+        } else {
+            var writeout = "<li><a href=\""+basehtml+"?";
+            var label = "";
+            for ( var j=0; j<filters[i].length; j+=2 ) {
+                var filter = filters[i][j];
+                var value= filters[i][j+1];
+                writeout += filter+"="+value;
+                label += value;
+                if ( j < filters[i].length - 2 ) {
+                    writeout += "&";
+                    label += ", ";
+                }
             }
+            writeout += "\">"+label+"</a></li>";
+            document.write( writeout );
         }
-        writeout += "\">"+label+"</a></li>";
-        document.write( writeout );
     }
     document.write("</ul>");
 }
