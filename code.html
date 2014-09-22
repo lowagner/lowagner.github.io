@@ -146,7 +146,7 @@ function writerecord( record, recordnumber ) {
 if ( everythingButS == "?" )
 {
     // if there're no other URL parameters besides s, then don't filter for anything
-    writebyfilter( projects, true );
+    writebyfilter( "code.html", projects, true );
 }
 else
 {
@@ -181,7 +181,7 @@ else
         filter['tags'] = {likenocase:QueryString['g']};
     if ( QueryString['d'] !== undefined )
         filter['description'] = {likenocase:QueryString['d']};
-    writebyfilter( projects, filter );
+    writebyfilter( "code.html", projects, filter );
 }
 
 

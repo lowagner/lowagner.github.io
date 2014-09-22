@@ -27,10 +27,10 @@ function writeornotrecord( record, recordnumber ) {
     }
 };
 
-function writebyfilter( data, func ) {
-    // just double checking some stuff here
-    if ( recordsSHOWbackTOtopAFTER >= recordsMAXpp )
-        recordsSHOWbackTOtopAFTER = recordsMAXpp-1;
+function writebyfilter( basehtml, data, func ) {
+//    // just double checking some stuff here
+//    if ( recordsSHOWbackTOtopAFTER >= recordsMAXpp )
+//        recordsSHOWbackTOtopAFTER = recordsMAXpp-1;
 
     // first check if we need to write only a certain page...
     var s = 0;
@@ -65,7 +65,7 @@ function writebyfilter( data, func ) {
         {
             document.write("<table id=navigation><tr>");
             if (recordsBEFORE)
-                document.write("<td width=\"120px\"><span><a href=\"pub.html"+everythingButS+"s="+(s-1)+"\">Previous</a></span></td>");
+                document.write("<td width=\"120px\"><span><a href=\""+basehtml+everythingButS+"s="+(s-1)+"\">Previous</a></span></td>");
             else
                 document.write("<td width=\"90px\"></td>"); 
 
@@ -75,7 +75,7 @@ function writebyfilter( data, func ) {
                 document.write("<td width=\"150px\" align=\"center\"></td>");
 
             if (recordsAFTER)
-                document.write("<td width=\"90px\" align=\"right\"><span><a href=\"pub.html"+everythingButS+"s="+(s+1)+"\">Next</a></span></td>");
+                document.write("<td width=\"90px\" align=\"right\"><span><a href=\""+basehtml+everythingButS+"s="+(s+1)+"\">Next</a></span></td>");
             else
                 document.write("<td width=\"90px\"></td>");
             document.write("</tr></table>");

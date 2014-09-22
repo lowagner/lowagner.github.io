@@ -360,7 +360,7 @@ function writerecord( record, recordnumber ) {
 if ( everythingButS == "?" )
 {
     // if there're no other URL parameters besides s, then don't filter for anything
-    writebyfilter( publications, true );
+    writebyfilter( "pub.html", publications, true );
 }
 else
 {
@@ -383,7 +383,7 @@ else
         filter['tags'] = {likenocase:QueryString['g']};
     if ( QueryString['d'] !== undefined )
         filter['description'] = {likenocase:QueryString['d']};
-    writebyfilter( publications, filter );
+    writebyfilter( "pub.html", publications, filter );
 }
 
 

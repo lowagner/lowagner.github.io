@@ -118,21 +118,124 @@ document.write(today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate())
 
 
 <a id="news"></a>
-<li>
-<table>
-<tr>
-<td class=mainentrytitle>
-Latest update
-</td>
-<td class=mainentrydate>2014-09-17</td>
-</tr>
-</table>
-<p>Now the 
-<a href="code.html">coding</a> page runs on javascript for sorting; 
-also added <a href="code.html?t=Sparrow-bullets">sparrow-bullets</a>
-to the projects list.</p>
-</li>
 
+<script src="js/taffy-min.js"></script> 
+<script src="js/urlparams.js"></script> 
+<script src="js/records.js"></script> 
+
+<div id=biglinks>
+<script>
+showfilters( "index.html", [ [ "s", "all" ], 
+                            [ "y", 2014 ] ] );
+</script>
+</div>
+
+    <div id=taglinks>
+    <script>
+    showtags( "index.html", ["website", "research", "coding"] );
+    </script>
+    </div>
+
+
+<script>
+var updates = TAFFY([
+    {
+        title:"Website internals overhaul",
+        year:2014,
+        month:9,
+        day:22,
+        news:"The website now doesn't duplicate any javascript functionality; "+
+            "even this news snippet is coded in TAFFY and displayed using javascript. "+
+            "this gives nice search features.",
+        tags:"coding, website"
+    },
+    {
+        title:"Latest update",
+        year:2014,
+        month:9,
+        day:17,
+        news:"Now the <a href=\"code.html\">coding</a> page runs on javascript for sorting; "+
+        "also added <a href=\"code.html?t=Sparrow-bullets\">sparrow-bullets</a> to the projects list.",
+        tags:"coding, website"
+    }
+    ]);
+
+// GLOBAL parameters YOU CAN SET
+recordsMAXpp = 1; // max number of codes to display per page
+recordsSHOWbackTOtopAFTER = 2;  // after X codes, show the back to top link.  this should NOT be greater than or equal to recordsMAXpp.
+
+function writerecord( record, recordnumber ) {
+    var nutxt = record["title"];
+    document.write('<li><table><tr><td class=mainentrytitle>'+nutxt+'</td>');
+
+    nutxt = record["year"]+"-"+record["month"]+"-"+record["day"];
+    document.write('<td class=mainentrydate>'+nutxt+'</td></tr></table>');
+    
+    document.write("<p>"+record["news"]+"</p>");
+    if ( record["tags"] !== undefined )
+    {
+        document.write("<p class=tags>tags: "+record["tags"]+"</p>");
+    }
+    document.write("</li>");
+
+};
+
+</script>
+</head>
+
+<ul>
+
+
+
+
+<!-- Main stuff to read and what not. -->
+
+<script>
+
+//document.write("<p> everything but s = " + everythingButS  + "</p>");
+
+
+if ( everythingButS == "?" )
+{
+    // if there're no other URL parameters besides s, then don't filter for anything
+    writebyfilter( "index.html", updates, true );
+}
+else
+{
+    var filter={};
+    if ( QueryString['y'] !== undefined )
+    {   
+        var yy = QueryString['y'];
+        var year = parseInt(yy.substr(0,4)); 
+        var modifier = yy.substr(4);
+        if ( modifier  == "+" )
+            filter['year'] = {gte:year}; // get all years after this year, too
+        else if ( modifier == "-" )
+            filter['year'] = {lte:year}; // get all years before this year, too
+        else
+            filter['year'] = {is:year};
+    }
+    if ( QueryString['m'] !== undefined )
+    {   
+        var month = parseInt( QueryString['m'] );
+        filter['month'] = {is:month};
+    }
+    if ( QueryString['d'] !== undefined )
+    {   
+        var day = parseInt( QueryString['d'] );
+        filter['day'] = {is:day};
+    }
+    if ( QueryString['t'] !== undefined )
+        filter['title'] = {likenocase:QueryString['t']};
+    if ( QueryString['g'] !== undefined )
+        filter['tags'] = {likenocase:QueryString['g']};
+    if ( QueryString['n'] !== undefined )
+        filter['news'] = {likenocase:QueryString['n']};
+    writebyfilter( "index.html", updates, filter );
+}
+
+
+</script>
 
 </ul>
 
