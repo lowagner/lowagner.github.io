@@ -7,6 +7,9 @@
 <a id="top"> </a>
 <div id=container>
 
+<head>
+<script src="js/utils.js"></script>
+</head>
 <!-- Main title and what not. -->
 <div class=header>
 <h2> about lucas o. wagner </h2>
@@ -18,6 +21,14 @@
 <div class=main>
 <div id=taglinks>
 <ul>
+<li>
+<a href="#hello">Hello!</a>
+</li>
+
+<li>
+<a href="#contact">Contact</a>
+</li>
+
 
 <li>
 <a href="#research">Research</a>
@@ -38,6 +49,62 @@
 <ul>
 
 
+<a id="hello"></a>
+<h3 id="demo">Hello!</h3>
+
+<script>
+var x="";
+var time=new Date().getHours();
+if (time<20)
+{
+x="Hello there!";
+}
+else
+{
+x="Good evening!";
+}
+document.getElementById("demo").innerHTML=x;
+</script>
+
+
+<li>
+<table class=nostyle>
+<tr>
+<td>
+<p class=withstyle> My name is Lucas Wagner.</p>
+<p class=withstyle>For a living, I do research in theoretical physics
+and chemistry, and I enjoy coding as a hobby.
+</p>
+
+</td>
+<td>
+<img src="i/mug.jpg" alt="my face" style="display:block;margin:10 -5 10px 0;border-style:solid;border-color:#201515;border-width:0 2 2 0;" height="150" width="144">
+</td>
+</tr>
+</table>
+</li>
+
+<a id="contact"></a>
+<li>
+<table>
+<tr>
+<td class=mainentryfull>
+Contact
+</td>
+</tr>
+</table>
+<p>Present affiliation:</p>
+
+<p class=tab>
+Department of Theoretical Chemistry - Faculty of Sciences<br>
+Vrije Universiteit Amsterdam<br>
+De Boelelaan 1083<br>
+1081 HV Amsterdam, The Netherlands
+</p>
+
+<p>Electronic mail address:</p>
+<p class=tab> l o wagner at g mail dot com</p>
+</li>
 
 
 
@@ -120,13 +187,14 @@ the once and future king, Jesus.
 </li>
 
 
-<center>
-<a href="#top">Back to top</a>
-</center>
-
+<script>
+writenavtable(0, null, 1, null );
+</script>
 
 
 </ul>
+
+
 
 
 
@@ -144,8 +212,8 @@ the once and future king, Jesus.
 <ul>
 
 <li>
-<a href="index.html" title="go back home">
-Home
+<a href="index.html" title="news">
+Updates
 </a>
 </li>
 
@@ -167,7 +235,7 @@ About
 
 <br>
 
-<li><a href="LucasWagner-CV.pdf" target="lowblog" title="My curriculum vitae">
+<li><a href="LucasWagner-CV.pdf" target="CV" title="My curriculum vitae">
 My CV
 </a></li>
 

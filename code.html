@@ -14,7 +14,7 @@
 
 <head>
 <script src="js/taffy-min.js"></script> 
-<script src="js/urlparams.js"></script> 
+<script src="js/utils.js"></script> 
 <script src="js/records.js"></script> 
 
 <div class=main>
@@ -43,7 +43,7 @@ var projects = TAFFY([
         url:"https://github.com/lowagner/sparrow-bullets",
         yearstart:2014,
         yearend:2014,
-        description:"Combining Sparrow3D (render/game engine) with Bullet physics (physics engine). "+
+        content:"Combining Sparrow3D (render/game engine) with Bullet physics (physics engine). "+
             "Currently this \"game\" has you pushing blocks off the platform.  Eventually I hope to "+
             "get it running on various open-source handhelds, like the OpenPandora or the GCW-Zero. "+
             "Check it out on <a href='https://github.com/lowagner/sparrow-bullets' target='Sparrow-bullets'>Github</a>, "+
@@ -55,7 +55,7 @@ var projects = TAFFY([
         url:"https://github.com/lowagner/NLRatoms",
         yearstart:2014,
         yearend:2014,
-        description:"Mathematica code to do atomic calculations with the nonlocal Wigner-Seitz radius, "+
+        content:"Mathematica code to do atomic calculations with the nonlocal Wigner-Seitz radius, "+
             "not optimized but hopefully readable. "+
             "It's on <a href='https://github.com/lowagner/NLRatoms' target='NLRatoms'>Github</a>.",
         tags:"physics, research, chemistry, mathematica"
@@ -64,7 +64,7 @@ var projects = TAFFY([
         title:"PyanoH3ro",
         yearstart:2013,
         yearend:2014,
-        description:"PyanoH3ro will be a ripoff of some very similar sounding rhythm and band games. "+
+        content:"PyanoH3ro will be a ripoff of some very similar sounding rhythm and band games. "+
             "Heavily inspired by DDR, which is good for exercise, and a desire to make "+
             "these sorts of games helpful for actually learning music.</p><p>"+
             "I have high hopes that this will also be a very fun music composition tool. "+
@@ -78,7 +78,7 @@ var projects = TAFFY([
         url:"https://github.com/lowagner/pynances",
         yearstart:2013,
         yearend:2014,
-        description:"Pynances is a python-based utility for keeping track of your finances. "+
+        content:"Pynances is a python-based utility for keeping track of your finances. "+
             "Originally designed to work with multiple currencies, " +
             "since my family is being paid in two!  Download (or check out) from the "+
             "<a href='https://github.com/lowagner/pynances' target='Pynances'>Github</a> page.",
@@ -89,7 +89,7 @@ var projects = TAFFY([
         url:"https://github.com/lowagner/walker",
         yearstart:2009,
         yearstart:2009,
-        description:"Walker is a game where you must find safe passageway through a dungeon. "+
+        content:"Walker is a game where you must find safe passageway through a dungeon. "+
             "Mostly coded around Christmas 2009. "+
             "It has spectacular graphics for the terminal. Download from the "+
             "<a href='https://github.com/lowagner/walker' target='Walker'>Github</a> page.",
@@ -120,7 +120,7 @@ function writerecord( record, recordnumber ) {
     }
     document.write('<td class=mainentrydate>'+nutxt+'</td></tr></table>');
     
-    document.write("<p>"+record["description"]+"</p>");
+    document.write("<p>"+record["content"]+"</p>");
     if ( record["tags"] !== undefined )
     {
         document.write("<p class=tags>tags: "+record["tags"]+"</p>");
@@ -179,8 +179,8 @@ else
         filter['title'] = {likenocase:QueryString['t']};
     if ( QueryString['g'] !== undefined )
         filter['tags'] = {likenocase:QueryString['g']};
-    if ( QueryString['d'] !== undefined )
-        filter['description'] = {likenocase:QueryString['d']};
+    if ( QueryString['c'] !== undefined )
+        filter['content'] = {likenocase:QueryString['c']};
     writebyfilter( "code.html", projects, filter );
 }
 
@@ -202,8 +202,8 @@ else
 <ul>
 
 <li>
-<a href="index.html" title="go back home">
-Home
+<a href="index.html" title="news">
+Updates
 </a>
 </li>
 
@@ -225,7 +225,7 @@ About
 
 <br>
 
-<li><a href="LucasWagner-CV.pdf" target="lowblog" title="My curriculum vitae">
+<li><a href="LucasWagner-CV.pdf" target="CV" title="My curriculum vitae">
 My CV
 </a></li>
 

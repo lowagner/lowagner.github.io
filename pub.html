@@ -13,7 +13,7 @@
 
 <head>
 <script src="js/taffy-min.js"></script> 
-<script src="js/urlparams.js"></script> 
+<script src="js/utils.js"></script> 
 <script src="js/records.js"></script> 
 
 <div class=main>
@@ -49,7 +49,7 @@ var publications = TAFFY([
         url:"http://arxiv.org/abs/1408.5426",
         eprint:"p/WG14.pdf",
         lowid:9,
-        description:"Generalizing the Wigner--Seitz radius in a nonlocal way "+
+        content:"Generalizing the Wigner--Seitz radius in a nonlocal way "+
                     "to define a physical model of the electron hole.  See also "+
                     "the <a href='https://github.com/lowagner/NLRatoms' target='NLRatoms'>NLRatoms</a> code.",
         tags:"DFT, nonlocal, SCE, 1d"
@@ -65,7 +65,7 @@ var publications = TAFFY([
         url:"http://link.aps.org/doi/10.1103/PhysRevB.90.045109",
         eprint:"p/WBSB14.pdf",
         lowid:8,
-        description:"Illustrating convergence of the Kohn-Sham algorithm using the "+
+        content:"Illustrating convergence of the Kohn-Sham algorithm using the "+
                     "exact functional and studying issues of <i>v</i>-representability.",
         note:"<b>editors' suggestion</b>",
         tags:"DFT, exact, 1d"
@@ -81,7 +81,7 @@ var publications = TAFFY([
         url:"http://dx.doi.org/10.1039/C4CP00407H",
         eprint:"p/MMGW14.pdf",
         lowid:7,
-        description:"Developing the strictly correlated electron approach for chemical systems.",
+        content:"Developing the strictly correlated electron approach for chemical systems.",
         tags:"DFT, SCE, 1d"
     },
     {
@@ -96,7 +96,7 @@ var publications = TAFFY([
         eprint:"p/WSBW13.pdf",
         note:"<b>editors' suggestion</b>; <i>ibid</i>. <b>112</b>, 019901(E) (2014)",
         lowid:6,
-        description:"Proving convergence of the Kohn-Sham algorithm using the "+
+        content:"Proving convergence of the Kohn-Sham algorithm using the "+
                     "exact functional. ",
         tags:"DFT, exact, 1d"
     },
@@ -111,7 +111,7 @@ var publications = TAFFY([
         url:"http://dx.doi.org/10.1002/qua.24259",
         eprint:"p/BW13.pdf",
         lowid:5,
-        description:"The basics of Kohn-Sham density functional theory.",
+        content:"The basics of Kohn-Sham density functional theory.",
         tags:"DFT, tutorial"
     },
     {
@@ -125,7 +125,7 @@ var publications = TAFFY([
         url:"http://dx.doi.org/10.1103/PhysRevLett.109.056402",
         eprint:"p/SWWB12.pdf",
         lowid:4,
-        description:"Solving the many-electron Schr&ouml;dinger equation in the continuum "+
+        content:"Solving the many-electron Schr&ouml;dinger equation in the continuum "+
                     "via the density matrix renormalization group, "+
                     "and exploring the relationship between continuum and lattice models.",
         tags:"DFT, DMRG, exact, 1d"
@@ -141,7 +141,7 @@ var publications = TAFFY([
         url:"http://dx.doi.org/10.1039/C2CP24118H",
         eprint:"p/WSBW12.pdf",
         lowid:3,
-        description:"Exact Kohn-Sham density functional theory in 1d, compared "+
+        content:"Exact Kohn-Sham density functional theory in 1d, compared "+
                     "with the standard local density and Hartree-Fock approximations, "+
                     "for analogs of simple atoms and molecules.",
         tags:"DFT, DMRG, exact, 1d"
@@ -161,7 +161,7 @@ var publications = TAFFY([
         editor:"M.A.L. Marques and N.T. Maitra and F.M.S. Nogueira and E.K.U. Gross and A. Rubio",
         eprint:"p/WYB12.pdf",
         lowid:2,
-        description:"Simple conditions on the exchange-correlation "+
+        content:"Simple conditions on the exchange-correlation "+
                     "kernel <i>f<sub>xc</sub></i> within time-dependent density functional theory, "+
                     "and analogies to ground-state conditions.",
         tags:"DFT, TDDFT, exact"
@@ -178,7 +178,7 @@ var publications = TAFFY([
         url:"https://www.rose-hulman.edu/mathjournal/v9n2.php",
         eprint:"p/BLAB.pdf",
         lowid:1.41421,
-        description:"How to count the number of unique objects, painted various colors at "+
+        content:"How to count the number of unique objects, painted various colors at "+
                     "different vertices, when group operations can rotate the object <i>and</i> "+
                     "permute the colors.",
         tags:"group theory"
@@ -193,7 +193,7 @@ var publications = TAFFY([
         year:2008,
         url:"http://dx.doi.org/10.1016/j.nuclphysa.2008.01.004",
         eprint:"p/NSCL.pdf",
-        description:"Work from a nuclear fragmentation experiment at the National Superconducting "+
+        content:"Work from a nuclear fragmentation experiment at the National Superconducting "+
                     "Cyclotron Laboratory at Michigan State University.",
         lowid:1,
         tags:"nuclear"
@@ -335,7 +335,7 @@ function writerecord( record, recordnumber ) {
     bibtex += "}";
     document.write(" <button onclick=\"alert(\'"+bibtex+"\');\">bibtex</a>");
 
-    document.write("</td></tr></table><p>"+record["description"]+"</p>");
+    document.write("</td></tr></table><p>"+record["content"]+"</p>");
     if ( record["tags"] !== undefined )
     {
         document.write("<p class=tags>tags: "+record["tags"]+"</p>");
@@ -381,8 +381,8 @@ else
         filter['title'] = {likenocase:QueryString['t']};
     if ( QueryString['g'] !== undefined )
         filter['tags'] = {likenocase:QueryString['g']};
-    if ( QueryString['d'] !== undefined )
-        filter['description'] = {likenocase:QueryString['d']};
+    if ( QueryString['c'] !== undefined )
+        filter['content'] = {likenocase:QueryString['c']};
     writebyfilter( "pub.html", publications, filter );
 }
 
@@ -407,8 +407,8 @@ else
 <ul>
 
 <li>
-<a href="index.html" title="go back home">
-Home
+<a href="index.html" title="news">
+Updates
 </a>
 </li>
 
@@ -431,7 +431,7 @@ About
 
 <br>
 
-<li><a href="LucasWagner-CV.pdf" target="lowblog" title="My curriculum vitae">
+<li><a href="LucasWagner-CV.pdf" target="CV" title="My curriculum vitae">
 My CV
 </a></li>
 

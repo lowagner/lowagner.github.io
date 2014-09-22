@@ -49,11 +49,7 @@ function writebyfilter( basehtml, data, func ) {
     if ( s == "all" )
     {   
         data( func ).each( writerecord );
-        document.write("<table id=navigation><tr>");
-        document.write("<td width=\"100px\"></td>"); 
-        document.write("<td width=\"150px\" align=\"center\"><span><a href=\"#top\">Back to top</a></span></td>");
-        document.write("<td width=\"100px\"></td>"); 
-        document.write("</tr></table>");
+        writenavtable( s, null, 1, null );
     }
     else
     {
@@ -61,24 +57,25 @@ function writebyfilter( basehtml, data, func ) {
         recordsMAX = (s+1)*recordsMAXpp-1; 
         data( func ).each( writeornotrecord );
 
-        if ( recordsDISPLAYED >= recordsSHOWbackTOtopAFTER || recordsBEFORE || recordsAFTER )
+        if ( recordsDISPLAYED == 0 )
         {
-            document.write("<table id=navigation><tr>");
-            if (recordsBEFORE)
-                document.write("<td width=\"120px\"><span><a href=\""+basehtml+everythingButS+"s="+(s-1)+"\">Previous</a></span></td>");
-            else
-                document.write("<td width=\"90px\"></td>"); 
-
+            document.write("Sorry, no results found with those filters.");
+        }
+        else if ( recordsDISPLAYED >= recordsSHOWbackTOtopAFTER || recordsBEFORE || recordsAFTER )
+        {
+            var left = "";
+            if (recordsBEFORE) 
+                left = basehtml+everythingButS;
+            
+    
+            var center = 0;
             if ( recordsDISPLAYED >= recordsSHOWbackTOtopAFTER )
-                document.write("<td width=\"150px\" align=\"center\"><span><a href=\"#top\">Back to top</a><span></td>");
-            else
-                document.write("<td width=\"150px\" align=\"center\"></td>");
+                center = 1;
 
+            var right = "";
             if (recordsAFTER)
-                document.write("<td width=\"90px\" align=\"right\"><span><a href=\""+basehtml+everythingButS+"s="+(s+1)+"\">Next</a></span></td>");
-            else
-                document.write("<td width=\"90px\"></td>");
-            document.write("</tr></table>");
+                right = basehtml+everythingButS;
+            writenavtable(s, left, center, right);
         }
     }
 };

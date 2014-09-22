@@ -14,117 +14,22 @@
 
 <!-- Main title and what not. -->
 <div class=header>
-<h2> lucas o. wagner </h2>
+<h2> lucas o. wagner ( dt )</h2>
 </div>
-
-
-
 
 <!-- Main stuff to read and what not. -->
 <div class=main>
-<div id=taglinks>
-<ul>
-
-<li>
-<a href="#hello">Hello!</a>
-</li>
-
-<li>
-<a href="#contact">Contact</a>
-</li>
-
-<li>
-<a href="#news">News</a>
-</li>
-
-</ul>
-</div>
-<a id="hello"></a>
-<h3 id="demo">Hello!</h3>
-
-<ul>
-
-
-
-<script >
-var x="";
-var time=new Date().getHours();
-if (time<20)
-{
-x="Hello there!";
-}
-else
-{
-x="Good evening!";
-}
-document.getElementById("demo").innerHTML=x;
-</script>
-
-
-<li>
-<table class=nostyle>
-<tr>
-<td>
-<p class=withstyle> My name is Lucas Wagner.</p>
-<p class=withstyle>For a living, I do research in theoretical physics
-and chemistry, and I enjoy coding as a hobby.
-</p>
-
-</td>
-<td>
-<img src="i/mug.jpg" alt="my face" style="display:block;margin:10 -5 10px 0;border-style:solid;border-color:#201515;border-width:0 2 2 0;" height="150" width="144">
-</td>
-</tr>
-</table>
-</li>
-
-<a id="contact"></a>
-<li>
-<table>
-<tr>
-<td class=mainentryfull>
-Contact
-</td>
-</tr>
-</table>
-<p>Present affiliation:</p>
-
-<p class=tab>
-Department of Theoretical Chemistry - Faculty of Sciences<br>
-Vrije Universiteit Amsterdam<br>
-De Boelelaan 1083<br>
-1081 HV Amsterdam, The Netherlands
-</p>
-
-<p>Electronic mail address:</p>
-<p class=tab> l o wagner at g mail dot com</p>
-</li>
-
-
-<!--
-<center>
-<p><i> Last updated:
-<script>
-today = document.lastModified;
-today = today.replace(/\//g, " ");
-today = today.replace(/-/g, " ");
-//document.write(today);
-today = new Date(Date.parse(today));
-document.write(today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate());
-</script>
-</i> </p>
-</center>
--->
-
-
-<a id="news"></a>
 
 <script src="js/taffy-min.js"></script> 
-<script src="js/urlparams.js"></script> 
+<script src="js/utils.js"></script> 
 <script src="js/records.js"></script> 
 
 <div id=biglinks>
 <script>
+// GLOBAL parameters YOU CAN SET
+recordsMAXpp = 5; // max number of codes to display per page
+recordsSHOWbackTOtopAFTER = 4;  // after X codes, show the back to top link.  this should NOT be greater than or equal to recordsMAXpp.
+
 showfilters( "index.html", [ [ "s", "all" ], 
                             [ "y", 2014 ] ] );
 </script>
@@ -132,7 +37,7 @@ showfilters( "index.html", [ [ "s", "all" ],
 
     <div id=taglinks>
     <script>
-    showtags( "index.html", ["website", "research", "coding"] );
+    showtags( "index.html", ["website", "coding"] );
     </script>
     </div>
 
@@ -145,9 +50,17 @@ var updates = TAFFY([
         month:9,
         day:22,
         news:"The website now doesn't duplicate any javascript functionality; "+
-            "even this news snippet is coded in TAFFY and displayed using javascript. "+
-            "this gives nice search features.",
-        tags:"coding, website"
+            "why even this news snippet is coded in TAFFY and displayed using javascript. "+
+            "this gives nice search features. "+
+            "For example, you can search with <a href=\"index.html?t=overhaul\">"+
+            "index.html?t=overhaul</a> to find a post "+
+            "with <i>overhaul</i> somewhere in its title, or <a href=\"index.html?c=face\">"+
+            "index.html?c=face</a> to find "+
+            "a post with <i>face</i> in its content.</p><p>You can also do that on the "+
+            "coding and publications pages, although that was already a hidden feature.</p>"+
+            "<p>Also moved my face to the <a href=\"about.html\">About</a> page, and " +
+            "updated my <a href=\"LucasWagner-CV.pdf\" target=\"CV\">CV</a>.",
+        tags:"website"
     },
     {
         title:"Latest update",
@@ -159,10 +72,6 @@ var updates = TAFFY([
         tags:"coding, website"
     }
     ]);
-
-// GLOBAL parameters YOU CAN SET
-recordsMAXpp = 1; // max number of codes to display per page
-recordsSHOWbackTOtopAFTER = 2;  // after X codes, show the back to top link.  this should NOT be greater than or equal to recordsMAXpp.
 
 function writerecord( record, recordnumber ) {
     var nutxt = record["title"];
@@ -229,8 +138,8 @@ else
         filter['title'] = {likenocase:QueryString['t']};
     if ( QueryString['g'] !== undefined )
         filter['tags'] = {likenocase:QueryString['g']};
-    if ( QueryString['n'] !== undefined )
-        filter['news'] = {likenocase:QueryString['n']};
+    if ( QueryString['c'] !== undefined )
+        filter['news'] = {likenocase:QueryString['c']};
     writebyfilter( "index.html", updates, filter );
 }
 
@@ -250,7 +159,7 @@ else
 <ul>
 
 <li>
-<span>Home</span>
+<span>Updates</span>
 </li>
 
 <li><a href="pub.html" title="my publications">
@@ -272,7 +181,7 @@ About
 
 <br>
 
-<li><a href="LucasWagner-CV.pdf" target="lowblog" title="My curriculum vitae">
+<li><a href="LucasWagner-CV.pdf" target="CV" title="My curriculum vitae">
 My CV
 </a></li>
 
