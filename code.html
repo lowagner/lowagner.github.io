@@ -15,7 +15,26 @@
 <head>
 <script src="js/taffy-min.js"></script> 
 <script src="js/urlparams.js"></script> 
-<script src="js/code.js"></script> 
+<script src="js/records.js"></script> 
+
+<div class=main>
+<div id=biglinks>
+<script>
+showfilters( "code.html", [ [ "s", "all" ], 
+                            [ "ys", 2009 ],
+                            [ "ys", 2013 ],
+                            [ "ys", 2014 ] ] );
+</script>
+</div>
+
+    <div id=taglinks>
+    <script>
+    showtags( "code.html", ["physics", "chemistry", "research"] );
+    showtags( "code.html", ["game", "music", "money"] );
+    showtags( "code.html", ["mathematica", "python", "c++", "bash"] );
+    </script>
+    </div>
+
 
 <script>
 var projects = TAFFY([
@@ -63,7 +82,7 @@ var projects = TAFFY([
             "Originally designed to work with multiple currencies, " +
             "since my family is being paid in two!  Download (or check out) from the "+
             "<a href='https://github.com/lowagner/pynances' target='Pynances'>Github</a> page.",
-        tags:"money, utility, python"
+        tags:"money, python"
     },
     {
         title:"Walker",
@@ -77,102 +96,57 @@ var projects = TAFFY([
         tags:"game, bash"
     }
     ]);
+
+// GLOBAL parameters YOU CAN SET
+recordsMAXpp = 4; // max number of codes to display per page
+recordsSHOWbackTOtopAFTER = 3;  // after X codes, show the back to top link.  this should NOT be greater than or equal to recordsMAXpp.
+
+function writerecord( record, recordnumber ) {
+    var nutxt = record["title"];
+    if ( record["url"] !== undefined )
+    {
+        nutxt = "<a href='" + record["url"] + "' target='"+nutxt+"'>" + nutxt+"</a>";
+    }
+    else
+    {
+        nutxt += " <span style='font-weight:normal'>(unreleased)</span>";
+    }
+    document.write('<li><table><tr><td class=mainentrytitle>'+nutxt+'</td>');
+
+    nutxt = record["yearstart"];
+    if ( record["yearend"] !== undefined && record["yearend"] !== record["yearstart"] )
+    {
+        nutxt += "-" + record["yearend"];
+    }
+    document.write('<td class=mainentrydate>'+nutxt+'</td></tr></table>');
+    
+    document.write("<p>"+record["description"]+"</p>");
+    if ( record["tags"] !== undefined )
+    {
+        document.write("<p class=tags>tags: "+record["tags"]+"</p>");
+    }
+    document.write("</li>");
+
+};
+
 </script>
+<ul>
+
 
 </head>
 
 
 <!-- Main stuff to read and what not. -->
 
-<div class=main>
-<div id=biglinks>
-    <ul>
-    <li><a href="code.html?s=all">all</a></li>
-    <li><a href="code.html?ys=2009">2009</a></li>
-    <li><a href="code.html?ys=2013">2013</a></li>
-    <li><a href="code.html?ys=2014">2014</a></li>
-    </ul> 
-</div>
-
-
-    <div id=taglinks>
-    <ul>
-    <li><a href="code.html?g=physics">physics</a></li>
-    <li><a href="code.html?g=chemistry">chemistry</a></li>
-    <li><a href="code.html?g=research">research</a></li>
-    </ul><ul>
-    <li><a href="code.html?g=game">game</a></li>
-    <li><a href="code.html?g=music">music</a></li>
-    <li><a href="code.html?g=utility">utility</a></li>
-    <li><a href="code.html?g=money">money</a></li>
-    </ul><ul>
-    <li><a href="code.html?g=mathematica">mathematica</a></li>
-    <li><a href="code.html?g=python">python</a></li>
-    <li><a href="code.html?g=c++">c++</a></li>
-    <li><a href="code.html?g=bash">bash</a></li>
-    </ul> 
-    </div>
-
-<ul>
-
-
 <script>
 
-var s = 0;
-if ('s' in QueryString)
-{
-    if ( QueryString['s'] == "all" )
-    {
-        s = "all";
-    }
-    else
-    {
-        s = parseInt( QueryString['s'] );
-    }
-}
 //document.write("<p> everything but s = " + everythingButS  + "</p>");
 
-function writebyfilter( func ) {
-    // no special URL parameters.
-    if ( s == "all" )
-    {   
-        projects( func ).each( writecode );
-        document.write("<li><table class=navigation><tr>");
-        document.write("<td width=\"100px\"></td>"); 
-        document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
-        document.write("<td width=\"100px\"></td>"); 
-        document.write("</tr></table></li>");
-    }
-    else
-    {
-        codesMIN = s*codesMAXpp;
-        codesMAX = (s+1)*codesMAXpp-1; 
-        projects( func ).each( writeornotcode );
-
-        if ( codesDISPLAYED >= codesSHOWbackTOtopAFTER || codesBEFORE || codesAFTER )
-        {
-            document.write("<li><table class=navigation><tr>");
-            if (codesBEFORE)
-                document.write("<td width=\"100px\"><a href=\"code.html"+everythingButS+"s="+(s-1)+"\">Previous</a></td>");
-            else
-                document.write("<td width=\"100px\"></td>"); 
-
-            if ( codesDISPLAYED >= codesSHOWbackTOtopAFTER )
-                document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
-
-            if (codesAFTER)
-                document.write("<td width=\"100px\" align=\"right\"><a href=\"code.html"+everythingButS+"s="+(s+1)+"\">Next</a></td>");
-            else
-                document.write("<td width=\"100px\"></td>");
-            document.write("</tr></table></li>");
-        }
-    }
-};
 
 if ( everythingButS == "?" )
 {
     // if there're no other URL parameters besides s, then don't filter for anything
-    writebyfilter( true );
+    writebyfilter( projects, true );
 }
 else
 {
@@ -207,7 +181,7 @@ else
         filter['tags'] = {likenocase:QueryString['g']};
     if ( QueryString['d'] !== undefined )
         filter['description'] = {likenocase:QueryString['d']};
-    writebyfilter( filter );
+    writebyfilter( projects, filter );
 }
 
 

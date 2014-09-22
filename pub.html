@@ -11,12 +11,30 @@
   <h2> lucas o. wagner + publications </h2>
 </div>
 
-<!-- Main stuff to read and what not. -->
-
 <head>
 <script src="js/taffy-min.js"></script> 
 <script src="js/urlparams.js"></script> 
-<script src="js/pub.js"></script> 
+<script src="js/records.js"></script> 
+
+<div class=main>
+<div id=biglinks>
+<script>
+showfilters( "pub.html", [ [ "s", "all" ],
+                            [ "y", 2008 ],
+                            [ "y", 2012 ],
+                            [ "y", 2013 ],
+                            [ "y", 2014 ] ] );
+</script>
+</div>
+
+    <div id=taglinks>
+    <script>
+    showtags( "pub.html", [ "DFT", "DMRG", 
+                            "SCE", "TDDFT", 
+                            "group", "nuclear" ] );
+    showtags( "pub.html", [ "exact", "1d",  "tutorial" ] );
+    </script>
+    </div>
 
 <script>
 var publications = TAFFY([
@@ -181,98 +199,168 @@ var publications = TAFFY([
         tags:"nuclear"
     }
     ]);
+
+recordsMAXpp = 4; // max number of codes to display per page
+recordsSHOWbackTOtopAFTER = 3;  // after X codes, show the back to top link.  this should NOT be greater than or equal to recordsMAXpp.
+
+function getpeople( authors ) {
+    // grab all but last "and" in the author list.
+    authors=authors.split(' and');
+    if ( authors.length > 8 )
+    {
+        // long author lists suck!
+        authors=authors[0]+", <i>et al</i>";
+    }
+    else if ( authors.length > 2 )
+    {
+        authors=authors.slice(0,-1).join(',') + ", and"+authors.slice(-1);
+        //authors.join(', aasdfnd');
+    }
+    else if ( authors.length == 2 )
+    {
+        authors=authors.slice(0,-1).join('') + " and"+authors.slice(-1);         
+    }
+    else
+    {
+        authors.join('');
+    }
+    return authors;
+};
+
+function writerecord( record, recordnumber ) {
+    // get the number id.  "lowid".
+    var nutxt = "";
+    var bibtex = "";
+    // check if the id is an integer.  if so, then we can print it.
+    if ( (record["lowid"] | 0) === record["lowid"] )
+        nutxt = record["lowid"];
+    else
+        nutxt = "*";
+    // if the id wasn't integer, just make it an asterisk.
+    bibtex += "@"+record["style"]+"{lowagner"+record["lowid"]+",\\n";
+    var authors = getpeople( record['author'] );
+    bibtex += "    author = {"+record["author"]+"},\\n";
+    document.write('<li><table><tr><td class=number>'+nutxt+'.</td><td class=wideentry>'+authors+", ");
+
+    // now get the title of the work, and add a link if we can.
+    if ( record["eprint"] !== undefined )
+    {
+        // if we have the eprint available (pdf on site), then use that.
+        nutxt="<a href=\""+record["eprint"]+"\" target=low"+record["lowid"]+">"+record["title"]+"</a>, ";
+    }
+    else
+    { 
+        if ( record["url"] !== undefined )
+        {
+            // if we have a url to the legit site, then use that.
+            nutxt="<a href=\""+record["url"]+"\" target=low"+record["lowid"]+">"+record["title"]+"</a>, ";
+        }
+        else
+        {
+            // no pdf or url, don't link anything.
+            nutxt=record["title"]+", ";
+        }
+    }
+    bibtex += "    title = {"+record["title"]+"},\\n";
+    bibtex += "    url = {"+record["url"]+"},\\n";
+    document.write(nutxt);
+
+    nutxt = "";
+    if ( record["style"] == "article" )
+    {
+        nutxt = "<i>"+record["journal"]+"</i> <b>"+record["volume"]+"</b>, "+record["pages"]+" ("+record["year"].toString()+")";
+        bibtex += "    journal = {"+record["journal"]+"},\\n";
+        bibtex += "    volume = {"+record["volume"]+"},\\n";
+    }
+    else if ( record["style"] == "inbook" )
+    {
+        nutxt = "in <i>"+record["booktitle"]+"</i>, ";
+        bibtex += "    booktitle = {"+record["booktitle"]+"},\\n";
+        
+        if ( record["series"] !== undefined )
+        {
+            nutxt += record["series"];
+            bibtex += "    series = {"+record["series"]+"},\\n";
+            if ( record["number"] !== undefined )
+            {
+                nutxt += " No. " + record["number"];
+                bibtex += "    number = {"+record["number"]+"},\\n";
+            }
+            nutxt += ", ";
+        }
+        nutxt += " edited by " + getpeople( record["editor"] );
+        bibtex += "    editor = {"+record["editor"]+"},\\n";
+        nutxt += " ("+record["publisher"]+", "+record["year"]+") Chap. "+record["chapter"];
+        bibtex += "    publisher = {"+record["publisher"]+"},\\n";
+        bibtex += "    chapter = {"+record["chapter"]+"},\\n";
+        nutxt += ", pp. "+record["pages"];
+    }
+    bibtex += "    pages = {"+record["pages"]+"},\\n";
+    bibtex += "    year = {"+record["year"]+"},\\n";
+    document.write(nutxt);
+    
+    // check for notes.
+    if ( record["note"] !== undefined )
+    {
+        document.write(": "+record["note"]+".");
+        var note = record["note"];
+        bibtex += "    note = {"+note+"},\\n";
+    }
+    else
+    {
+        document.write(".");
+    }
+    
+    // get rid of editor's suggestion for bibtex
+    bibtex = bibtex.replace(/<b>editors' suggestion<\/b>; /g, "");
+    bibtex = bibtex.replace(/<b>editors' suggestion<\/b>/g, "");
+    // get rid of empty notes...
+    bibtex = bibtex.replace(/note = {},/g, "");
+    // escape all apostrophes
+    bibtex = bibtex.replace(/'/g, "\\'");
+    // change some html to bibtex
+    // bold
+    bibtex = bibtex.replace(/<b>/g, "{\\\\bf ");
+    bibtex = bibtex.replace(/<\/b>/g, "}");
+    // italic
+    bibtex = bibtex.replace(/<i>/g, "{\\\\em ");
+    bibtex = bibtex.replace(/<\/i>/g, "}");
+    // superscript
+    bibtex = bibtex.replace(/<sup>/g, "$^{");
+    bibtex = bibtex.replace(/<\/sup>/g, "}$");
+    // subscript
+    bibtex = bibtex.replace(/<sub>/g, "$_{");
+    bibtex = bibtex.replace(/<\/sub>/g, "}$");
+
+    bibtex += "}";
+    document.write(" <button onclick=\"alert(\'"+bibtex+"\');\">bibtex</a>");
+
+    document.write("</td></tr></table><p>"+record["description"]+"</p>");
+    if ( record["tags"] !== undefined )
+    {
+        document.write("<p class=tags>tags: "+record["tags"]+"</p>");
+    }
+    document.write("</li>");
+};
+
+
 </script>
 
+
+<!-- Main stuff to read and what not. -->
+
 </head>
-
-
-
-<div class=main>
-<div id=biglinks>
-    <ul>
-    <li><a href="pub.html?s=all">all</a></li>
-    <li><a href="pub.html?y=2008">2008</a></li>
-    <li><a href="pub.html?y=2012">2012</a></li>
-    <li><a href="pub.html?y=2013">2013</a></li>
-    <li><a href="pub.html?y=2014">2014</a></li>
-    </ul> 
-</div>
-
-
-    <div id=taglinks>
-    <ul>
-    <li><a href="pub.html?g=DFT">DFT</a></li>
-    <li><a href="pub.html?g=exact">exact</a></li>
-    <li><a href="pub.html?g=1d">1d</a></li>
-    <li><a href="pub.html?g=DMRG">DMRG</a></li>
-    <li><a href="pub.html?g=SCE">SCE</a></li>
-    <li><a href="pub.html?g=tutorial">tutorial</a></li>
-    <li><a href="pub.html?g=TDDFT">TDDFT</a></li>
-    <li><a href="pub.html?g=group">group theory</a></li>
-    <li><a href="pub.html?g=nuclear">nuclear</a></li>
-    </ul> 
-    </div>
-
 <ul>
 
 
 <script>
 
-var s = 0;
-if ('s' in QueryString)
-{
-    if ( QueryString['s'] == "all" )
-    {
-        s = "all";
-    }
-    else
-    {
-        s = parseInt( QueryString['s'] );
-    }
-}
 //document.write("<p> everything but s = " + everythingButS  + "</p>");
-
-function writebyfilter( func ) {
-    // no special URL parameters.
-    if ( s == "all" )
-    {   
-        publications( func ).each( writepub );
-        document.write("<li><table class=navigation><tr>");
-        document.write("<td width=\"100px\"></td>"); 
-        document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
-        document.write("<td width=\"100px\"></td>"); 
-        document.write("</tr></table></li>");
-    }
-    else
-    {
-        pubsMIN = s*pubsMAXpp;
-        pubsMAX = (s+1)*pubsMAXpp-1; 
-        publications( func ).each( writeornotpub );
-
-        if ( pubsDISPLAYED >= pubsSHOWbackTOtopAFTER || pubsBEFORE || pubsAFTER )
-        {
-            document.write("<li><table class=navigation><tr>");
-            if (pubsBEFORE)
-                document.write("<td width=\"100px\"><a href=\"pub.html"+everythingButS+"s="+(s-1)+"\">Previous</a></td>");
-            else
-                document.write("<td width=\"100px\"></td>"); 
-
-            if ( pubsDISPLAYED >= pubsSHOWbackTOtopAFTER )
-                document.write("<td width=\"200px\" align=\"center\"><a href=\"#top\">Back to top</a></td>");
-
-            if (pubsAFTER)
-                document.write("<td width=\"100px\" align=\"right\"><a href=\"pub.html"+everythingButS+"s="+(s+1)+"\">Next</a></td>");
-            else
-                document.write("<td width=\"100px\"></td>");
-            document.write("</tr></table></li>");
-        }
-    }
-};
 
 if ( everythingButS == "?" )
 {
     // if there're no other URL parameters besides s, then don't filter for anything
-    writebyfilter( true );
+    writebyfilter( publications, true );
 }
 else
 {
@@ -295,7 +383,7 @@ else
         filter['tags'] = {likenocase:QueryString['g']};
     if ( QueryString['d'] !== undefined )
         filter['description'] = {likenocase:QueryString['d']};
-    writebyfilter( filter );
+    writebyfilter( publications, filter );
 }
 
 
