@@ -31,6 +31,7 @@ border-width:2px 2px 25px 7px;
 border-color:#221111;  
 /*    TOP RIGHT BOTTOM LEFT padding */
 box-shadow:1px 2px 0 3px #120808;
+color:#E9E5E1;
 }      
 
 /* style for menu */
@@ -447,7 +448,7 @@ font-weight:bold;
 .tags{
 margin:-10px 5px 10px 5px;
 text-align:right;
-color:#CCAAD1;
+color:#C3B0D5;
 }
 
 .tab{
