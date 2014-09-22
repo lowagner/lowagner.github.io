@@ -85,7 +85,15 @@ function showfilters( basehtml, filters ) {
     document.write("<ul>");
     for ( var i=0; i<filters.length; i++ ) {
         if ( (filters[i].length == 2) && filters[i][1] == "all" ) {
-            document.write("<li><a href=\""+basehtml+everythingButS+"s=all\">all</a></li>");
+            if ( QueryString['s'] == "all" ) {
+                // if the page is already showing all, perhaps it is showing all records of some other filter
+                // so take out all other filters
+                document.write("<li><a href=\""+basehtml+"?s=all\">all</a></li>");
+            } else {
+                // otherwise, perhaps we were looking at a given page, and we want to see
+                // all of the records for the given filter
+                document.write("<li><a href=\""+basehtml+everythingButS+"s=all\">all</a></li>");
+            }
         } else {
             var writeout = "<li><a href=\""+basehtml+"?";
             var label = "";
