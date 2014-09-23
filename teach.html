@@ -13,84 +13,131 @@
 <h2> lucas o. wagner / teach </h2>
 </div>
 
+
 <!-- Main stuff to read and what not. -->
 <div class=main>
 
-<!--
-<div id=taglinks>
-<ul>
+<script src="js/taffy-min.js"></script> 
+<script src="js/utils.js"></script> 
+<script src="js/records.js"></script> 
 
-<li>
-<a href="#present">Present</a>
-</li>
+<div id=biglinks>
+<script>
+// GLOBAL parameters YOU CAN SET
+recordsMAXpp = 5; // max number of codes to display per page
+recordsSHOWbackTOtopAFTER = 4;  // after X codes, show the back to top link.  this should NOT be greater than or equal to recordsMAXpp.
 
-<li>
-<a href="#past">Past</a>
-</li>
-
-</ul>
+showfilters( "teach.html", [ [ "s", "all" ] ] ); //[ "date", "2007" ] ] );
+</script>
 </div>
 
-<a id="present">
-<h3>Present</h3>
-</a>
+    <div id=taglinks>
+    <script>
+    showtags( "teach.html", ["physics", "chemistry", "intro", "labs"] );
+    </script>
+    </div>
+
+
+<script>
+var classes = TAFFY([
+    {
+        title:"Computational chemistry",
+        quarter:"Spring",
+        year:2011,
+        description:"I was teaching assistant for this lab class at UC Irvine. "+
+            "<a target=\"compchem11\" href=\"c/11-compchem/index.html\">Here</a> "+
+            "is the website I made for students to work through the labs.",
+        tags:"chemistry, computers"
+    },
+    {
+        title:"Old classes",
+        quarter:"up to 2009, 2011, from",
+        year:2007,
+        description:"I also led many other discussions and labs, somehow without "+
+            "websites.  This includes introductory physics (both discussions and labs) "+
+            "at Concordia (2007-2008) and UC Irvine (2008-2009). "+
+            "See <a href=\"LucasWagner-CV.pdf\" target=\"CV\">my CV</a> for a few others.",
+        tags:"physics, intro, labs"
+    }
+    ]);
+
+function writerecord( record, recordnumber ) {
+    var nutxt = record["title"];
+    document.write('<li><table><tr><td class=mainentrytitle>'+nutxt+'</td>');
+
+    if ( record["quarter"] !== undefined )
+        nutxt = record["quarter"]+" ";
+    else
+        nutxt = "";
+    nutxt += record["year"];
+    document.write('<td class=mainentrydate>'+nutxt+'</td></tr></table>');
+    
+    document.write("<p>"+record["description"]+"</p>");
+    if ( record["tags"] !== undefined )
+    {
+        document.write("<p class=tags>tags: "+record["tags"]+"</p>");
+    }
+    document.write("</li>");
+
+};
+
+</script>
+</head>
+
 <ul>
 
-<li> <p>Placeholder </p> </li>
+
+
+
+<!-- Main stuff to read and what not. -->
+
+<script>
+
+//document.write("<p> everything but s = " + everythingButS  + "</p>");
+
+
+if ( everythingButS == "?" )
+{
+    // if there're no other URL parameters besides s, then don't filter for anything
+    writebyfilter( "teach.html", classes, true );
+}
+else
+{
+    var filter={};
+    if ( QueryString['y'] !== undefined )
+    {   
+        var yy = QueryString['y'];
+        var year = parseInt(yy.substr(0,4)); 
+        var modifier = yy.substr(4);
+        if ( modifier  == "+" )
+            filter['year'] = {gte:year}; // get all years after this year, too
+        else if ( modifier == "-" )
+            filter['year'] = {lte:year}; // get all years before this year, too
+        else
+            filter['year'] = {is:year};
+    }
+    if ( QueryString['q'] !== undefined )
+    {   
+        var month = parseInt( QueryString['q'] );
+        filter['quarter'] = {likenocase:QueryString['q']};
+    }
+    if ( QueryString['t'] !== undefined )
+        filter['title'] = {likenocase:QueryString['t']};
+    if ( QueryString['g'] !== undefined )
+        filter['tags'] = {likenocase:QueryString['g']};
+    if ( QueryString['c'] !== undefined )
+        filter['description'] = {likenocase:QueryString['c']};
+    writebyfilter( "teach.html", classes, filter );
+}
+
+
+</script>
 
 </ul>
--->
-
-<a id="past">
-</a>
-
-<ul>
-
-<li>
-<table>
-<tr>
-<td class=mainentrytitle>Computational Chemistry</td>
-<td class=mainentrydate>Spring 2011</td>
-</tr>
-</table>
-<p>
-I was teaching assistant for this lab class at UC Irvine.  
-<a target="compchem11" href="c/11-compchem/index.html">Here</a> 
-is the website I made for students to work through the labs.
-</p>
-</li>
-
-
-<li>
-<table>
-<tr>
-<td class=mainentrytitle>Other classes</td>
-<td class=mainentrydate>2007-2009, 2011</td>
-</tr>
-</table>
-<p>
-I also led many other discussions and labs, somehow without
-websites.  This includes introductory physics (both discussions and labs) 
-at Concordia (2007-2008) and UC Irvine (2008-2009).
-See <a href="LucasWagner-CV.pdf" target="CV">my CV</a> for a few others.
-</p>
-</li>
-
-
-
-
-<!--
-<center>
-<a href="#top">Back to top</a>
-</center>
--->
-
-</ul>
-
-
 
 </div>
 <!-- END main stuff to read and what not. -->
+
 
 <!-- Main links and menu what not. -->
 <div class=col1> 
