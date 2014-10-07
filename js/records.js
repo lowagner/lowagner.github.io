@@ -123,3 +123,43 @@ function showtags( basehtml, tags ) {
     }
     document.write("</ul>");
 }
+
+
+function addtofilter( filter, option, value, numberlength ) {
+    if ( value !== undefined ) {
+        if ( filter[option] === undefined )
+            filter[option] = {};
+
+        if ( numberlength === undefined ) {
+            if ( typeof value === "object" ) {
+                for ( var key in value ) {
+                    filter[option]['likenocase'] = key; // PROBLEM HERE.
+                } 
+            } else {
+                filter[option]['likenocase'] = value;
+            }
+        } else {
+
+        }
+        
+//        if ( typeof value === "number" ) {
+//            if ( modifier == "+" )
+//                filter[option]['gte'] = value;
+//            else if ( modifier == "-" )
+//                filter[option]['lte'] = value;
+//            else //( modifier === undefined )
+//                filter[option]['is'] = value;
+//        } 
+//        else if ( typeof value === "string" ) {
+//            filter[option]['likenocase'] = value;
+//        }
+//        else if ( typeof value === "object" ) {
+//            if ( typeof modifier === "object" ) {
+//                
+//            } else {
+//
+//            }
+//        }
+    }
+
+}
