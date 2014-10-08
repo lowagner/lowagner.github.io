@@ -509,13 +509,17 @@ text-decoration:none;
 #navigation{
 background-color:transparent;
 font-size:100%;
-margin:2pt 2pt 5pt -4pt;
+margin:2pt 1pt 5pt -4pt;
 /*    TOP RIGHT BOTTOM LEFT padding */
 display: block;
 position: relative;
 border-width:0;
 padding:0;
 width:100%;
+}
+
+#navigation td {
+padding: 0 3pt 0 3pt;
 }
 
 #navigation span a{
