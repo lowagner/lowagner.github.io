@@ -78,7 +78,37 @@ and chemistry, and I enjoy coding as a hobby.
 
 </td>
 <td>
-<img src="i/mug.jpg" alt="my face" style="display:block;margin:10 -5 10px 0;border-style:solid;border-color:#201515;border-width:0 2 2 0;" height="150" width="144">
+<script>
+var smallestyear = 2012;
+var largestyear = 2014;
+
+var yy = QueryString['y'];
+
+if ( yy === undefined )
+{
+    yy = largestyear;
+}
+else
+{
+    yy = parseInt(yy);
+    if ( yy > largestyear )
+        yy = largestyear;
+    else if ( yy < smallestyear )
+        yy = smallestyear;
+}
+
+var nextyy = yy + 1;
+if ( nextyy > largestyear )
+    nextyy = smallestyear;
+
+document.write( "<a href=\"about.html?y="+nextyy.toString()+"\">" );
+document.write( "<img src=\"i/mug-"+yy.toString()+".jpg\"" );
+document.write( "alt=\"my face circa "+yy.toString()+"\"" );
+document.write( "style=\"display:block;margin:10 -5 10px 0;border-style:solid;border-color:#201515;border-width:0 2 2 0;\" height=\"150\">" );
+document.write("</a>");
+
+    
+</script>
 </td>
 </tr>
 </table>
@@ -183,6 +213,15 @@ from being blameless, or even trusting God.  I realized that with
 the help of some friends and divine lighting.  
 I found both mercy and conviction in
 the once and future king, Jesus.
+</p>
+
+<p>
+I also found the greatest woman out there to be my wife.
+She even understands my humor sometimes.
+<center>
+<img src="i/Amber-Lucas-Boat-2013.gif" alt="on a boat" style="display:block;margin:10 -5 10px 0;border-style:solid;border-color:#201515;border-width:0 2 2 0;" height="150">
+</center>
+I ask her all my engineering questions!
 </p>
 </li>
 
