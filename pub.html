@@ -49,6 +49,7 @@ var publications = TAFFY([
         url:"http://arxiv.org/abs/1408.5426",
         eprint:"p/WG14.pdf",
         lowid:9,
+        note:"accepted to PRA",
         content:"Generalizing the Wigner--Seitz radius in a nonlocal way "+
                     "to define a physical model of the electron hole.  See also "+
                     "the <a href='https://github.com/lowagner/NLRatoms' target='NLRatoms'>NLRatoms</a> code.",
@@ -383,6 +384,8 @@ else
         filter['tags'] = {likenocase:QueryString['g']};
     if ( QueryString['c'] !== undefined )
         filter['content'] = {likenocase:QueryString['c']};
+    if ( QueryString['id'] !== undefined )
+        filter['lowid'] = {is: parseFloat(QueryString['id'])};
     writebyfilter( "pub.html", publications, filter );
 }
 
