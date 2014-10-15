@@ -44,9 +44,11 @@ var classes = TAFFY([
         title:"Computational chemistry",
         quarter:"Spring",
         year:2011,
+        url:"c/11-compchem/index.html",
         description:"I was teaching assistant for this lab class at UC Irvine. "+
             "<a target=\"compchem11\" href=\"c/11-compchem/index.html\">Here</a> "+
             "is the website I made for students to work through the labs.",
+        img:"c/11-compchem/images/header.jpg",
         tags:"chemistry, computers"
     },
     {
@@ -63,6 +65,10 @@ var classes = TAFFY([
 
 function writerecord( record, recordnumber ) {
     var nutxt = record["title"];
+    if ( record["url"] !== undefined )
+    {
+        nutxt = "<a href='" + record["url"] + "' target='"+nutxt+"'>" + nutxt+"</a>";
+    }
     document.write('<li><table><tr><td class=mainentrytitle>'+nutxt+'</td>');
 
     if ( record["quarter"] !== undefined )
@@ -73,6 +79,17 @@ function writerecord( record, recordnumber ) {
     document.write('<td class=mainentrydate>'+nutxt+'</td></tr></table>');
     
     document.write("<p>"+record["description"]+"</p>");
+    
+    if ( record["img"] !== undefined )
+    {
+        nutxt = "<img src=\""+record["img"]+"\" width=\"100%\" style=\"display:block;margin:-5px 5px 18px 0px;border-style:solid;border-color:#201515;border-width:0 2 2 0;\">";
+        if ( record["url"] !== undefined )
+        {
+            nutxt = "<a href='" + record["url"] + "' target='"+record["title"]+"'>" + nutxt+"</a>";
+        }
+        document.write(nutxt);
+    }
+
     if ( record["tags"] !== undefined )
     {
         document.write("<p class=tags>tags: "+record["tags"]+"</p>");

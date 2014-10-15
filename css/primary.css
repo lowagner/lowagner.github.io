@@ -337,10 +337,10 @@ border-width:0px 3px 6px 0px;
 border-color:#0A100A;
 }
 
-.nostyle{
+.nostyle {
 font-size:100%;
 /*    TOP RIGHT BOTTOM LEFT padding */
-margin:0;
+margin:0 0 0 0;
 display: block;
 position: relative;
 border-width:0;
@@ -543,5 +543,4 @@ display:block;
 background-color:#AA0000;
 text-decoration:none;
 }
-
 
