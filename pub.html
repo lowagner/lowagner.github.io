@@ -40,18 +40,18 @@ showfilters( "pub.html", [ [ "s", "all" ],
 var publications = TAFFY([
     {
         style:"article",
-        title:"How to make electrons avoid each other: a nonlocal radius for strong correlation",
+        title:"Electron avoidance: A nonlocal radius for strong correlation",
         author:"L.O. Wagner and Paola Gori-Giorgi",
-        journal:"arxiv",
-        volume:"1408",
-        pages:"5426",
+        journal:"Phys. Rev. A",
+        volume:"90",
+        img:"i/H2ksnlr.png",
+        pages:"052512",
         year:2014,
-        url:"http://arxiv.org/abs/1408.5426",
+        url:"http://link.aps.org/doi/10.1103/PhysRevA.90.052512",
         eprint:"p/WG14.pdf",
         lowid:9,
-        note:"accepted to PRA",
         content:"Generalizing the Wigner--Seitz radius in a nonlocal way "+
-                    "to define a physical model of the electron hole.  See also "+
+                    "to define a physical model of the electron hole.  Also see "+
                     "the <a href='https://github.com/lowagner/NLRatoms' target='NLRatoms'>NLRatoms</a> code.",
         tags:"DFT, nonlocal, SCE, 1d"
     },
@@ -63,6 +63,7 @@ var publications = TAFFY([
         volume:"90",
         pages:"045109",
         year:2014,
+        img:"i/exactconvergence.png",
         url:"http://link.aps.org/doi/10.1103/PhysRevB.90.045109",
         eprint:"p/WBSB14.pdf",
         lowid:8,
@@ -78,6 +79,7 @@ var publications = TAFFY([
         journal:"Phys. Chem. Chem. Phys.",
         pages:"14551-14558",
         volume:"16",
+        img:"i/1dH2sce.png",
         year:2014,
         url:"http://dx.doi.org/10.1039/C4CP00407H",
         eprint:"p/MMGW14.pdf",
@@ -91,6 +93,7 @@ var publications = TAFFY([
         author:"L.O. Wagner and E.M. Stoudenmire and K. Burke and S.R. White",
         journal:"Phys. Rev. Lett.",
         volume:"111",
+        img:"i/exactH2pol.png",
         pages:"093003",
         year:2013,
         url:"http://dx.doi.org/10.1103/PhysRevLett.111.093003",
@@ -110,6 +113,7 @@ var publications = TAFFY([
         pages:"96-101",
         year:2013,
         url:"http://dx.doi.org/10.1002/qua.24259",
+        img:"i/psi.png",
         eprint:"p/BW13.pdf",
         lowid:5,
         content:"The basics of Kohn-Sham density functional theory.",
@@ -125,6 +129,7 @@ var publications = TAFFY([
         year:2012,
         url:"http://dx.doi.org/10.1103/PhysRevLett.109.056402",
         eprint:"p/SWWB12.pdf",
+        img:"i/1dHchain.png",
         lowid:4,
         content:"Solving the many-electron Schr&ouml;dinger equation in the continuum "+
                     "via the density matrix renormalization group, "+
@@ -141,6 +146,7 @@ var publications = TAFFY([
         year:2012,
         url:"http://dx.doi.org/10.1039/C2CP24118H",
         eprint:"p/WSBW12.pdf",
+        img:"i/1dH2.gif",
         lowid:3,
         content:"Exact Kohn-Sham density functional theory in 1d, compared "+
                     "with the standard local density and Hartree-Fock approximations, "+
@@ -161,6 +167,7 @@ var publications = TAFFY([
         url:"http://www.springer.com/978-3-642-23517-7",
         editor:"M.A.L. Marques and N.T. Maitra and F.M.S. Nogueira and E.K.U. Gross and A. Rubio",
         eprint:"p/WYB12.pdf",
+        img:"i/TDring.png",
         lowid:2,
         content:"Simple conditions on the exchange-correlation "+
                     "kernel <i>f<sub>xc</sub></i> within time-dependent density functional theory, "+
@@ -178,6 +185,7 @@ var publications = TAFFY([
         year:2008,
         url:"https://www.rose-hulman.edu/mathjournal/v9n2.php",
         eprint:"p/BLAB.pdf",
+        img:"i/indistinguishable.png",
         lowid:1.41421,
         content:"How to count the number of unique objects, painted various colors at "+
                     "different vertices, when group operations can rotate the object <i>and</i> "+
@@ -197,7 +205,8 @@ var publications = TAFFY([
         content:"Work from a nuclear fragmentation experiment at the National Superconducting "+
                     "Cyclotron Laboratory at Michigan State University.",
         lowid:1,
-        tags:"nuclear"
+        tags:"nuclear",
+        img:"i/nuclei.png"
     }
     ]);
 
@@ -337,6 +346,19 @@ function writerecord( record, recordnumber ) {
     document.write(" <button onclick=\"alert(\'"+bibtex+"\');\">bibtex</a>");
 
     document.write("</td></tr></table><p>"+record["content"]+"</p>");
+
+    if ( record["img"] !== undefined )
+    {
+        nutxt = "<img src=\""+record["img"]+"\" width=\"100%\" style=\"display:block;margin:-5px 5px 18px 0px;border-style:solid;border-color:#201515;border-width:0 2 2 0;\">";
+        if ( record["url"] !== undefined )
+        {
+            nutxt = "<a href='" + record["url"] + "' target='"+record["title"]+"'>" + nutxt+"</a>";
+        }
+        document.write(nutxt);
+    }
+
+
+
     if ( record["tags"] !== undefined )
     {
         document.write("<p class=tags>tags: "+record["tags"]+"</p>");
