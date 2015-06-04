@@ -31,13 +31,25 @@ showfilters( "code.html", [ [ "s", "all" ],
     <script>
     showtags( "code.html", ["physics", "chemistry", "research"] );
     showtags( "code.html", ["game", "music", "money"] );
-    showtags( "code.html", ["mathematica", "python", "c++", "bash"] );
+    showtags( "code.html", ["mathematica", "python", "c++", "C", "bash"] );
     </script>
     </div>
 
 
 <script>
 var projects = TAFFY([
+    {
+        title:"Memory Matrix",
+        url:"https://github.com/lowagner/bitbox-mmat",
+        yearstart:2015,
+        yearend:2015,
+        img:"i/mmat.gif",
+        content:"Memory Matrix is a game about memorizing colors in a matrix. "+
+            "It is designed for the <a href=\"http://bitboxconsole.blogspot.nl/\" "+
+            "target=\"bitboxblog\">bitbox console</a>, but you can play it on a "+
+            "dev-ready computer.",
+        tags:"game, C"
+    },
     {
         title:"PyanoH3ro",
         url:"https://github.com/lowagner/pyanoh3ro",
@@ -61,7 +73,7 @@ var projects = TAFFY([
             "Currently this game has you pushing blocks off the platform using physics!  "+
             "Check it out on <a href='https://github.com/lowagner/sparrow-bullets' target='Sparrow-bullets'>Github</a>, "+
             "or take a look at a <a href='https://www.youtube.com/watch?v=UD6rm4y-BtE' target='sparrow-youtube'>video</a> on it.",
-        tags:"game, physics, c++"
+        tags:"game, physics, C, c++"
     },
     {
         title:"NLRatoms",
