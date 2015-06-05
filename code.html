@@ -31,7 +31,7 @@ showfilters( "code.html", [ [ "s", "all" ],
     <script>
     showtags( "code.html", ["physics", "chemistry", "research"] );
     showtags( "code.html", ["game", "music", "money"] );
-    showtags( "code.html", ["mathematica", "python", "c++", "C", "bash"] );
+    showtags( "code.html", ["mathematica", "python", "C/c++", "bash"] );
     </script>
     </div>
 
@@ -45,10 +45,10 @@ var projects = TAFFY([
         yearend:2015,
         img:"i/mmat.gif",
         content:"Memory Matrix is a game about memorizing colors in a matrix. "+
-            "It is designed for the <a href=\"http://bitboxconsole.blogspot.nl/\" "+
+            "It is designed for the <a href=\"http://bitboxconsole.blogspot.com/\" "+
             "target=\"bitboxblog\">bitbox console</a>, but you can play it on a "+
             "dev-ready computer.",
-        tags:"game, C"
+        tags:"game, C/c++"
     },
     {
         title:"PyanoH3ro",
@@ -73,7 +73,7 @@ var projects = TAFFY([
             "Currently this game has you pushing blocks off the platform using physics!  "+
             "Check it out on <a href='https://github.com/lowagner/sparrow-bullets' target='Sparrow-bullets'>Github</a>, "+
             "or take a look at a <a href='https://www.youtube.com/watch?v=UD6rm4y-BtE' target='sparrow-youtube'>video</a> on it.",
-        tags:"game, physics, C, c++"
+        tags:"game, physics, C/c++"
     },
     {
         title:"NLRatoms",
@@ -118,22 +118,27 @@ recordsSHOWbackTOtopAFTER = 3;  // after X codes, show the back to top link.  th
 
 function writerecord( record, recordnumber ) {
     var nutxt = record["title"];
+    var yeartxt = record["year"];
+    var urlpretxt = "";
+    var urlposttxt = "";
     if ( record["url"] !== undefined )
     {
-        nutxt = "<a href='" + record["url"] + "' target='"+nutxt+"'>" + nutxt+"</a>";
+        urlpretxt = "<a href='" + record["url"] + "' target='"+nutxt+"' class=\"white\">";
+        urlposttxt = "</a>";
     }
     else
     {
-        nutxt += " <span style='font-weight:normal'>(unreleased)</span>";
+        urlpretxt = "<span style='font-weight:normal'>(unreleased)</span>";
+        urlposttxt = "</span>";
     }
-    document.write('<li><table><tr><td class=mainentrytitle>'+nutxt+'</td>');
+    document.write('<li><table id="hovertable"><tr><td class=mainentrytitle>'+urlpretxt+nutxt+urlposttxt+'</td>');
 
     nutxt = record["yearstart"];
     if ( record["yearend"] !== undefined && record["yearend"] !== record["yearstart"] )
     {
         nutxt += "-" + record["yearend"];
     }
-    document.write('<td class=mainentrydate>'+nutxt+'</td></tr></table>');
+    document.write('<td class=mainentrydate>'+urlpretxt+nutxt+urlposttxt+'</td></tr></table>');
     
     document.write("<p>"+record["content"]+"</p>");
 
@@ -150,7 +155,7 @@ function writerecord( record, recordnumber ) {
 
     if ( record["tags"] !== undefined )
     {
-        document.write("<p class=tags>tags: "+record["tags"]+"</p>");
+        document.write("<p class=taglist>tags: <span class=tags>"+record["tags"]+"</span></p>");
     }
     document.write("</li>");
 

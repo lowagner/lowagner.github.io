@@ -45,7 +45,17 @@ showfilters( "index.html", [ [ "s", "all" ],
 <script>
 var updates = TAFFY([
     {
-        title:"Summer fun with memorizing matrices",
+        title:"Cosmetic changes and rumors",
+        year:2015,
+        month:6,
+        day:5,
+        news:"The site has been flattened (aesthetically), and I've added some co-author "+
+        "<a href=\"pub.html?y=2015\">publications</a>. "+
+        "Also, there are rumors that the NLR functional is now implemented in <a href=\"http://www.gaussian.com/\" target=\"gaussiancode\">Gaussian</a>...",
+        tags:"website, research"
+    },
+    {
+        title:"Summer fun: memorize matrices",
         year:2015,
         month:6,
         day:4,
@@ -124,7 +134,7 @@ var updates = TAFFY([
 
 function writerecord( record, recordnumber ) {
     var nutxt = record["title"];
-    document.write('<li><table><tr><td class=mainentrytitle>'+nutxt+'</td>');
+    document.write('<li><table id=mainentry><tr><td class=mainentrytitle>'+nutxt+'</td>');
 
     nutxt = record["year"]+"-"+record["month"]+"-"+record["day"];
     document.write('<td class=mainentrydate>'+nutxt+'</td></tr></table>');
@@ -132,7 +142,7 @@ function writerecord( record, recordnumber ) {
     document.write("<p>"+record["news"]+"</p>");
     if ( record["tags"] !== undefined )
     {
-        document.write("<p class=tags>tags: "+record["tags"]+"</p>");
+        document.write("<p class=taglist>tags: <span class=tags>"+record["tags"]+"</span></p>");
     }
     document.write("</li>");
 

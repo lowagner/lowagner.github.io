@@ -23,7 +23,9 @@ showfilters( "pub.html", [ [ "s", "all" ],
                             [ "y", 2008 ],
                             [ "y", 2012 ],
                             [ "y", 2013 ],
-                            [ "y", 2014 ] ] );
+                            [ "y", 2014 ],
+                            [ "y", 2015 ] 
+            ] );
 </script>
 </div>
 
@@ -40,8 +42,40 @@ showfilters( "pub.html", [ [ "s", "all" ],
 var publications = TAFFY([
     {
         style:"article",
+        title:"Hydrogen molecule dissociation curve with functionals based on the strictly-correlated regime",
+        author: "S. Vuckovic, L.O. Wagner, A. Mirtschink, and P. Gori-Giorgi",
+        journal:"submitted to JCTC",
+        //volume:"",
+        img:"i/H2sce.png",
+        //pages:"052512",
+        year:2015,
+        //url:"http://link.aps.org/doi/10.1103/PhysRevA.90.052512",
+        //eprint:"p/WG14.pdf",
+        lowid:11,
+        content:"Calculating co-motion and kinetic energy for strictly correlated electrons "+
+                "in real 3d H<sub>2</sub>, and discerning the Levy&ndash;Zahariev constant "+
+                "in the potential.",
+        tags:"DFT, nonlocal, SCE"
+    },
+    {
+        style:"article",
+        title:"One Dimensional Mimicking of Electronic Structure: The Case for Exponentials",
+        author: "T.E. Baker, E.M. Stoudenmire, L.O. Wagner, K. Burke, and S.R. White",
+        journal:"accepted to PRB",
+        //volume:"",
+        img:"i/1dH10expsc.png",
+        //pages:"052512",
+        year:2015,
+        //url:"http://link.aps.org/doi/10.1103/PhysRevA.90.052512",
+        eprint:"p/BSWB15.pdf",
+        lowid:10,
+        content:"",
+        tags:"1d, DFT"
+    },
+    {
+        style:"article",
         title:"Electron avoidance: A nonlocal radius for strong correlation",
-        author:"L.O. Wagner and Paola Gori-Giorgi",
+        author:"L.O. Wagner and P. Gori-Giorgi",
         journal:"Phys. Rev. A",
         volume:"90",
         img:"i/H2ksnlr.png",
@@ -51,8 +85,8 @@ var publications = TAFFY([
         eprint:"p/WG14.pdf",
         lowid:9,
         content:"Generalizing the Wigner--Seitz radius in a nonlocal way "+
-                    "to define a physical model of the electron hole.  Also see "+
-                    "the <a href='https://github.com/lowagner/NLRatoms' target='NLRatoms'>NLRatoms</a> code.",
+                "to define a physical model of the electron hole.  Also see "+
+                "the <a href='https://github.com/lowagner/NLRatoms' target='NLRatoms'>NLRatoms</a> code.",
         tags:"DFT, nonlocal, SCE, 1d"
     },
     {
@@ -256,31 +290,40 @@ function writerecord( record, recordnumber ) {
     if ( record["eprint"] !== undefined )
     {
         // if we have the eprint available (pdf on site), then use that.
-        nutxt="<a href=\""+record["eprint"]+"\" target=low"+record["lowid"]+">"+record["title"]+"</a>, ";
+        nutxt="\"<a href=\""+record["eprint"]+"\" target=low"+record["lowid"]+">"+record["title"]+"</a>,\" ";
     }
     else
     { 
         if ( record["url"] !== undefined )
         {
             // if we have a url to the legit site, then use that.
-            nutxt="<a href=\""+record["url"]+"\" target=low"+record["lowid"]+">"+record["title"]+"</a>, ";
+            nutxt="\"<a href=\""+record["url"]+"\" target=low"+record["lowid"]+">"+record["title"]+"</a>,\" ";
         }
         else
         {
             // no pdf or url, don't link anything.
-            nutxt=record["title"]+", ";
+            nutxt="\""+record["title"]+",\" ";
         }
     }
     bibtex += "    title = {"+record["title"]+"},\\n";
-    bibtex += "    url = {"+record["url"]+"},\\n";
+    if ( record["url"] !== undefined )
+        bibtex += "    url = {"+record["url"]+"},\\n";
     document.write(nutxt);
 
     nutxt = "";
     if ( record["style"] == "article" )
     {
-        nutxt = "<i>"+record["journal"]+"</i> <b>"+record["volume"]+"</b>, "+record["pages"]+" ("+record["year"].toString()+")";
+        nutxt = "<i>"+record["journal"]+"</i>";
         bibtex += "    journal = {"+record["journal"]+"},\\n";
-        bibtex += "    volume = {"+record["volume"]+"},\\n";
+        if (record["volume"] !== undefined)
+        {
+            nutxt += " <b>"+record["volume"]+"</b>";
+            bibtex += "    volume = {"+record["volume"]+"},\\n";
+        }
+        if (record["pages"] !== undefined)
+            nutxt += ", "+record["pages"];
+        if (record["year"] !== undefined)
+            nutxt +=" ("+record["year"].toString()+")";
     }
     else if ( record["style"] == "inbook" )
     {
@@ -305,8 +348,10 @@ function writerecord( record, recordnumber ) {
         bibtex += "    chapter = {"+record["chapter"]+"},\\n";
         nutxt += ", pp. "+record["pages"];
     }
-    bibtex += "    pages = {"+record["pages"]+"},\\n";
-    bibtex += "    year = {"+record["year"]+"},\\n";
+    if (record["pages"] !== undefined)
+        bibtex += "    pages = {"+record["pages"]+"},\\n";
+    if (record["year"] !== undefined)
+        bibtex += "    year = {"+record["year"]+"},\\n";
     document.write(nutxt);
     
     // check for notes.
@@ -361,7 +406,7 @@ function writerecord( record, recordnumber ) {
 
     if ( record["tags"] !== undefined )
     {
-        document.write("<p class=tags>tags: "+record["tags"]+"</p>");
+        document.write("<p class=taglist>tags: <span class=tags>"+record["tags"]+"</span></p>");
     }
     document.write("</li>");
 };

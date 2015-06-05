@@ -69,7 +69,7 @@ function writerecord( record, recordnumber ) {
     {
         nutxt = "<a href='" + record["url"] + "' target='"+nutxt+"'>" + nutxt+"</a>";
     }
-    document.write('<li><table><tr><td class=mainentrytitle>'+nutxt+'</td>');
+    document.write('<li><table id=hovertable><tr><td class=mainentrytitle>'+nutxt+'</td>');
 
     if ( record["quarter"] !== undefined )
         nutxt = record["quarter"]+" ";
@@ -92,7 +92,7 @@ function writerecord( record, recordnumber ) {
 
     if ( record["tags"] !== undefined )
     {
-        document.write("<p class=tags>tags: "+record["tags"]+"</p>");
+        document.write("<p class=taglist>tags: <span class=tags>"+record["tags"]+"</span></p>");
     }
     document.write("</li>");
 
