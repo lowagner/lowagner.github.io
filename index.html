@@ -30,8 +30,12 @@
 recordsMAXpp = 5; // max number of codes to display per page
 recordsSHOWbackTOtopAFTER = 4;  // after X codes, show the back to top link.  this should NOT be greater than or equal to recordsMAXpp.
 
-showfilters( "index.html", [ [ "s", "all" ], 
-                            [ "y", 2014 ] ] );
+showfilters( "index.html", [ 
+    [ "s", "all" ], 
+    [ "y", 2014 ],
+    [ "y", 2015 ]
+] );
+
 </script>
 </div>
 
@@ -44,6 +48,15 @@ showfilters( "index.html", [ [ "s", "all" ],
 
 <script>
 var updates = TAFFY([
+    {
+        title:"New bitbox game and other news",
+        year:2015,
+        month:8,
+        day:19,
+        news:"You will soon be able to duel with your friend on the bitbox.  See <a href=\"code.html?t=bbgunner\">here</a> for the scoop.</p>" +
+        "<p>Plus I'm going full time indie developer!  I hope to deliver some more fun and useful products for you in the coming months. ",
+        tags:"website, coding"
+    },
     {
         title:"Cosmetic changes and rumors",
         year:2015,
