@@ -1,0 +1,252 @@
+<html>
+<title>Projects</title>
+<link href='css/primary.css' rel='stylesheet' type='text/css' />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<body>
+<a id="top"> </a>
+<!-- Main title and what not. -->
+
+<div id=container>
+
+<div class=header>
+<h2> lucas o. wagner / projects </h2>
+</div>
+
+
+<!-- Main stuff to read and what not. -->
+<div class=main>
+
+<script src="js/taffy-min.js"></script> 
+<script src="js/utils.js"></script> 
+<script src="js/records.js"></script> 
+
+<div id=biglinks>
+<script>
+// GLOBAL parameters YOU CAN SET
+recordsMAXpp = 5; // max number of codes to display per page
+recordsSHOWbackTOtopAFTER = 4;  // after X codes, show the back to top link.  this should NOT be greater than recordsMAXpp.
+
+//showfilters( "projects.html", [ [ "s", "all" ] ] ); //[ "date", "2007" ] ] );
+</script>
+</div>
+
+    <div id=taglinks>
+    <script>
+ //   showtags( "projects.html", ["retro"] );
+    </script>
+    </div>
+
+
+<script>
+var classes = TAFFY([
+    {
+        title:"Bitbox",
+        yearstart:2015,
+        yearend:2015,
+        content:"The bitbox is a small, low-power VGA+audio-jack output, USB input, " + 
+            "gaming console.  Its speed is measured in the MHz and its RAM in the kB, " +
+            "so it's got soul.  It's designed by someone in France, who will gladly ship you "+
+            "<a href=\"https://www.tindie.com/products/makapuf/the-bitbox-console/\" target=\"bbtindie\">one</a>.</p><p>" +
+            "I've contributed to the <a href=\"https://github.com/makapuf/bitbox\">" +
+            "bitbox SDK</a> and made a bunch of " + 
+            "<a href=\"https://github.com/search?q=user%3Alowagner+bitbox\">games</a> for it.  " + 
+            "It also has a <a href=\"https://github.com/makapuf/bitbox/wiki\">Wiki</a> and a " + 
+            "<a href=\"https://groups.google.com/forum/#!forum/bitbox-console\">mailing list</a>.",
+        url:"http://bitboxconsole.blogspot.com/",
+        tags:"retro, open-source"
+    },
+    {
+        title:"Pyra",
+        yearstart:2014,
+        yearend:2015,
+        content:"Too many devices that you buy are locked down:  they cannot be easily hacked, " +
+            "and the software is given to you, the consumer, as is.  And they don't tend to have physical " +
+            "buttons for responsive control.</p><p>Enter the Pyra.  "+
+            "At the moment, I'm little more than an enthusiast for this open-source-friendly "+
+            "<a href=\"http://www.pyra-handheld.com/\">Linux gaming handheld</a>.  "+
+            "I played a small role in crafting its keyboard layout, and I intend to " +
+            "make some open-source games for this device once it is released.",
+        url:"http://www.pyra-handheld.com/",
+        tags:"retro, linux, open-source"
+    },
+    ]);
+
+function writerecord( record, recordnumber ) {
+    var nutxt = record["title"];
+    var yeartxt = record["year"];
+    var urlpretxt = "";
+    var urlposttxt = "";
+    if ( record["url"] !== undefined )
+    {
+        urlpretxt = "<a href='" + record["url"] + "' target='"+nutxt+"' class=\"white\">";
+        urlposttxt = "</a>";
+    }
+    else
+    {
+        urlpretxt = "";
+        urlposttxt = "</span>";
+    }
+    document.write('<li><table id="hovertable"><tr><td class=mainentrytitle>'+urlpretxt+nutxt+urlposttxt+'</td>');
+
+    nutxt = record["yearstart"];
+    if ( record["yearend"] !== undefined && record["yearend"] !== record["yearstart"] )
+    {
+        nutxt += "-" + record["yearend"];
+    }
+    document.write('<td class=mainentrydate>'+urlpretxt+nutxt+urlposttxt+'</td></tr></table>');
+    
+    document.write("<p>"+record["content"]+"</p>");
+
+    if ( record["img"] !== undefined )
+    {
+        nutxt = "<img src=\""+record["img"]+"\" width=\"100%\" style=\"display:block;margin:-5px 5px 18px 0px;border-style:solid;border-color:#201515;border-width:0 2 2 0;\">";
+        if ( record["url"] !== undefined )
+        {
+            nutxt = "<a href='" + record["url"] + "' target='"+record["title"]+"'>" + nutxt+"</a>";
+        }
+        document.write(nutxt);
+    }
+
+
+    if ( record["tags"] !== undefined )
+    {
+        document.write("<p class=taglist>tags: <span class=tags>"+record["tags"]+"</span></p>");
+    }
+    document.write("</li>");
+
+};
+
+</script>
+</head>
+
+<ul>
+
+
+
+
+<!-- Main stuff to read and what not. -->
+
+<script>
+
+//document.write("<p> everything but s = " + everythingButS  + "</p>");
+
+
+if ( everythingButS == "?" )
+{
+    // if there're no other URL parameters besides s, then don't filter for anything
+    writebyfilter( "teach.html", classes, true );
+}
+else
+{
+    var filter={};
+    if ( QueryString['y'] !== undefined )
+    {   
+        var yy = QueryString['y'];
+        var year = parseInt(yy.substr(0,4)); 
+        var modifier = yy.substr(4);
+        if ( modifier  == "+" )
+            filter['year'] = {gte:year}; // get all years after this year, too
+        else if ( modifier == "-" )
+            filter['year'] = {lte:year}; // get all years before this year, too
+        else
+            filter['year'] = {is:year};
+    }
+    if ( QueryString['q'] !== undefined )
+    {   
+        var month = parseInt( QueryString['q'] );
+        filter['quarter'] = {likenocase:QueryString['q']};
+    }
+    if ( QueryString['t'] !== undefined )
+        filter['title'] = {likenocase:QueryString['t']};
+    if ( QueryString['g'] !== undefined )
+        filter['tags'] = {likenocase:QueryString['g']};
+    if ( QueryString['c'] !== undefined )
+        filter['description'] = {likenocase:QueryString['c']};
+    writebyfilter( "teach.html", classes, filter );
+}
+
+
+</script>
+
+</ul>
+
+</div>
+<!-- END main stuff to read and what not. -->
+
+
+<!-- Main links and menu what not. -->
+<div class=col1> 
+
+<h4>menu</h4>
+
+<ul>
+
+<li>
+<a href="index.html" title="news">
+News
+</a>
+</li>
+
+<li><a href="pub.html" title="my publications">
+Publications
+</a></li>
+
+<li><span>
+Projects
+</span></li>
+
+<li><a href="code.html" title="my programming">
+Coding
+</a></li>
+
+<li><a href="about.html" title="about me">
+About
+</a></li>
+
+<br>
+
+<li><a href="LucasWagner-CV.pdf" target="CV" title="My curriculum vitae">
+My CV
+</a></li>
+
+</ul>
+
+</div> 
+<!-- END main links and menu what not. -->
+
+
+<!-- Not main links and menu what not. -->
+<div class=col2> 
+
+<h4>find me on...</h4>
+
+<ul>
+
+<li><a href="http://scholar.google.com/citations?user=sbRpEIcAAAAJ&hl=en" target="lowscholar">
+Google scholar
+</a></li>
+
+<li><a href="http://ible.bandcamp.com/" target="lowband">
+Bandcamp
+</a></li>
+
+<li><a href="http://www.github.com/lowagner" target="lowgithub">
+Github
+</a></li>
+
+<li><a href="http://uncalc.blogspot.com/" target="lowblog">
+A blog
+</a></li>
+
+</ul>
+
+</div>
+<!-- END not main links and menu what not. -->
+
+
+</div>
+
+</body>
+
+</html>
