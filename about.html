@@ -80,7 +80,7 @@ feel, and then I draw comics.</p>
 <td>
 <script>
 var smallestyear = 2012;
-var largestyear = 2014;
+var largestyear = 2016;
 
 var yy = QueryString['y'];
 
@@ -97,18 +97,22 @@ else
         yy = smallestyear;
 }
 
-var nextyy = yy + 1;
-if ( nextyy > largestyear )
-    nextyy = smallestyear;
-
-document.write( "<a href=\"about.html?y="+nextyy.toString()+"\">" );
-document.write( "<img src=\"i/mug-"+yy.toString()+".jpg\"" );
-document.write( "alt=\"my face circa "+yy.toString()+"\"" );
-document.write( "style=\"display:block;margin:10 -5 10px 0;border-style:solid;border-color:#201515;border-width:0 2 2 0;\" height=\"150\">" );
-document.write("</a>");
-
-    
+function increment()
+{
+    yy = yy + 1;
+    if ( yy > largestyear )
+        yy = smallestyear;
+}
 </script>
+
+
+<a href="#" onclick="increment(); document.getElementById('mug').src = 'i/mug-'+yy.toString()+'.jpg'; return false;">
+<img id="mug" alt="my face" style="display:block;margin:10 -5 10px 0;border-style:solid;border-color:#201515;border-width:0 2 2 0;" height="150">
+</a>
+<script>
+document.getElementById('mug').src = 'i/mug-'+yy.toString()+'.jpg';
+</script>
+    
 </td>
 </tr>
 </table>
@@ -116,13 +120,9 @@ document.write("</a>");
 
 <a id="contact"></a>
 <li>
-<table>
-<tr>
-<td class=mainentryfull>
+<div class="hovertable lesscolor"><div class="mainentryfull">
 Contact
-</td>
-</tr>
-</table>
+</div></div>
 <p>Present affiliation:</p>
 
 <p class=tab>
@@ -138,13 +138,9 @@ Independent developer.
 <a id="creations">
 </a>
 <li>
-<table>
-<tr>
-<td class=mainentryfull>
+<div class="hovertable lesscolor"><div class="mainentryfull">
 Creations
-</td>
-</tr>
-</table>
+</div></div>
 <p>
 I work on <a href="code.html">coding</a> games and other useful programs for various
 <a href="projects.html">devices</a>.  You may also find various "helpful" code-snippets 
@@ -162,14 +158,9 @@ which may sound appealing to some (and a little grating on others).</p>
 <a id="research">
 </a>
 <li>
-<table>
-<tr>
-<td class=mainentryfull>
+<div class="hovertable lesscolor"><div class="mainentryfull">
 Research interests
-</td>
-<!--<td class=mainentrydate>circa 1980s</td>-->
-</tr>
-</table>
+</div></div>
 <p>
 I have pursued some unique and interesting ideas to solve 
 the quantum many-body problem, specifically electronic structure
@@ -202,14 +193,9 @@ specifically <a href="pub.html?t=nutshell">DFT in a nutshell</a>, which made the
 <a id="life">
 </a>
 <li>
-<table>
-<tr>
-<td class=mainentryfull>
+<div class="hovertable lesscolor"><div class="mainentryfull">
 Doing justly, loving mercy, and walking humbly
-</td>
-<!--<td class=mainentrydate>circa 1980s</td>-->
-</tr>
-</table>
+</div></div>
 <p>
 ... is the life-goal, but not something I do do very well naturally.  
 For a long time I thought I knew God, and yet was so far

@@ -49,6 +49,16 @@ showfilters( "index.html", [
 <script>
 var updates = TAFFY([
     {
+        title:"New stuff",
+        year:2016,
+        month:11,
+        day:12,
+        news:"Adding in the main coding project I've been working on "+
+            "<a href=\"code.html?t=16\">in the usual spot</a>, "+
+            "also updated website (mostly internal changes, killing tables for divs).",
+        tags:"website, coding"
+    },
+    {
         title:"New bitbox game and other news",
         year:2015,
         month:8,
@@ -146,11 +156,22 @@ var updates = TAFFY([
     ]);
 
 function writerecord( record, recordnumber ) {
-    var nutxt = record["title"];
-    document.write('<li><table id=mainentry><tr><td class=mainentrytitle>'+nutxt+'</td>');
-
-    nutxt = record["year"]+"-"+record["month"]+"-"+record["day"];
-    document.write('<td class=mainentrydate>'+nutxt+'</td></tr></table>');
+    var title = record["title"];
+    var urlpretxt = "";
+    var urlposttxt = "";
+    if ( record["url"] !== undefined )
+    {
+        urlpretxt = "<a href='" + record["url"] + "' target='"+title+"' class=\"white\">";
+        urlposttxt = "</a>";
+    }
+    else
+    {
+        title = "<span>" + title + "</span>";
+    }
+    document.write('<li>' + urlpretxt + '<div class="hovertable lesscolor">');
+    var nutxt = record["year"]+"-"+record["month"]+"-"+record["day"];
+    document.write('<div class="mainentrydate">'+nutxt+'</div>');
+    document.write('<div class="mainentrytitle">'+title+'</div></div>' + urlposttxt);
     
     document.write("<p>"+record["news"]+"</p>");
     if ( record["tags"] !== undefined )

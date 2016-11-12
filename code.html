@@ -41,10 +41,20 @@ showfilters( "code.html", [ [ "s", "all" ],
 <script>
 var projects = TAFFY([
     {
+        title:"16",
+        url:"https://github.com/lowagner/bitbox-16",
+        yearstart:2015,
+        yearend:2016,
+        img:"i/16.png",
+        content:"An integrated video-game editor for the bitbox.  Lots "+
+            "of videos on my <a href='https://www.youtube.com/user/ilictis'>youtube channel</a>.",
+        tags:"bitbox game, C/c++"
+    },
+    {
         title:"Snake",
         url:"https://github.com/lowagner/bitbox-snake",
         yearstart:2015,
-        yearend:2015,
+        yearend:2016,
         img:"i/snake.png",
         content:"A clone of the classic game, featuring dueling, guns, and more to come.",
         tags:"bitbox game, C/c++"
@@ -65,7 +75,7 @@ var projects = TAFFY([
         yearend:2015,
         img:"i/bbgunner.png",
         content:"BBGunner allows you to face off against a friend in this retro "+
-            "low-res first-person-shooter.  Your gun adapts to your play style, allowing"+
+            "low-res first-person-shooter.  Your gun adapts to your play style, allowing "+
             "you to machine gun your way to victory or become a sniper.",
         tags:"bitbox game, C/c++"
     },
@@ -148,28 +158,26 @@ recordsMAXpp = 3; // max number of codes to display per page
 recordsSHOWbackTOtopAFTER = 3;  // after X codes, show the back to top link.  this should NOT be greater than recordsMAXpp.
 
 function writerecord( record, recordnumber ) {
-    var nutxt = record["title"];
-    var yeartxt = record["year"];
+    var title = record["title"];
     var urlpretxt = "";
     var urlposttxt = "";
     if ( record["url"] !== undefined )
     {
-        urlpretxt = "<a href='" + record["url"] + "' target='"+nutxt+"' class=\"white\">";
+        urlpretxt = "<a href='" + record["url"] + "' target='"+title+"' class=\"white\">";
         urlposttxt = "</a>";
     }
     else
     {
-        urlpretxt = "<span style='font-weight:normal'>(unreleased)</span>";
-        urlposttxt = "</span>";
+        title = "<span>" + title + "<span style='font-weight:normal'> (unreleased)</span></span>";
     }
-    document.write('<li><table id="hovertable"><tr><td class=mainentrytitle>'+urlpretxt+nutxt+urlposttxt+'</td>');
-
-    nutxt = record["yearstart"];
+    document.write('<li>' + urlpretxt + '<div class="hovertable">');
+    var nutxt = record["yearstart"];
     if ( record["yearend"] !== undefined && record["yearend"] !== record["yearstart"] )
     {
         nutxt += "-" + record["yearend"];
     }
-    document.write('<td class=mainentrydate>'+urlpretxt+nutxt+urlposttxt+'</td></tr></table>');
+    document.write('<div class="mainentrydate">'+nutxt+'</div>');
+    document.write('<div class="mainentrytitle">'+title+'</div></div>' + urlposttxt);
     
     document.write("<p>"+record["content"]+"</p>");
 

@@ -53,8 +53,7 @@ var classes = TAFFY([
     },
     {
         title:"Old classes",
-        quarter:"up to 2009, 2011, from",
-        year:2007,
+        year:"2007+",
         description:"I also led many other discussions and labs, somehow without "+
             "websites.  This includes introductory physics (both discussions and labs) "+
             "at Concordia (2007-2008) and UC Irvine (2008-2009). "+
@@ -64,19 +63,27 @@ var classes = TAFFY([
     ]);
 
 function writerecord( record, recordnumber ) {
-    var nutxt = record["title"];
+    var title = record["title"];
+    var urlpretxt = "";
+    var urlposttxt = "";
     if ( record["url"] !== undefined )
     {
-        nutxt = "<a href='" + record["url"] + "' target='"+nutxt+"'>" + nutxt+"</a>";
+        urlpretxt = "<a href='" + record["url"] + "' target='"+title+"' class=\"white\">";
+        urlposttxt = "</a>";
     }
-    document.write('<li><table id=hovertable><tr><td class=mainentrytitle>'+nutxt+'</td>');
-
+    else
+    {
+        title = "<span>" + title + "</span>";
+    }
+    document.write('<li>' + urlpretxt + '<div class="hovertable">');
+    var nutxt;
     if ( record["quarter"] !== undefined )
         nutxt = record["quarter"]+" ";
     else
         nutxt = "";
     nutxt += record["year"];
-    document.write('<td class=mainentrydate>'+nutxt+'</td></tr></table>');
+    document.write('<div class="mainentrydate">'+nutxt+'</div>');
+    document.write('<div class="mainentrytitle">'+title+'</div></div>' + urlposttxt);
     
     document.write("<p>"+record["description"]+"</p>");
     

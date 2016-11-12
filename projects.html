@@ -59,10 +59,10 @@ var classes = TAFFY([
     {
         title:"Pyra",
         yearstart:2014,
-        yearend:2015,
+        yearend:2016,
         content:"Too many devices that you buy are locked down:  they cannot be easily hacked, " +
             "and the software is given to you, the consumer, as is.  And they don't tend to have physical " +
-            "buttons for responsive control.</p><p>Enter the Pyra.  "+
+            "keys or buttons for feedback and control.</p><p>Enter the Pyra.  "+
             "At the moment, I'm little more than an enthusiast for this open-source-friendly "+
             "<a href=\"http://www.pyra-handheld.com/\">Linux gaming handheld</a>.  "+
             "I played a small role in crafting its keyboard layout, and I intend to " +
@@ -73,29 +73,27 @@ var classes = TAFFY([
     ]);
 
 function writerecord( record, recordnumber ) {
-    var nutxt = record["title"];
+    var title = record["title"];
     var yeartxt = record["year"];
     var urlpretxt = "";
     var urlposttxt = "";
     if ( record["url"] !== undefined )
     {
-        urlpretxt = "<a href='" + record["url"] + "' target='"+nutxt+"' class=\"white\">";
+        urlpretxt = "<a href='" + record["url"] + "' target='"+title+"' class=\"white\">";
         urlposttxt = "</a>";
     }
     else
     {
-        urlpretxt = "";
-        urlposttxt = "</span>";
+        title = "<span>" + title + "</span>";
     }
-    document.write('<li><table id="hovertable"><tr><td class=mainentrytitle>'+urlpretxt+nutxt+urlposttxt+'</td>');
-
-    nutxt = record["yearstart"];
+    document.write('<li>' + urlpretxt + '<div class="hovertable">');
+    var nutxt = record["yearstart"];
     if ( record["yearend"] !== undefined && record["yearend"] !== record["yearstart"] )
     {
         nutxt += "-" + record["yearend"];
     }
-    document.write('<td class=mainentrydate>'+urlpretxt+nutxt+urlposttxt+'</td></tr></table>');
-    
+    document.write('<div class="mainentrydate">'+nutxt+'</div>');
+    document.write('<div class="mainentrytitle">'+title+'</div></div>' + urlposttxt);
     document.write("<p>"+record["content"]+"</p>");
 
     if ( record["img"] !== undefined )

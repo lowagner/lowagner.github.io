@@ -285,7 +285,7 @@ function writerecord( record, recordnumber ) {
     bibtex += "@"+record["style"]+"{lowagner"+record["lowid"]+",\\n";
     var authors = getpeople( record['author'] );
     bibtex += "    author = {"+record["author"]+"},\\n";
-    document.write('<li><table><tr><td class=number>'+nutxt+'.</td><td class=wideentry>'+authors+", ");
+    document.write('<li><div class="hovertable lesscolor"><div class="number">'+nutxt+'.</div><div class=wideentry>'+authors+", ");
 
     // now get the title of the work, and add a link if we can.
     if ( record["eprint"] !== undefined )
@@ -391,7 +391,7 @@ function writerecord( record, recordnumber ) {
     bibtex += "}";
     document.write(" <button onclick=\"alert(\'"+bibtex+"\');\">bibtex</a>");
 
-    document.write("</td></tr></table><p>"+record["content"]+"</p>");
+    document.write("</div></div><p>"+record["content"]+"</p>");
 
     if ( record["img"] !== undefined )
     {

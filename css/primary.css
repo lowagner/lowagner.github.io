@@ -157,41 +157,14 @@ padding:5px 30px 0px 15px;
 margin:10px 0px 30px -5px;
 }
 
-#hovertable {
-border-collapse:collapse;
-}
-
-#hovertable td{
-display:block;
-color:#FDFDFE;
-white-space:nowrap;
-}
-
-#hovertable td a{
-display:block;
-color:#FFFFFF;
-white-space:nowrap;
-}
-
-#hovertable tr{
-color:#FFFFFF;
-display:block;
-padding:8px 13px 8px 10px;
-}
-
-#hovertable tr:hover{
-display:block;
-background-color:#bb5500;
-color:#FFFFFF;
-}
 
 
 /* bibtex links */
 button {
+font-family:"Times New Roman", Times, serif;
 border-radius:1px;
 background: none;
 color: #FAA;
-font-family:"Times New Roman", Times, serif;
 font-size:12pt;
 padding:0;
 text-decoration: none;
@@ -343,18 +316,34 @@ padding:7px 5px 0px 5px;
 }
 
 
-table{
+.hovertable {
 font-size:100%;
 /*    TOP RIGHT BOTTOM LEFT padding */
 margin:0px 3px -5px -7px;
-display: block;
-position: relative;
 color:#EEEEEE;
 background-color:#33201E;
 padding:5px 10px 8px 3px;
 border-style:solid;
 border-width:0px 3px 5px 0px;
 border-color:#0A100A;
+width:351px;
+}
+
+.hovertable div{
+padding:3px 13px 5px 5px;
+}
+
+.hovertable div a{
+color:#FFFFFF;
+}
+
+.hovertable:hover{
+background-color:#bb5500;
+color:#FFFFFF;
+}
+
+.lesscolor:hover{
+background-color:#2F1715;
 }
 
 .nostyle {
@@ -406,23 +395,22 @@ z-index: -1;
 }
 */
 
-
-#mainentry{
-border-collapse:collapse;
-}
-#mainentry tr {
-}
-
 .mainentrytitle{
-width:331px;
 font-weight:bold;
-white-space:nowrap;
+width: auto;
 padding:1px 7px 0px -10px;
+overflow:hidden;
+}
+.mainentrydate{
+width:81px;
+float:right;
+text-align:right;
+white-space:nowrap;
+padding:1px 5px 0px 0px;
 }
 
 .mainentryfull{
-width:351px;
-display:block;
+width:100%;
 font-weight:bold;
 padding:1px 7px 0px 0px;
 }
@@ -431,18 +419,13 @@ vertical-align:text-top;
 /*    TOP RIGHT BOTTOM LEFT padding */
 padding:1px 7px 0 0;
 font-weight:bold;
+float:left;
+width:20px;
 }
 .wideentry{
-width:401px;
+overflow:hidden;
+width:auto;
 padding:1px 7px 0px 0px;
-}
-.mainentrydate{
-width:81px;
-display:block;
-float:right;
-text-align:right;
-white-space:nowrap;
-padding:1px 5px 0px 0px;
 }
 
 
